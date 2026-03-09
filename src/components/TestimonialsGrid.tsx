@@ -1,6 +1,4 @@
 import React from 'react';
-import { Card, CardContent } from '../ui/card';
-import { Star } from 'lucide-react';
 
 interface Testimonial {
   name: string;
@@ -15,29 +13,24 @@ interface TestimonialsGridProps {
 
 export function TestimonialsGrid({ testimonials }: TestimonialsGridProps) {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Loved by Health-Conscious Individuals</h2>
-          <p className="text-xl text-gray-600">Real stories from real users</p>
+    <section style={{ padding: '5rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>Loved by Health-Conscious Individuals</h2>
+          <p style={{ fontSize: '1.125rem', color: '#4b5563' }}>Real stories from real users</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="shadow-lg">
-              <CardContent className="pt-6">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="fill-yellow-400 text-yellow-400" size={18} />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic">"{testimonial.content}"</p>
-                <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
-                </div>
-              </CardContent>
-            </Card>
+            <div key={index} style={{ backgroundColor: '#fff', borderRadius: '0.75rem', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+              <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem' }}>
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#facc15" aria-hidden="true"><path d="M12 .587l3.668 7.431L23.4 9.75l-5.7 5.548L19.335 24 12 20.01 4.665 24l1.635-8.702L.6 9.75l7.732-1.732L12 .587z"/></svg>
+                ))}
+              </div>
+              <p style={{ color: '#374151', fontStyle: 'italic', lineHeight: 1.7, margin: '0 0 1rem 0' }}>"{testimonial.content}"</p>
+              <div style={{ fontWeight: 600, color: '#111827' }}>{testimonial.name}</div>
+              <div style={{ fontSize: '0.875rem', color: '#4b5563' }}>{testimonial.role}</div>
+            </div>
           ))}
         </div>
       </div>

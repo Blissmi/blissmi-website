@@ -72,10 +72,12 @@ function ServeBox({ title, body, onClick, videoLeft = '0%' }: { title: string; b
 
 export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
   return (
-    <section style={{ backgroundColor: '#fff' }}>
+    <section style={{ backgroundColor: '#fff', padding: '4rem 0' }}>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '2.5rem',
+        padding: '0 2rem',
       }}>
         <ServeBox
           title="Members"

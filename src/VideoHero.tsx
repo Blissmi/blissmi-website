@@ -4,55 +4,13 @@ import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
 
 interface VideoHeroProps {
-  onNavigate: (page: string) => void;
+  onNavigate?: (page: string) => void;
   videoUrl?: string;
 }
 
-export function VideoHero({ onNavigate, videoUrl }: VideoHeroProps) {
+export function VideoHero({ videoUrl }: VideoHeroProps) {
   return (
     <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
-      {/* Top navigation */}
-      <div style={{ position: 'absolute', top: '1.5rem', left: 0, right: 0, zIndex: 30, padding: '0 1.5rem' }}>
-        <nav style={{ maxWidth: '80rem', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
-          {/* Left links */}
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            {[{ label: 'Home', page: 'home' }, { label: 'For Members', page: 'users' }].map(({ label, page }) => (
-              <li key={page}>
-                <button
-                  onClick={() => onNavigate(page)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', fontWeight: 500, padding: 0, textDecoration: 'none' }}
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          {/* Centre logo */}
-          <span style={{ position: 'absolute', left: '48%', transform: 'translateX(-50%)', color: '#fff', fontSize: '1rem', fontWeight: 600, pointerEvents: 'none', userSelect: 'none' }}>
-            Blissmi
-          </span>
-
-          {/* Right links */}
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            {[
-              { label: 'For Customers', page: 'customers' },
-              { label: 'For Partners', page: 'partners' },
-              { label: 'Research & Advocacy', page: 'research' },
-              { label: 'Contact Us', page: 'contact' },
-            ].map(({ label, page }) => (
-              <li key={page}>
-                <button
-                  onClick={() => onNavigate(page)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', fontWeight: 500, padding: 0, textDecoration: 'none' }}
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
       {/* Video Background */}
       <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         {videoUrl ? (

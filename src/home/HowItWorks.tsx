@@ -1,9 +1,9 @@
 import React from 'react'
 import { ImageWithFallback } from '../figma/ImageWithFallback'
-import connectDataImg from 'figma:asset/307636bf87994c31716a2c02068ffa1ecb15c425.png'
-import understandHealthImg from 'figma:asset/6d19f6a3cfa0c3c366fccfd20addb167dd758944.png'
-import personalizedInsightsImg from 'figma:asset/e9338c2e9c7508b0d8ef44ec9f97ecd7bc38e86b.png'
-import takeActionImg from 'figma:asset/4907b6d4ffb9446037f720b3c95fb4db5a1bee81.png'
+import connectDataImg from 'figma:asset/connectDataImg.png'
+import understandHealthImg from 'figma:asset/understandHealthImg.png'
+import personalizedInsightsImg from 'figma:asset/gersonalizedInsightsImg.png'
+import takeActionImg from 'figma:asset/takeActionImg.png'
 
 const steps = [
   {

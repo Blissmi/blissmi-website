@@ -3,17 +3,16 @@ import { ArrowRight } from 'lucide-react';
 
 export function CTASection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Want Free Access Instead?</h2>
-        <p className="text-xl text-gray-600">Join our research, give your feedback and access free</p>
-        <a 
+    <section style={{ padding: '5rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>Want Free Access Instead?</h2>
+        <p style={{ fontSize: '1.125rem', color: '#4b5563' }}>Join our research, give your feedback and access free</p>
+        <a
           href="mailto:ines@myblissmi.com?subject=Interested%20in%20joining%20research"
-          className="inline-flex items-center justify-center rounded-md text-lg px-8 py-3 mt-8 font-medium text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: '#324421' }}
+          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem', fontSize: '1rem', padding: '0.875rem 2rem', marginTop: '2rem', fontWeight: 600, color: '#fff', backgroundColor: '#324421', textDecoration: 'none' }}
         >
           Find Out More
-          <ArrowRight className="ml-2" size={20} />
+          <ArrowRight style={{ marginLeft: '0.5rem' }} size={20} />
         </a>
       </div>
     </section>

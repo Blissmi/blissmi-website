@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 interface UsersHeroProps {
@@ -9,41 +8,49 @@ interface UsersHeroProps {
 
 export function UsersHero({ onNavigate, image }: UsersHeroProps) {
   return (
-    <section className="relative bg-gradient-to-br from-green-50 via-white to-blue-50 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section style={{ position: 'relative', background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #eff6ff 100%)', padding: '5rem 0' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+          {/* Left */}
           <div>
-            <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{ backgroundColor: '#32442120', color: '#324421' }}>
+            <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: 'rgba(50,68,33,0.12)', color: '#324421' }}>
               For Members
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              One health score. One personal doctor. One <span style={{ color: '#324421' }}>lifelong prevention system.</span>
+            <h1 style={{ fontSize: '3.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.5rem 0' }}>
+              One health score. One personal doctor. One{' '}
+              <span style={{ color: '#324421' }}>lifelong prevention system.</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p style={{ fontSize: '1.125rem', color: '#4b5563', marginBottom: '2rem', lineHeight: 1.75, margin: '0 0 2rem 0' }}>
               Aggregate data from wearables, lab tests, and health assessments. Get AI-powered predictions and personalized preventive care programs tailored to your unique biology.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" onClick={() => window.open('https://membership.myblissmi.com/login', '_blank')} className="text-lg px-8" style={{ backgroundColor: '#324421' }}>
+            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+              <button
+                onClick={() => window.open('https://membership.myblissmi.com/login', '_blank')}
+                style={{ backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+              >
                 Login
-              </Button>
-              <Button size="lg" className="text-lg px-8">
+              </button>
+              <button
+                style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}
+              >
                 Want Access?
-              </Button>
+              </button>
             </div>
-            <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-1">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.875rem', color: '#4b5563' }}>
+              <div style={{ display: 'flex', gap: '0.125rem' }}>
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="fill-yellow-400 text-yellow-400" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .587l3.668 7.431L23.4 9.75l-5.7 5.548L19.335 24 12 20.01 4.665 24l1.635-8.702L.6 9.75l7.732-1.732L12 .587z"/></svg>
+                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#facc15" aria-hidden="true"><path d="M12 .587l3.668 7.431L23.4 9.75l-5.7 5.548L19.335 24 12 20.01 4.665 24l1.635-8.702L.6 9.75l7.732-1.732L12 .587z"/></svg>
                 ))}
               </div>
               <span>5 from 98% of users</span>
             </div>
           </div>
-          <div className="relative">
-            <ImageWithFallback 
+          {/* Right — image */}
+          <div style={{ position: 'relative' }}>
+            <ImageWithFallback
               src={image}
               alt="App mockup"
-              className="rounded-2xl shadow-2xl"
+              style={{ width: '100%', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
             />
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import whyWeExistBg from 'figma:asset/89e830a574d7b791ca5736e9a3c375592d139561.png'
+import whyWeExistBg from 'figma:asset/whyWeExistBg.png'
 
 export function WhyWeExist() {
   return (

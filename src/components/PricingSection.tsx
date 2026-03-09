@@ -1,62 +1,75 @@
 import React from 'react';
-import { Card, CardContent } from '../ui/card';
 import { CheckCircle } from 'lucide-react';
-import { Button } from '../ui/button';
+import pricingBg from 'figma:asset/pricingBg.png'
 
 interface PricingSectionProps {
   onNavigate: (page: string) => void;
 }
 
 export function PricingSection({ onNavigate }: PricingSectionProps) {
+  const leftFeatures = [
+    'Deep biological insights',
+    'Personalized preventive health recommendations',
+    '12-week structured programs',
+    'Continuous tracking and evolving recommendations',
+    'Compliant with GDPR standards',
+  ];
+  const rightFeatures = [
+    'AI health predictions',
+    'Unlimited wearable connections',
+    'Health profile overview',
+    'Health coach access',
+    'Health score tracking',
+    'Earn credits for services everyday',
+  ];
+
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Access to Better Health Today</h2>
-          <p className="text-xl text-gray-600">Start free, cancel anytime.</p>
+    <section style={{ padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
+      <img
+        src={pricingBg}
+        alt="Pricing background"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+      />
+      {/* overlay removed so background shows clearly (no faded/blurred look) */}
+      <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 2 }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>Get Access to Better Health Today</h2>
+          <p style={{ fontSize: '1.125rem', color: '#4b5563' }}>Start free, cancel anytime.</p>
         </div>
 
-        <Card className="border-2 shadow-xl" style={{ borderColor: '#324421' }}>
-          <CardContent className="pt-6">
-            <h3 className="text-2xl font-bold mb-2">Premium</h3>
-            <div className="text-4xl font-bold text-gray-900 mb-1">$30<span className="text-xl text-gray-600">/month</span></div>
-            <div className="text-sm text-gray-600 mb-4">or $290/year (save 19%)</div>
-            <div className="grid grid-cols-2 gap-x-8 mb-8">
-              <ul className="space-y-3">
-                {[
-                  'Deep biological insights',
-                  'Personalized preventive health recommendations',
-                  '12-week structured programs',
-                  'Continuous tracking and evolving recommendations',
-                  'Compliant with GDPR standards'
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle className="flex-shrink-0 mt-1" size={18} style={{ color: '#324421' }} />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-3">
-                {[
-                  'AI health predictions',
-                  'Unlimited wearable connections',
-                  'Health profile overview',
-                  'Health coach access',
-                  'Health score tracking',
-                  'Earn credits for services everyday'
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle className="flex-shrink-0 mt-1" size={18} style={{ color: '#324421' }} />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Button className="w-full hover:opacity-90" style={{ backgroundColor: '#324421' }} onClick={() => onNavigate('contact')}>
-              Start 30-Day Trial
-            </Button>
-          </CardContent>
-        </Card>
+        <div style={{ backgroundColor: '#fff', borderRadius: '1rem', padding: '2.5rem', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', border: '2px solid #324421' }}>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>Premium</h3>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '0.25rem' }}>
+            $30<span style={{ fontSize: '1.25rem', fontWeight: 400, color: '#6b7280' }}>/month</span>
+          </div>
+          <div style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '2rem' }}>or $290/year (save 19%)</div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 3rem', marginBottom: '2rem' }}>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {leftFeatures.map((feature, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <CheckCircle size={18} style={{ color: '#324421', flexShrink: 0, marginTop: '0.125rem' }} />
+                  <span style={{ color: '#374151', fontSize: '0.9375rem' }}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {rightFeatures.map((feature, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <CheckCircle size={18} style={{ color: '#324421', flexShrink: 0, marginTop: '0.125rem' }} />
+                  <span style={{ color: '#374151', fontSize: '0.9375rem' }}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button
+            onClick={() => onNavigate('contact')}
+            style={{ width: '100%', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+          >
+            Start 30-Day Trial
+          </button>
+        </div>
       </div>
     </section>
   );

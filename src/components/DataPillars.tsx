@@ -1,6 +1,4 @@
-import React from 'react';
-import { Card } from '../ui/card';
-import { CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
 
 interface DataType {
   name: string;
@@ -12,31 +10,69 @@ interface DataPillarsProps {
 }
 
 export function DataPillars({ dataTypes }: DataPillarsProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <section style={{ padding: '5rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+          {/* Left — heading + video */}
           <div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">We measure your health across 4 pillars and built your health score with our panel of doctors.</h2>
-            <div className="w-full mt-8">
-              {/* video placeholder omitted in reusable component; leave area for page to include video if needed */}
-            </div>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 2rem 0' }}>
+              We measure your health across 4 pillars and built your health score with our panel of doctors.
+            </h2>
+            <video
+              autoPlay loop muted playsInline
+              ref={(el) => { if (el) { el.volume = 0; el.muted = true; } }}
+              onLoadedMetadata={(e) => { const v = e.currentTarget; v.volume = 0; v.muted = true; }}
+              onCanPlay={(e) => { const v = e.currentTarget; v.volume = 0; v.muted = true; }}
+              onPlay={(e) => { const v = e.currentTarget; v.volume = 0; v.muted = true; }}
+              onVolumeChange={(e) => { const v = e.currentTarget; if (v.volume !== 0) v.volume = 0; if (!v.muted) v.muted = true; }}
+              style={{ width: '100%', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
+            >
+              <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1772976303/Blissmi_Phone_layout_tcpivx.mp4" type="video/mp4" />
+            </video>
           </div>
 
-          <div className="space-y-4">
+          {/* Right — pillars + steps */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {dataTypes.map((data, index) => (
-              <div key={index} className="relative group">
-                <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all cursor-pointer">
-                  <div className="font-medium text-gray-900 text-lg">{data.name}</div>
+              <div
+                key={index}
+                style={{ position: 'relative' }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div style={{
+                  backgroundColor: '#fff',
+                  borderRadius: '0.75rem',
+                  padding: '1rem 1.5rem',
+                  boxShadow: hoveredIndex === index ? '0 8px 24px rgba(0,0,0,0.12)' : '0 1px 4px rgba(0,0,0,0.08)',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.2s',
+                }}>
+                  <div style={{ fontWeight: 500, color: '#111827', fontSize: '1.0625rem' }}>{data.name}</div>
                 </div>
 
-                {data.subItems.length > 0 && (
-                  <div className="absolute left-0 top-full mt-2 w-full bg-white rounded-xl p-6 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-200">
-                    <div className="font-semibold text-gray-900 text-lg mb-3">{data.name}</div>
-                    <ul className="text-sm text-gray-600 space-y-2">
+                {data.subItems.length > 0 && hoveredIndex === index && (
+                  <div style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '100%',
+                    marginTop: '0.5rem',
+                    width: '100%',
+                    backgroundColor: '#fff',
+                    borderRadius: '0.75rem',
+                    padding: '1.5rem',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+                    zIndex: 20,
+                    border: '1px solid #e5e7eb',
+                  }}>
+                    <div style={{ fontWeight: 600, color: '#111827', fontSize: '1.0625rem', marginBottom: '0.75rem' }}>{data.name}</div>
+                    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {data.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex} className="flex items-start gap-2">
-                          <span className="text-green-600 mt-0.5">•</span>
+                        <li key={subIndex} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: '#4b5563' }}>
+                          <span style={{ color: '#16a34a' }}>•</span>
                           <span>{subItem}</span>
                         </li>
                       ))}
@@ -46,21 +82,22 @@ export function DataPillars({ dataTypes }: DataPillarsProps) {
               </div>
             ))}
 
-            <div className="mt-auto pt-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get better health in 4 steps</h3>
-              <div className="grid grid-cols-2 gap-4">
+            {/* 4 steps */}
+            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #f3f4f6' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem' }}>Get better health in 4 steps</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 {[
                   { step: '1', title: 'Create Profile', desc: 'Sign up and complete your initial health assessment' },
                   { step: '2', title: 'Connect Data', desc: 'Link wearables and upload your health records' },
                   { step: '3', title: 'AI Analysis', desc: 'Our AI builds your digital health twin and identifies patterns' },
-                  { step: '4', title: 'Take Action', desc: 'Follow personalized programs and track your progress' }
+                  { step: '4', title: 'Take Action', desc: 'Follow personalized programs and track your progress' },
                 ].map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div className="w-12 h-12 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4" style={{ backgroundColor: '#324421' }}>
+                  <div key={index} style={{ textAlign: 'center' }}>
+                    <div style={{ width: '3rem', height: '3rem', backgroundColor: '#324421', color: '#fff', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 700, margin: '0 auto 1rem' }}>
                       {item.step}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-gray-600 text-sm">{item.desc}</p>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.875rem', color: '#4b5563', margin: 0 }}>{item.desc}</p>
                   </div>
                 ))}
               </div>

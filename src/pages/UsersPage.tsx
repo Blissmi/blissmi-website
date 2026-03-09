@@ -1,21 +1,22 @@
 import React from 'react';
-import { Heart, Smartphone, Brain, Activity, Gamepad2, Upload, TrendingUp } from 'lucide-react';
+import { Heart, Smartphone, Brain, Activity, Gamepad2, Upload } from 'lucide-react';
 import UsersHero from '../components/UsersHero';
 import Footer from '../components/Footer';
+import { StickyNav } from '../components/StickyNav';
 import FeaturesGrid from '../components/FeaturesGrid';
 import DataPillars from '../components/DataPillars';
-import SmarterSection from '../components/SmarterSection';
 import ProgramsGrid from '../components/ProgramsGrid';
 import TestimonialsGrid from '../components/TestimonialsGrid';
 import PricingSection from '../components/PricingSection';
 import CTASection from '../components/CTASection';
-import appMockup from 'figma:asset/8f3c2ec3d5f1bb55e728e9dd4555f2d9065d9dc9.png';
+import appMockup from 'figma:asset/appMockup.jpeg';
 
 interface UsersPageProps {
   onNavigate: (page: string) => void;
+  currentPage: string;
 }
 
-export function UsersPage({ onNavigate }: UsersPageProps) {
+export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
   const features = [
     {
       icon: Smartphone,
@@ -129,15 +130,16 @@ export function UsersPage({ onNavigate }: UsersPageProps) {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div style={{ minHeight: '100vh' }}>
+      <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
+      <div style={{ paddingTop: '5rem' }}>
       <UsersHero onNavigate={onNavigate} image={appMockup} />
 
       <FeaturesGrid features={features} />
 
       <DataPillars dataTypes={dataTypes} />
 
-      <SmarterSection />
-
+      
       <ProgramsGrid programs={programs} />
 
       <TestimonialsGrid testimonials={testimonials} />
@@ -146,6 +148,7 @@ export function UsersPage({ onNavigate }: UsersPageProps) {
 
       <CTASection />
       <Footer onNavigate={onNavigate} />
+      </div>
     </div>
   );
 }
