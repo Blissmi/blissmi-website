@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { useResponsive } from './hooks/useResponsive';
 
 export function ScrollCircleSection() {
+  const { isMobile, isTablet } = useResponsive();
   return (
     <section
       style={{
         position: 'relative',
-        padding: '4rem 0',
+        padding: isMobile ? '3rem 0' : '4rem 0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -13,25 +15,26 @@ export function ScrollCircleSection() {
         backgroundColor: '#1B3025',
       }}
     >
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem', width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '3rem', alignItems: 'center' }}>
           {/* Left - Text Content */}
-          <div style={{ color: '#fff', paddingRight: '3rem' }}>
-            <h2 style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.2, color: '#fff' }}>
+          <div style={{ color: '#fff', paddingRight: isMobile ? '0' : '3rem' }}>
+            <h2 style={{ fontSize: isMobile ? '1.75rem' : isTablet ? '2.25rem' : '3rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.2, color: '#fff' }}>
               Beyond Tracking Into Action
             </h2>
-            <p style={{ fontSize: '1.375rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', lineHeight: 1.7 }}>
+            <p style={{ fontSize: isMobile ? '1rem' : '1.375rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', lineHeight: 1.7 }}>
               From bloodwork to advanced diagnostics, create a tailored plan that reveals where your health is heading and outlines how to improve it.
             </p>
             <button
-              style={{ background: '#fff', color: '#111827', padding: '1rem 2.5rem', borderRadius: '9999px', fontWeight: 500, fontSize: '1.0625rem', border: 'none', cursor: 'pointer' }}
+              style={{ background: '#fff', color: '#111827', padding: isMobile ? '0.75rem 2rem' : '1rem 2.5rem', borderRadius: '9999px', fontWeight: 500, fontSize: isMobile ? '0.9375rem' : '1.0625rem', border: 'none', cursor: 'pointer' }}
               onClick={() => window.location.href = 'mailto:hello@myblissmi.com?subject=Interested in Demo'}
             >
               Get a Demo
             </button>
           </div>
 
-          {/* Right - Rotating Circle with Text Spokes */}
+          {/* Right - Rotating Circle with Text Spokes (hidden on mobile) */}
+          {!isMobile && (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', height: '600px', overflow: 'hidden' }}>
             <div
               style={{
@@ -232,6 +235,7 @@ export function ScrollCircleSection() {
               </svg>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

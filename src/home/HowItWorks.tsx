@@ -4,6 +4,7 @@ import connectDataImg from 'figma:asset/connectDataImg.png'
 import understandHealthImg from 'figma:asset/understandHealthImg.png'
 import personalizedInsightsImg from 'figma:asset/gersonalizedInsightsImg.png'
 import takeActionImg from 'figma:asset/takeActionImg.png'
+import { useResponsive } from '../hooks/useResponsive'
 
 const steps = [
   {
@@ -29,18 +30,19 @@ const steps = [
 ]
 
 export function HowItWorks() {
+  const { isMobile, isTablet } = useResponsive()
   return (
-    <section style={{ padding: '6rem 0', backgroundColor: '#fff' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-        <h2 style={{ fontSize: '3rem', fontWeight: 700, color: '#111827', marginBottom: '4rem' }}>How Blissmi works</h2>
+    <section style={{ padding: isMobile ? '3rem 0' : '6rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
+        <h2 style={{ fontSize: isMobile ? '1.75rem' : isTablet ? '2.25rem' : '3rem', fontWeight: 700, color: '#111827', marginBottom: isMobile ? '2rem' : '4rem' }}>How Blissmi works</h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isMobile ? '2rem' : '2rem' }}>
           {steps.map((s) => (
             <div key={s.title} style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ position: 'relative', height: '320px', marginBottom: '1.5rem', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: isMobile ? '220px' : '320px', marginBottom: '1.5rem', overflow: 'hidden' }}>
                 <ImageWithFallback src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>{s.title}</h3>
+              <h3 style={{ fontSize: isMobile ? '1.0625rem' : '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>{s.title}</h3>
               <p style={{ fontSize: '0.9375rem', color: '#4b5563', lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useResponsive } from '../hooks/useResponsive';
 
 interface DataType {
   name: string;
@@ -11,14 +12,16 @@ interface DataPillarsProps {
 
 export function DataPillars({ dataTypes }: DataPillarsProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { isMobile } = useResponsive();
 
   return (
-    <section style={{ padding: '5rem 0', backgroundColor: '#fff' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+    <>
+    <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'start' }}>
           {/* Left — heading + video */}
           <div>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 2rem 0' }}>
+            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 2rem 0' }}>
               We measure your health across 4 pillars and built your health score with our panel of doctors.
             </h2>
             <video
@@ -82,30 +85,37 @@ export function DataPillars({ dataTypes }: DataPillarsProps) {
               </div>
             ))}
 
-            {/* 4 steps */}
-            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #f3f4f6' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem' }}>Get better health in 4 steps</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                {[
-                  { step: '1', title: 'Create Profile', desc: 'Sign up and complete your initial health assessment' },
-                  { step: '2', title: 'Connect Data', desc: 'Link wearables and upload your health records' },
-                  { step: '3', title: 'AI Analysis', desc: 'Our AI builds your digital health twin and identifies patterns' },
-                  { step: '4', title: 'Take Action', desc: 'Follow personalized programs and track your progress' },
-                ].map((item, index) => (
-                  <div key={index} style={{ textAlign: 'center' }}>
-                    <div style={{ width: '3rem', height: '3rem', backgroundColor: '#324421', color: '#fff', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 700, margin: '0 auto 1rem' }}>
-                      {item.step}
-                    </div>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.875rem', color: '#4b5563', margin: 0 }}>{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* 4 steps removed from right column and rendered below the grid */}
           </div>
         </div>
       </div>
     </section>
+
+    {/* 4 Steps — separate full-width section matching Figma spec */}
+    <section style={{ padding: isMobile ? '2.5rem 0' : '5rem 0', backgroundColor: '#fff' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
+        <h3 style={{ fontSize: isMobile ? '1.125rem' : '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem', textAlign: 'center' }}>
+          Get better health in 4 steps
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isMobile ? '1.5rem' : '2rem', maxWidth: '64rem', margin: '0 auto' }}>
+          {[
+            { step: '1', title: 'Create Profile', desc: 'Sign up and complete your initial health assessment' },
+            { step: '2', title: 'Connect Data', desc: 'Link wearables and upload your health records' },
+            { step: '3', title: 'AI Analysis', desc: 'Our AI builds your digital health twin and identifies patterns' },
+            { step: '4', title: 'Take Action', desc: 'Follow personalized programs and track your progress' },
+          ].map((item, index) => (
+            <div key={index} style={{ textAlign: 'center' }}>
+              <div style={{ width: '3rem', height: '3rem', backgroundColor: '#324421', color: '#fff', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 700, margin: '0 auto 1rem' }}>
+                {item.step}
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{item.title}</h3>
+              <p style={{ fontSize: '0.875rem', color: '#4b5563', margin: 0 }}>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
   );
 }
 

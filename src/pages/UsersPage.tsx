@@ -87,21 +87,21 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'Software Engineer',
-      content: 'Blissmi predicted my vitamin D deficiency before I even felt symptoms. The personalized supplement plan made a huge difference!',
+      name: 'LK',
+      role: 'Female, 20s',
+      content: 'I never realised that the debilitating symptoms associated with Endometriosis can be reduced and managed through holistic interventions. Blissmi showed me how I could make small changes to improve my quality of life.',
       rating: 5
     },
     {
-      name: 'Michael Chen',
-      role: 'Entrepreneur',
-      content: 'Finally, all my health data in one place. The AI insights helped me optimize my sleep and energy levels dramatically.',
+      name: 'MR',
+      role: 'Expecting Mother, 40s',
+      content: 'As a first-time mum, the maternity marketplace can feel overwhelming...it\'s almost over saturated, cluttered and disjointed. Blissmi\'s ecosystem of services & community for women with recommendations by women will help to navigate the long journey of motherhood with greater ease, support, and human connection.',
       rating: 5
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'Teacher',
-      content: 'The gamified assessments make tracking my health actually enjoyable. I love seeing my progress over time.',
+      name: 'CSK',
+      role: 'Grandfather of 5, 60s',
+      content: 'Suffering from Type 2 Diabetes and Sleep Apnea, I didn\'t know they were so strongly connected and preventable. Having Blissmi provide personalized lifestyle recommendations and holistic health programs removes a lot of the confusion I\'ve had around managing my symptoms with easy to follow instructions and plans.',
       rating: 5
     }
   ];
@@ -132,7 +132,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
   return (
     <div style={{ minHeight: '100vh' }}>
       <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
-      <div style={{ paddingTop: '5rem' }}>
+      <div>
       <UsersHero onNavigate={onNavigate} image={appMockup} />
 
       <FeaturesGrid features={features} />

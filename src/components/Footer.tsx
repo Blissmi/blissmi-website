@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
 
 interface FooterProps {
@@ -18,13 +18,26 @@ const linkStyle: React.CSSProperties = {
 };
 
 export function Footer({ onNavigate }: FooterProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <footer style={{ backgroundColor: '#1B3025', color: '#d1d5db', width: '100%', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '3rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '2rem 1rem' : '3rem 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: isMobile ? '1.5rem' : '2rem' }}>
           {/* Company Info */}
           <div>
-            <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>
+            <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>
               Blissmi
             </h3>
             <p style={{ fontSize: '0.875rem', lineHeight: '1.5' }}>

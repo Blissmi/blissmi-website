@@ -1,4 +1,5 @@
 import React from 'react'
+import { useResponsive } from '../hooks/useResponsive'
 
 interface WhoWeServeProps {
   onNavigate: (page: string) => void;
@@ -8,7 +9,7 @@ const VIDEO_SRC = 'https://res.cloudinary.com/djz3jsrit/video/upload/v1771375119
 
 function ServeBox({ title, body, onClick, videoLeft = '0%' }: { title: string; body: string; onClick: () => void; videoLeft?: string }) {
   return (
-    <div style={{
+    <div className="card-hover" style={{
       position: 'relative',
       backgroundColor: '#fff',
       minHeight: '480px',
@@ -71,13 +72,14 @@ function ServeBox({ title, body, onClick, videoLeft = '0%' }: { title: string; b
 }
 
 export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
+  const { isMobile, isTablet } = useResponsive()
   return (
     <section style={{ backgroundColor: '#fff', padding: '4rem 0' }}>
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '2.5rem',
-        padding: '0 2rem',
+        gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+        gap: isMobile ? '1.5rem' : '2.5rem',
+        padding: isMobile ? '0 1.25rem' : '0 2rem',
       }}>
         <ServeBox
           title="Members"
