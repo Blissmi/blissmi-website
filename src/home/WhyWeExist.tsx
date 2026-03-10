@@ -1,5 +1,6 @@
 import React from 'react'
 import whyWeExistBg from 'figma:asset/whyWeExistBg.png'
+<<<<<<< HEAD
 
 export function WhyWeExist() {
   return (
@@ -7,6 +8,17 @@ export function WhyWeExist() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         {/* Left - Image */}
         <div style={{ position: 'relative', minHeight: '600px', backgroundColor: '#f3f4f6' }}>
+=======
+import { useResponsive } from '../hooks/useResponsive'
+
+export function WhyWeExist() {
+  const { isMobile, isTablet } = useResponsive()
+  return (
+    <section style={{ backgroundColor: '#f3f4f6', overflow: 'hidden' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr' }}>
+        {/* Left - Image */}
+        <div style={{ position: 'relative', minHeight: isMobile ? '260px' : '600px', backgroundColor: '#f3f4f6' }}>
+>>>>>>> feature/components-refactor
           <img
             src={whyWeExistBg}
             alt="Why we exist"
@@ -19,10 +31,17 @@ export function WhyWeExist() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+<<<<<<< HEAD
           padding: '6rem 5rem',
           backgroundColor: '#f3f4f6',
         }}>
           <h2 style={{ fontSize: '4.5rem', fontWeight: 400, color: '#111827', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+=======
+          padding: isMobile ? '2.5rem 1.25rem' : isTablet ? '3rem 2.5rem' : '6rem 5rem',
+          backgroundColor: '#f3f4f6',
+        }}>
+          <h2 style={{ fontSize: isMobile ? '2rem' : isTablet ? '3rem' : '4.5rem', fontWeight: 400, color: '#111827', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+>>>>>>> feature/components-refactor
             Why we exist
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>

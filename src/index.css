@@ -4,6 +4,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+<<<<<<< HEAD
+=======
+html,
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+>>>>>>> feature/components-refactor
 :root {
   --font-size: 16px;
   --background: #ffffff;
@@ -215,6 +223,28 @@ html, body, #root {
   height: 100%;
 }
 
+<<<<<<< HEAD
+=======
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.13) !important;
+}
+
+.card-hover-light {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+.card-hover-light:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10) !important;
+}
+
+>>>>>>> feature/components-refactor
 /* fallback body styling for environments where Tailwind variables may not apply */
 body {
   background-color: var(--background);
@@ -222,3 +252,19 @@ body {
   margin: 0;
 }
 
+<<<<<<< HEAD
+=======
+/* Responsive utility styles */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 13px;
+  }
+}
+
+>>>>>>> feature/components-refactor
