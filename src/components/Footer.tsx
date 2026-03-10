@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useState, useEffect } from 'react';
->>>>>>> feature/components-refactor
 import { Linkedin, Twitter, Mail } from 'lucide-react';
 
 interface FooterProps {
@@ -22,15 +18,6 @@ const linkStyle: React.CSSProperties = {
 };
 
 export function Footer({ onNavigate }: FooterProps) {
-<<<<<<< HEAD
-  return (
-    <footer style={{ backgroundColor: '#1B3025', color: '#d1d5db', width: '100%', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '3rem 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
-          {/* Company Info */}
-          <div>
-            <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>
-=======
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -51,7 +38,6 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Company Info */}
           <div>
             <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>
->>>>>>> feature/components-refactor
               Blissmi
             </h3>
             <p style={{ fontSize: '0.875rem', lineHeight: '1.5' }}>

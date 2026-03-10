@@ -2,10 +2,7 @@ import React from 'react'
 
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
-<<<<<<< HEAD
-=======
 import { useResponsive } from './hooks/useResponsive';
->>>>>>> feature/components-refactor
 
 interface VideoHeroProps {
   onNavigate?: (page: string) => void;
@@ -13,10 +10,7 @@ interface VideoHeroProps {
 }
 
 export function VideoHero({ videoUrl }: VideoHeroProps) {
-<<<<<<< HEAD
-=======
   const { isMobile, isTablet } = useResponsive();
->>>>>>> feature/components-refactor
   return (
     <section style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
       {/* Video Background */}
@@ -81,21 +75,12 @@ export function VideoHero({ videoUrl }: VideoHeroProps) {
 
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 10, height: '100%', display: 'flex', alignItems: 'center' }}>
-<<<<<<< HEAD
-        <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ maxWidth: '48rem' }}>
-            <h1 style={{ fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: '1.5rem', fontSize: '3.75rem' }}>
-              Personalized, Predictive Health — Built for Humans. Powered for Organizations.
-            </h1>
-            <h2 style={{ fontSize: '2rem', fontWeight: 400, color: '#fff', lineHeight: 1.3 }}>
-=======
         <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
           <div style={{ maxWidth: isMobile ? '100%' : '48rem' }}>
             <h1 style={{ fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: '1.5rem', fontSize: isMobile ? '2rem' : isTablet ? '2.75rem' : '3.75rem' }}>
               Personalized, Predictive Health — Built for Humans. Powered for Organizations.
             </h1>
             <h2 style={{ fontSize: isMobile ? '1.125rem' : isTablet ? '1.5rem' : '2rem', fontWeight: 400, color: '#fff', lineHeight: 1.3 }}>
->>>>>>> feature/components-refactor
               Because the future of healthcare isn't treatment — it's prevention.
             </h2>
           </div>

@@ -1,8 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
 import { useResponsive } from '../hooks/useResponsive';
->>>>>>> feature/components-refactor
 
 interface Feature {
   icon: React.ComponentType<any>;
@@ -15,20 +12,6 @@ interface FeaturesGridProps {
 }
 
 export function FeaturesGrid({ features }: FeaturesGridProps) {
-<<<<<<< HEAD
-  return (
-    <section style={{ padding: '5rem 0', backgroundColor: '#fff' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>Everything You Need to Take Control of Your Health</h2>
-          <p style={{ fontSize: '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>A comprehensive platform that brings all your health data together</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div key={index} style={{ backgroundColor: '#fff', borderRadius: '0.75rem', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
-=======
   const { isMobile, isTablet } = useResponsive();
   return (
     <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
@@ -42,7 +25,6 @@ export function FeaturesGrid({ features }: FeaturesGridProps) {
             const Icon = feature.icon;
             return (
               <div key={index} className="card-hover" style={{ backgroundColor: '#fff', borderRadius: '0.75rem', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
->>>>>>> feature/components-refactor
                 <div style={{ width: '3rem', height: '3rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', backgroundColor: '#1B3025' }}>
                   <Icon color="#fff" size={24} />
                 </div>

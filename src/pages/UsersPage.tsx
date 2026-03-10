@@ -87,23 +87,6 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
 
   const testimonials = [
     {
-<<<<<<< HEAD
-      name: 'Sarah Johnson',
-      role: 'Software Engineer',
-      content: 'Blissmi predicted my vitamin D deficiency before I even felt symptoms. The personalized supplement plan made a huge difference!',
-      rating: 5
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Entrepreneur',
-      content: 'Finally, all my health data in one place. The AI insights helped me optimize my sleep and energy levels dramatically.',
-      rating: 5
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Teacher',
-      content: 'The gamified assessments make tracking my health actually enjoyable. I love seeing my progress over time.',
-=======
       name: 'LK',
       role: 'Female, 20s',
       content: 'I never realised that the debilitating symptoms associated with Endometriosis can be reduced and managed through holistic interventions. Blissmi showed me how I could make small changes to improve my quality of life.',
@@ -119,7 +102,6 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
       name: 'CSK',
       role: 'Grandfather of 5, 60s',
       content: 'Suffering from Type 2 Diabetes and Sleep Apnea, I didn\'t know they were so strongly connected and preventable. Having Blissmi provide personalized lifestyle recommendations and holistic health programs removes a lot of the confusion I\'ve had around managing my symptoms with easy to follow instructions and plans.',
->>>>>>> feature/components-refactor
       rating: 5
     }
   ];
@@ -150,11 +132,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
   return (
     <div style={{ minHeight: '100vh' }}>
       <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
-<<<<<<< HEAD
-      <div style={{ paddingTop: '5rem' }}>
-=======
       <div>
->>>>>>> feature/components-refactor
       <UsersHero onNavigate={onNavigate} image={appMockup} />
 
       <FeaturesGrid features={features} />

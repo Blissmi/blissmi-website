@@ -6,10 +6,7 @@ import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { StickyNav } from '../components/StickyNav';
 import Footer from '../components/Footer';
 import vintagePhoneImg from 'figma:asset/vintagePhoneImg.png';
-<<<<<<< HEAD
-=======
 import { useResponsive } from '../hooks/useResponsive';
->>>>>>> feature/components-refactor
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -24,26 +21,16 @@ function Section({
   children,
   background = '#fff',
   style = {},
-<<<<<<< HEAD
-=======
   isMobile = false,
->>>>>>> feature/components-refactor
 }: {
   children: React.ReactNode;
   background?: string;
   style?: React.CSSProperties;
-<<<<<<< HEAD
-}) {
-  return (
-    <section style={{ backgroundColor: background, ...style }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-=======
   isMobile?: boolean;
 }) {
   return (
     <section style={{ backgroundColor: background, ...style }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
->>>>>>> feature/components-refactor
         {children}
       </div>
     </section>
@@ -147,10 +134,7 @@ const INQUIRY_TYPES = [
 function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', inquiry: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-<<<<<<< HEAD
-=======
   const { isMobile } = useResponsive();
->>>>>>> feature/components-refactor
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -186,11 +170,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-<<<<<<< HEAD
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-=======
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: '1.5rem' }}>
->>>>>>> feature/components-refactor
         <div>
           <Label htmlFor="name" style={{ display: 'block', marginBottom: '0.375rem', fontSize: '0.875rem', fontWeight: 500, color: '#111827' }}>Full Name *</Label>
           <input id="name" type="text" required placeholder="John Doe"
@@ -205,11 +185,7 @@ function ContactForm() {
         </div>
       </div>
 
-<<<<<<< HEAD
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-=======
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: '1.5rem' }}>
->>>>>>> feature/components-refactor
         <div>
           <Label htmlFor="company" style={{ display: 'block', marginBottom: '0.375rem', fontSize: '0.875rem', fontWeight: 500, color: '#111827' }}>Company / Organisation</Label>
           <input id="company" type="text" placeholder="Your Company"
@@ -291,30 +267,18 @@ const FAQS = [
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
-<<<<<<< HEAD
-=======
   const { isMobile, isTablet } = useResponsive();
->>>>>>> feature/components-refactor
   return (
     <div style={{ minHeight: '100vh' }}>
       <StickyNav onNavigate={onNavigate} currentPage={currentPage} transparentOnTop={true} />
 
       {/* Hero + Form */}
-<<<<<<< HEAD
-      <section style={{ backgroundColor: '#E8DCC8', paddingTop: '7rem', paddingBottom: '5rem' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'end' }}>
-            {/* Left */}
-            <div>
-              <h1 style={{ fontSize: '3.75rem', fontWeight: 700, color: '#111827', lineHeight: 1.1, marginBottom: '1.25rem' }}>
-=======
       <section style={{ backgroundColor: '#E8DCC8', paddingTop: isMobile ? '5rem' : '7rem', paddingBottom: isMobile ? '3rem' : '5rem' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'end' }}>
             {/* Left */}
             <div>
               <h1 style={{ fontSize: isMobile ? '2.25rem' : isTablet ? '2.75rem' : '3.75rem', fontWeight: 700, color: '#111827', lineHeight: 1.1, marginBottom: '1.25rem' }}>
->>>>>>> feature/components-refactor
                 Get In Touch
               </h1>
               <p style={{ fontSize: '1.125rem', color: '#374151', lineHeight: 1.75, marginBottom: '2.5rem' }}>
@@ -328,10 +292,7 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
             </div>
 
             {/* Right */}
-<<<<<<< HEAD
-=======
             {!isMobile && (
->>>>>>> feature/components-refactor
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
               <div style={{ maxWidth: '28rem', width: '100%' }}>
                 <ImageWithFallback
@@ -341,24 +302,12 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
                 />
               </div>
             </div>
-<<<<<<< HEAD
-=======
             )}
->>>>>>> feature/components-refactor
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-<<<<<<< HEAD
-      <Section background="#fff" style={{ padding: '5rem 0' }}>
-        <div style={{ maxWidth: '48rem', margin: '0 auto', padding: '0 1rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Frequently Asked Questions
-            </h2>
-            <p style={{ fontSize: '1.125rem', color: '#6b7280', margin: 0 }}>Quick answers to common questions</p>
-=======
       <Section background="#fff" style={{ padding: isMobile ? '3rem 0' : '5rem 0' }} isMobile={isMobile}>
         <div style={{ maxWidth: '48rem', margin: '0 auto', padding: '0 1rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -366,7 +315,6 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
               Frequently Asked Questions
             </h2>
             <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#6b7280', margin: 0 }}>Quick answers to common questions</p>
->>>>>>> feature/components-refactor
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -389,15 +337,6 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
       </Section>
 
       {/* Mission */}
-<<<<<<< HEAD
-      <Section background="#fff" style={{ padding: '6rem 0' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '3rem', fontWeight: 700, color: '#111827', marginBottom: '2.5rem', lineHeight: 1.15 }}>
-            Our mission and belief
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            <p style={{ fontSize: '1.25rem', color: '#374151', lineHeight: 1.8, margin: 0 }}>
-=======
       <Section background="#fff" style={{ padding: isMobile ? '3rem 0' : '6rem 0' }} isMobile={isMobile}>
         <div style={{ maxWidth: '56rem', margin: '0 auto' }}>
           <h2 style={{ fontSize: isMobile ? '1.75rem' : isTablet ? '2.25rem' : '3rem', fontWeight: 700, color: '#111827', marginBottom: '2.5rem', lineHeight: 1.15 }}>
@@ -405,25 +344,16 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
             <p style={{ fontSize: isMobile ? '1rem' : '1.25rem', color: '#374151', lineHeight: 1.8, margin: 0 }}>
->>>>>>> feature/components-refactor
               Blissmi's mission is to shift healthcare from reactive treatment to proactive,
               personalised care, bridging the gap between wellness, prevention, and clinical
               intervention. We help everyone lower healthcare costs, reduce risk, and improve
               outcomes through scalable, AI-driven engagement.
             </p>
-<<<<<<< HEAD
-            <p style={{ fontSize: '1.25rem', color: '#374151', lineHeight: 1.8, margin: 0 }}>
-              We believe everyone deserves personalised, proactive, and affordable health care
-              at every stage of life. Health should be guided, not guessed.
-            </p>
-            <p style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.5, margin: 0 }}>
-=======
             <p style={{ fontSize: isMobile ? '1rem' : '1.25rem', color: '#374151', lineHeight: 1.8, margin: 0 }}>
               We believe everyone deserves personalised, proactive, and affordable health care
               at every stage of life. Health should be guided, not guessed.
             </p>
             <p style={{ fontSize: isMobile ? '1.125rem' : '1.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.5, margin: 0 }}>
->>>>>>> feature/components-refactor
               The world has a sick-care system. Blissmi is building a preventive-care system.
             </p>
           </div>
@@ -431,13 +361,8 @@ export function ContactPage({ onNavigate, currentPage }: ContactPageProps) {
       </Section>
 
       {/* Social */}
-<<<<<<< HEAD
-      <Section background="#fff" style={{ padding: '4rem 0' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem' }}>
-=======
       <Section background="#fff" style={{ padding: isMobile ? '2.5rem 0' : '4rem 0' }} isMobile={isMobile}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: isMobile ? '1.5rem' : '3rem', flexWrap: 'wrap' }}>
->>>>>>> feature/components-refactor
           <SocialLink href="mailto:hello@myblissmi.com" label="Email" icon={Mail} />
           <SocialLink href="https://www.linkedin.com/company/blissmihealth" label="LinkedIn" icon={Linkedin} />
           <SocialLink href="https://www.instagram.com/blissmihealth/" label="Instagram" icon={Instagram} />
