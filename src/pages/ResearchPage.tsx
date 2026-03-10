@@ -287,7 +287,8 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
 
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? '1.5rem' : '2rem' }}>
             {councilMembers.map((member, index) => (
-              <div key={index} className="card-hover" style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', textAlign: 'center' }}>, borderRadius: '9999px', margin: '0 auto 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div key={index} className="card-hover" style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', textAlign: 'center' }}>
+                <div style={{ borderRadius: '9999px', margin: '0 auto 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Users size={isMobile ? 32 : 40} style={{ color: '#4f46e5' }} />
                 </div>
                 <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>{member.name}</h3>
