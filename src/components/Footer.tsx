@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { isPageVisible } from '../config/featureFlags';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -50,29 +51,37 @@ export function Footer({ onNavigate }: FooterProps) {
             <h4 style={{ fontWeight: 600, color: '#fff', marginBottom: '1rem', fontSize: '0.875rem' }}>
               Solutions
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li>
-                <button onClick={() => onNavigate('users')} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                  For Individuals
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('customers')} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                  For Enterprises
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('partners')} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                  For Health Partners
-                </button>
-              </li>
-            </ul>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {isPageVisible('users') && (
+                  <li>
+                    <button onClick={() => onNavigate('users')} style={linkStyle}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                      For Individuals
+                    </button>
+                  </li>
+                )}
+
+                {isPageVisible('customers') && (
+                  <li>
+                    <button onClick={() => onNavigate('customers')} style={linkStyle}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                      For Enterprises
+                    </button>
+                  </li>
+                )}
+
+                {isPageVisible('partners') && (
+                  <li>
+                    <button onClick={() => onNavigate('partners')} style={linkStyle}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                      For Health Partners
+                    </button>
+                  </li>
+                )}
+              </ul>
           </div>
 
           {/* Company */}
@@ -81,20 +90,25 @@ export function Footer({ onNavigate }: FooterProps) {
               Company
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li>
-                <button onClick={() => onNavigate('research')} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                  Research &amp; Advocacy
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('contact')} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                  Contact Us
-                </button>
-              </li>
+              {isPageVisible('research') && (
+                <li>
+                  <button onClick={() => onNavigate('research')} style={linkStyle}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                    Research &amp; Advocacy
+                  </button>
+                </li>
+              )}
+
+              {isPageVisible('contact') && (
+                <li>
+                  <button onClick={() => onNavigate('contact')} style={linkStyle}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                    Contact Us
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 

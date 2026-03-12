@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { isPageVisible } from '../config/featureFlags';
 
 interface StickyNavProps {
   onNavigate: (page: string) => void;
@@ -50,6 +51,9 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
     { label: 'Research & Advocacy', page: 'research' },
     { label: 'Contact Us', page: 'contact' },
   ];
+
+  const visibleLeftLinks = leftLinks.filter(l => isPageVisible(l.page));
+  const visibleRightLinks = rightLinks.filter(l => isPageVisible(l.page));
 
   function NavLink({ label, page }: { label: string; page: string }) {
     const isActive = page === currentPage;
@@ -140,11 +144,11 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
         {!isMobile && (
           <>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-              {leftLinks.map((l) => <NavLink key={l.page} {...l} />)}
+              {visibleLeftLinks.map((l) => <NavLink key={l.page} {...l} />)}
             </ul>
 
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-              {rightLinks.map((l) => <NavLink key={l.page} {...l} />)}
+              {visibleRightLinks.map((l) => <NavLink key={l.page} {...l} />)}
             </ul>
           </>
         )}
@@ -165,8 +169,8 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
           }}
         >
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {leftLinks.map((l) => <NavLink key={l.page} {...l} />)}
-            {rightLinks.map((l) => <NavLink key={l.page} {...l} />)}
+            {visibleLeftLinks.map((l) => <NavLink key={l.page} {...l} />)}
+            {visibleRightLinks.map((l) => <NavLink key={l.page} {...l} />)}
           </ul>
         </div>
       )}
