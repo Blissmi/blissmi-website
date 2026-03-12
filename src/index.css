@@ -216,6 +216,21 @@ html {
   animation: spin-slow linear infinite;
 }
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.95;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
 html, body, #root {
   height: 100%;
 }
