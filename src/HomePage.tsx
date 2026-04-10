@@ -3,8 +3,8 @@ import { VideoHero } from './VideoHero';
 import { ScrollCircleSection } from './ScrollCircleSection';
 import { MissionSection } from './home/MissionSection';
 import { WhyWeExist } from './home/WhyWeExist';
+import { PillarsAccordion } from './home/PillarsAccordion';
 import { Banner } from './home/Banner';
-import { HowItWorks } from './home/HowItWorks';
 import { WhoWeServe } from './home/WhoWeServe';
 import { StatsGrid } from './home/StatsGrid';
 import Footer from './components/Footer';
@@ -27,13 +27,13 @@ export function HomePage({ onNavigate, currentPage }: HomePageProps) {
 
       <WhyWeExist />
 
-      <Banner />
-
-      <HowItWorks />
-
-      <ScrollCircleSection />
+      <PillarsAccordion />
 
       <WhoWeServe onNavigate={onNavigate} />
+
+      <Banner />
+
+      <ScrollCircleSection onNavigate={onNavigate} />
 
       <StatsGrid />
       <Footer onNavigate={onNavigate} />

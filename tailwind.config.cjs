@@ -4,8 +4,6 @@ module.exports = {
     './src/**/*.{ts,tsx,js,jsx}'
   ],
   theme: {
-<<<<<<< HEAD
-=======
     fontFamily: {
       sans: [
         'ui-sans-serif',
@@ -20,7 +18,6 @@ module.exports = {
         'sans-serif'
       ]
     },
->>>>>>> feature/components-refactor
     extend: {
       keyframes: {
         'spin-slow': {

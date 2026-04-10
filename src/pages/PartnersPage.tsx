@@ -363,7 +363,9 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
               <ArrowRight size={18} />
             </button>
             <button
-              style={{ backgroundColor: 'transparent', color: '#fff', border: '1px solid #fff', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+              style={{ backgroundColor: 'rgba(255,255,255,0)', color: '#fff', border: '2px solid #fff', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0)')}
             >
               Schedule Info Session
             </button>

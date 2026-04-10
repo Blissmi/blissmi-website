@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Mail } from 'lucide-react';
 import { isPageVisible } from '../config/featureFlags';
 
 interface FooterProps {
@@ -57,7 +57,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     <button onClick={() => onNavigate('users')} style={linkStyle}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                       onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                      For Individuals
+                      For Members
                     </button>
                   </li>
                 )}
@@ -67,20 +67,36 @@ export function Footer({ onNavigate }: FooterProps) {
                     <button onClick={() => onNavigate('customers')} style={linkStyle}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                       onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                      For Enterprises
+                      For Employers
                     </button>
                   </li>
                 )}
 
-                {isPageVisible('partners') && (
+                {isPageVisible('insurers') && (
                   <li>
-                    <button onClick={() => onNavigate('partners')} style={linkStyle}
+                    <button onClick={() => onNavigate('insurers')} style={linkStyle}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                       onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                      For Health Partners
+                      For Insurers
                     </button>
                   </li>
                 )}
+
+                <li>
+                  <button onClick={() => onNavigate('hospitality')} style={linkStyle}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                    For Hospitality
+                  </button>
+                </li>
+
+                <li>
+                  <button onClick={() => onNavigate('partners')} style={linkStyle}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                    For Health Partners
+                  </button>
+                </li>
               </ul>
           </div>
 
@@ -90,25 +106,31 @@ export function Footer({ onNavigate }: FooterProps) {
               Company
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {isPageVisible('research') && (
+              {isPageVisible('about') && (
                 <li>
-                  <button onClick={() => onNavigate('research')} style={linkStyle}
+                  <button onClick={() => onNavigate('about')} style={linkStyle}
                     onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                     onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                    Research &amp; Advocacy
+                    About Us
                   </button>
                 </li>
               )}
 
-              {isPageVisible('contact') && (
-                <li>
-                  <button onClick={() => onNavigate('contact')} style={linkStyle}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                    Contact Us
-                  </button>
-                </li>
-              )}
+              <li>
+                <button onClick={() => onNavigate('research')} style={linkStyle}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                  Research &amp; Advocacy
+                </button>
+              </li>
+
+              <li>
+                <button onClick={() => onNavigate('contact')} style={linkStyle}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -118,24 +140,32 @@ export function Footer({ onNavigate }: FooterProps) {
               Connect
             </h4>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <a href="#" aria-label="LinkedIn"
+              <a href="https://www.linkedin.com/company/blissmihealth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                 style={{ color: '#d1d5db', textDecoration: 'none' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
                 <Linkedin size={20} />
               </a>
-              <a href="#" aria-label="Twitter"
+              <a href="https://www.instagram.com/blissmihealth/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                 style={{ color: '#d1d5db', textDecoration: 'none' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                <Twitter size={20} />
+                <Instagram size={20} />
               </a>
-              <a href="#" aria-label="Email"
+              <a href="https://www.facebook.com/BlissmiHealth/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                 style={{ color: '#d1d5db', textDecoration: 'none' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
+                <Facebook size={20} />
+              </a>
+              <button
+                onClick={() => onNavigate('contact')}
+                aria-label="Email"
+                style={{ ...linkStyle, display: 'inline-flex' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
                 <Mail size={20} />
-              </a>
+              </button>
             </div>
           </div>
         </div>
