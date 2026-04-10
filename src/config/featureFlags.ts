@@ -2,7 +2,7 @@
 // Configure visible pages via Vite env `VITE_VISIBLE_PAGES` (comma-separated),
 // e.g. VITE_VISIBLE_PAGES=home,users,contact
 
-export const DEFAULT_VISIBLE_PAGES = ['home', 'users', 'contact'] as const;
+export const DEFAULT_VISIBLE_PAGES = ['home', 'about', 'users', 'customers', 'insurers', 'hospitality'] as const;
 
 const env = typeof import.meta !== 'undefined' ? (import.meta as any).env : {};
 const fromEnv = env && typeof env.VITE_VISIBLE_PAGES === 'string' && env.VITE_VISIBLE_PAGES.length

@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useResponsive } from './hooks/useResponsive';
 
-export function ScrollCircleSection() {
+interface ScrollCircleSectionProps {
+  onNavigate: (page: string) => void;
+}
+
+export function ScrollCircleSection({ onNavigate }: ScrollCircleSectionProps) {
   const { isMobile, isTablet } = useResponsive();
   return (
     <section
@@ -27,7 +31,7 @@ export function ScrollCircleSection() {
             </p>
             <button
               style={{ background: '#fff', color: '#111827', padding: isMobile ? '0.75rem 2rem' : '1rem 2.5rem', borderRadius: '9999px', fontWeight: 500, fontSize: isMobile ? '0.9375rem' : '1.0625rem', border: 'none', cursor: 'pointer' }}
-              onClick={() => window.location.href = 'mailto:hello@myblissmi.com?subject=Interested in Demo'}
+              onClick={() => onNavigate('contact')}
             >
               Get a Demo
             </button>

@@ -12,7 +12,7 @@ const stats = [
 export function StatsGrid() {
   const { isMobile, isTablet } = useResponsive()
   return (
-    <section style={{ backgroundColor: '#f9fafb', padding: isMobile ? '2.5rem 0' : '4rem 0' }}>
+    <section style={{ backgroundColor: '#fff', padding: isMobile ? '1.5rem 0' : '2rem 0' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
         <div style={{
           display: 'grid',
@@ -24,24 +24,24 @@ export function StatsGrid() {
             <div key={s.label} style={{ textAlign: 'center' }}>
               <s.icon
                 style={{
-                  width: '2rem',
-                  height: '2rem',
-                  color: '#111827',
-                  margin: '0 auto 1rem',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#324421',
+                  margin: '0 auto 0.5rem',
                   display: 'block',
-                  strokeWidth: 1,
+                  strokeWidth: 1.5,
                 }}
               />
               <div style={{
-                fontSize: isMobile ? '2rem' : '3rem',
+                fontSize: isMobile ? '1.5rem' : '1.875rem',
                 fontWeight: 700,
-                color: '#111827',
-                marginBottom: '0.5rem',
+                color: '#324421',
+                marginBottom: '0.25rem',
                 lineHeight: 1,
               }}>
                 {s.value}
               </div>
-              <p style={{ fontSize: isMobile ? '0.875rem' : '1rem', color: '#374151', margin: 0 }}>{s.label}</p>
+              <p style={{ fontSize: isMobile ? '0.75rem' : '0.875rem', color: '#324421', margin: 0, maxWidth: '180px', marginInline: 'auto' }}>{s.label}</p>
             </div>
           ))}
         </div>

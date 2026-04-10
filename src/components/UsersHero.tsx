@@ -33,6 +33,12 @@ export function UsersHero({ onNavigate, image }: UsersHeroProps) {
                 Login
               </button>
               <button
+                onClick={() => {
+                  const target = document.getElementById('free-access-section');
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: isMobile ? '0.875rem' : '1rem', fontWeight: 500, cursor: 'pointer' }}
               >
                 Want Access?

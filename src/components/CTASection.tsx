@@ -5,7 +5,10 @@ import { useResponsive } from '../hooks/useResponsive';
 export function CTASection() {
   const { isMobile } = useResponsive();
   return (
-    <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
+    <section
+      id="free-access-section"
+      style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff', scrollMarginTop: '6rem' }}
+    >
       <div style={{ maxWidth: '56rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem', textAlign: 'center' }}>
         <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>Want Free Access Instead?</h2>
         <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>Join our research, give your feedback and access free</p>

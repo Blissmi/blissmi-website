@@ -78,10 +78,10 @@ export function VideoHero({ videoUrl }: VideoHeroProps) {
         <div style={{ width: '100%', maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
           <div style={{ maxWidth: isMobile ? '100%' : '48rem' }}>
             <h1 style={{ fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: '1.5rem', fontSize: isMobile ? '2rem' : isTablet ? '2.75rem' : '3.75rem' }}>
-              Personalized, Predictive Health — Built for Humans. Powered for Organizations.
+              Healthcare Waits for Something to Go Wrong.<br />We Don't.
             </h1>
-            <h2 style={{ fontSize: isMobile ? '1.125rem' : isTablet ? '1.5rem' : '2rem', fontWeight: 400, color: '#fff', lineHeight: 1.3 }}>
-              Because the future of healthcare isn't treatment — it's prevention.
+            <h2 style={{ fontSize: isMobile ? '1.875rem' : isTablet ? '2.25rem' : '3rem', fontWeight: 400, color: '#fff', lineHeight: 1.2 }}>
+              Because the future of health isn't treatment — it's prevention.
             </h2>
           </div>
         </div>
