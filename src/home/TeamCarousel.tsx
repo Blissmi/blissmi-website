@@ -8,6 +8,7 @@ import clareImage from '../figma/assets/clareImage.jpeg';
 import shahaniImage from '../figma/assets/shahaniImage.jpeg';
 import karenImage from '../figma/assets/karenImage.jpeg';
 import lawrenceImage from '../figma/assets/lawrenceImage.jpeg';
+import arupImage from '../figma/assets/Arup Sen (1).jpg';
 
 export const teamImages: Record<string, string> = {
   'Natasha King': natashaImage,
@@ -18,6 +19,7 @@ export const teamImages: Record<string, string> = {
   'Dr Shahani Amjah (India)': shahaniImage,
   'Karen Gotthelf (HK/Global)': karenImage,
   'Dr Lawrence Lau (Ireland)': lawrenceImage,
+  'Dr Arup Sen': arupImage,
 };
 
 export interface TeamMember {

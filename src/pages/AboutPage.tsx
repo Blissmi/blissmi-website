@@ -14,6 +14,7 @@ import clareImage from '../figma/assets/clareImage.jpeg';
 import shahaniImage from '../figma/assets/shahaniImage.jpeg';
 import karenImage from '../figma/assets/karenImage.jpeg';
 import lawrenceImage from '../figma/assets/lawrenceImage.jpeg';
+import arupImage from '../figma/assets/Arup Sen (1).jpg';
 
 interface AboutPageProps {
   onNavigate: (page: string) => void;
@@ -63,7 +64,8 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
     { name: 'Dr Clare Fernandes (UK)', role: 'General Health Advisor', description: 'MFOM, MS-OM. Global CMO, BBC. Ex NHS GP.', image: clareImage },
     { name: 'Dr Shahani Amjah (India)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, Joseph Fraser Ninewells Hospital.', image: shahaniImage },
     { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'MOrgPsych, BSc Psych, Registered Psychologist, Council Member Hong Kong Psychological society', image: karenImage },
-    { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage }
+    { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
+    { name: 'Dr Arup Sen', role: 'General Health Advisor', description: 'MBBS, Ba Medical Sciences with Physiology and Pharmacology, Triple-accredited: Stroke, Geriatric & General Internal Medicine.', image: arupImage }
   ];
 
   const differenceItems = [
