@@ -41,7 +41,7 @@ export function StatsGrid() {
               }}>
                 {s.value}
               </div>
-              <p style={{ fontSize: isMobile ? '0.75rem' : '0.875rem', color: '#324421', margin: 0, maxWidth: '180px', marginInline: 'auto' }}>{s.label}</p>
+              <p style={{ fontSize: isMobile ? '0.75rem' : '0.875rem', color: '#324421', margin: 0, maxWidth: isMobile ? '100%' : '180px', marginInline: 'auto' }}>{s.label}</p>
             </div>
           ))}
         </div>

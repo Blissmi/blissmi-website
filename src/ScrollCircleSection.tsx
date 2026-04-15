@@ -24,11 +24,8 @@ export function ScrollCircleSection({ onNavigate }: ScrollCircleSectionProps) {
           {/* Left - Text Content */}
           <div style={{ color: '#fff', paddingRight: isMobile ? '0' : '3rem' }}>
             <h2 style={{ fontSize: isMobile ? '1.75rem' : isTablet ? '2.25rem' : '3rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.2, color: '#fff' }}>
-              Beyond Tracking Into Action
+              A Personal Health Intelligence Guide For Everyone
             </h2>
-            <p style={{ fontSize: isMobile ? '1rem' : '1.375rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', lineHeight: 1.7 }}>
-              From bloodwork to advanced diagnostics, create a tailored plan that reveals where your health is heading and outlines how to improve it.
-            </p>
             <button
               style={{ background: '#fff', color: '#111827', padding: isMobile ? '0.75rem 2rem' : '1rem 2.5rem', borderRadius: '9999px', fontWeight: 500, fontSize: isMobile ? '0.9375rem' : '1.0625rem', border: 'none', cursor: 'pointer' }}
               onClick={() => onNavigate('contact')}
@@ -37,8 +34,8 @@ export function ScrollCircleSection({ onNavigate }: ScrollCircleSectionProps) {
             </button>
           </div>
 
-          {/* Right - Rotating Circle with Text Spokes (hidden on mobile) */}
-          {!isMobile && (
+          {/* Right - Rotating Circle with Text Spokes (hidden on mobile/tablet) */}
+          {!isMobile && !isTablet && (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', height: '600px', overflow: 'hidden' }}>
             <div
               style={{

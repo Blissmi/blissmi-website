@@ -12,14 +12,15 @@ interface ServeCardProps {
   body: string
   onClick: () => void
   videoOffset?: { top: string; left: string }
+  minHeight?: string
 }
 
-function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' } }: ServeCardProps) {
+function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }, minHeight = '380px' }: ServeCardProps) {
   return (
     <div style={{
       position: 'relative',
       backgroundColor: '#fff',
-      minHeight: '380px',
+      minHeight,
       display: 'flex',
       flexDirection: 'column',
       padding: '1.5rem',
@@ -82,9 +83,10 @@ function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }
 }
 
 export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
-  const { isMobile } = useResponsive()
+  const { isMobile, isTablet } = useResponsive()
+  const cardMinHeight = isMobile ? '280px' : isTablet ? '320px' : '380px'
   return (
-    <section style={{ backgroundColor: '#fff', padding: '6rem 0' }}>
+    <section style={{ backgroundColor: '#fff', padding: isMobile ? '4rem 0' : '8rem 0' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
         <p style={{ fontSize: '1rem', color: '#6b7280', marginBottom: '1rem' }}>Who We Work With</p>
         <h2 style={{
@@ -107,24 +109,28 @@ export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
             body="From 100-person teams to multinational workforces. Whether you want to start with a leadership health program or a company-wide deployment, Blissmi's pilot structure is designed to generate measurable outcomes from month one."
             onClick={() => onNavigate('customers')}
             videoOffset={{ top: '0', left: '0' }}
+            minHeight={cardMinHeight}
           />
           <ServeCard
             title="Insurers & TPAs"
             body="From Phase 1 wellness program pilots to full white-label integration across your member ecosystem. The commercial model scales with your ambition — from fixed-fee pilots to outcome-based revenue sharing as claims savings are verified."
             onClick={() => onNavigate('insurers')}
             videoOffset={{ top: '0', left: '-100%' }}
+            minHeight={cardMinHeight}
           />
           <ServeCard
             title="Wellness Venues & Resorts"
             body="Bring Blissmi's health intelligence into your guest experience — through the Women's Longevity Hub kiosk activation or a fully integrated wellness programming partnership."
-            onClick={() => onNavigate('partners')}
+            onClick={() => onNavigate('hospitality')}
             videoOffset={{ top: '-100%', left: '0' }}
+            minHeight={cardMinHeight}
           />
           <ServeCard
             title="Individuals"
             body="Take control of your health before something forces you to. Blissmi's individual membership gives you the same clinical intelligence available to enterprise clients — personalized to your biology, your goals, and your life stage."
             onClick={() => onNavigate('users')}
             videoOffset={{ top: '-100%', left: '-100%' }}
+            minHeight={cardMinHeight}
           />
         </div>
       </div>

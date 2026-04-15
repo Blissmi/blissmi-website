@@ -153,7 +153,7 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
             letterSpacing: '0.02em',
           }}
         >
-          Blissmi
+          BLiSSMi
         </span>
 
         {/* Desktop Navigation */}

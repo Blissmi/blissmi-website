@@ -102,20 +102,20 @@ export function HospitalityPage({ onNavigate, currentPage }: HospitalityPageProp
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.8125rem', fontWeight: 600, marginBottom: '1.25rem', backgroundColor: '#D1B4AA', color: '#000' }}>
+              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', backgroundColor: '#D1B4AA', color: '#000' }}>
                 For Wellness Venues & Resorts
               </div>
-              <h1 style={{ fontSize: isMobile ? '1.75rem' : '2.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 1rem 0' }}>
+              <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 1rem 0' }}>
                 Redefine the Guest Experience Through{' '}
                 <span style={{ color: '#D1B4AA' }}>Health Intelligence</span>
               </h1>
-              <p style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+              <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: 1.7 }}>
                 The most sophisticated wellness travellers in the world are no longer satisfied with relaxation alone. They want answers. They want data. They want to leave knowing something about themselves they didn't know when they arrived.
               </p>
               <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '0.75rem' }}>
                 <button
                   onClick={() => onNavigate('contact')}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 1.75rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Schedule A Demo <ArrowRight size={16} />
                 </button>
@@ -216,7 +216,7 @@ export function HospitalityPage({ onNavigate, currentPage }: HospitalityPageProp
               </div>
             ))}
           </div>
-          <div style={{ maxWidth: '48rem', margin: '0 auto', textAlign: 'center', padding: '3rem 2rem', borderRadius: '1rem', backgroundColor: '#D1B4AA' }}>
+          <div style={{ maxWidth: '48rem', margin: '0 auto', textAlign: 'center', padding: isMobile ? '2rem 1.25rem' : '3rem 2rem', borderRadius: '1rem', backgroundColor: '#D1B4AA' }}>
             <blockquote style={{ fontSize: isMobile ? '1.25rem' : '1.75rem', fontStyle: 'italic', color: '#fff', fontFamily: 'Georgia, serif', margin: 0 }}>
               "Your guests came for restoration.<br />They leave with a roadmap."
             </blockquote>
@@ -329,7 +329,7 @@ export function HospitalityPage({ onNavigate, currentPage }: HospitalityPageProp
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#fff', color: '#111827', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#fff', color: '#111827', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
           >
             Let's redefine wellness together → Talk to our team
           </button>

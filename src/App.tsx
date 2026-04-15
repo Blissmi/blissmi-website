@@ -8,6 +8,8 @@ import { PartnersPage } from './pages/PartnersPage'
 import { ResearchPage } from './pages/ResearchPage'
 import { InsurersPage } from './pages/InsurersPage'
 import { HospitalityPage } from './pages/HospitalityPage'
+import { TermsPage } from './pages/TermsPage'
+import { PrivacyPage } from './pages/PrivacyPage'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<string>('home')
@@ -41,6 +43,12 @@ export default function App() {
   }
   if (currentPage === 'hospitality') {
     return <HospitalityPage currentPage={currentPage} onNavigate={navigate} />
+  }
+  if (currentPage === 'terms') {
+    return <TermsPage currentPage={currentPage} onNavigate={navigate} />
+  }
+  if (currentPage === 'privacy') {
+    return <PrivacyPage currentPage={currentPage} onNavigate={navigate} />
   }
 
   return <HomePage currentPage={currentPage} onNavigate={navigate} />

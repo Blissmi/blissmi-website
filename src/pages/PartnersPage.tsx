@@ -1,9 +1,9 @@
-import React from 'react';
-import { Sparkles, Users, TrendingUp, Globe, Award, Handshake, CheckCircle, ArrowRight, Heart } from 'lucide-react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { ArrowRight, Brain, RefreshCw, LayoutDashboard, Users, Sprout, Zap, UserPlus, ClipboardCheck, TrendingUp, Target } from 'lucide-react';
+import { motion } from 'motion/react';
 import { StickyNav } from '../components/StickyNav';
-import Footer from '../components/Footer';
+import { Footer } from '../components/Footer';
 import { useResponsive } from '../hooks/useResponsive';
+import testimonialImage from 'figma:asset/TashK_a_group_of_health_service_providers_asian_caucasian_and_841cbb24-1ee4-434a-aee9-c1db843adf8a_0.png.png';
 
 interface PartnersPageProps {
   onNavigate: (page: string) => void;
@@ -11,89 +11,61 @@ interface PartnersPageProps {
 }
 
 export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
-  const { isMobile } = useResponsive();
+  const { isMobile, isTablet } = useResponsive();
+  const isNarrow = isMobile || isTablet;
+  const px = isMobile ? '1rem' : '2rem';
+  const sectionPy = isMobile ? '3rem 0' : '5rem 0';
+
+  const containerStyle = {
+    maxWidth: '80rem',
+    margin: '0 auto',
+    padding: `0 ${px}`,
+  };
+
   const benefits = [
     {
-      icon: Users,
-      title: 'Access Engaged Users',
-      description: 'Connect with 500K+ health-conscious individuals actively seeking holistic wellness solutions',
-      stat: '500K+ Users'
+      icon: UserPlus,
+      title: 'Qualified Clients',
+      description: 'Get matched with pre-qualified clients suited to your expertise — no lead chasing.',
+    },
+    {
+      icon: ClipboardCheck,
+      title: 'Less Admin',
+      description: 'We handle onboarding, scheduling, and tracking — saving hours every week.',
     },
     {
       icon: TrendingUp,
-      title: 'Grow Your Practice',
-      description: 'Increase patient acquisition and retention through our verified referral network',
-      stat: '3x Growth Average'
+      title: 'Revenue Growth',
+      description: 'Increase monthly revenue with scalable, transparent pricing.',
     },
     {
-      icon: Globe,
-      title: 'Expand Your Reach',
-      description: 'Join a nationwide ecosystem of holistic health providers and wellness experts',
-      stat: 'National Coverage'
+      icon: Target,
+      title: 'Proven Outcomes',
+      description: 'Track results and engagement with real data that builds trust and retention.',
     },
-    {
-      icon: Sparkles,
-      title: 'Data-Driven Matching',
-      description: 'AI-powered patient matching ensures you receive qualified referrals aligned with your expertise',
-      stat: '92% Match Rate'
-    }
   ];
 
-  const partnerTypes = [
-    {
-      title: 'Holistic Practitioners',
-      types: ['Naturopaths', 'Acupuncturists', 'Ayurvedic Doctors', 'Homeopaths'],
-      icon: '🌿'
-    },
-    {
-      title: 'Wellness Centers',
-      types: ['Yoga Studios', 'Meditation Centers', 'Wellness Spas', 'Retreat Centers'],
-      icon: '🧘'
-    },
-    {
-      title: 'Nutrition & Fitness',
-      types: ['Nutritionists', 'Personal Trainers', 'Health Coaches', 'Dietitians'],
-      icon: '💪'
-    },
-    {
-      title: 'Alternative Therapies',
-      types: ['Chiropractors', 'Massage Therapists', 'Energy Healers', 'Functional Medicine'],
-      icon: '✨'
-    }
-  ];
-
-  const features = [
-    'Dedicated provider dashboard',
-    'Patient referral management',
-    'Secure messaging with users',
-    'Calendar integration',
-    'Payment processing',
-    'Performance analytics',
-    'Marketing support',
-    'Continuing education resources'
+  const differentiators = [
+    { icon: <Brain size={24} />, title: 'Intelligent Matching', description: 'Our algorithm considers specialty, availability, client goals, communication style, and location — delivering compatibility, not just proximity.' },
+    { icon: <RefreshCw size={24} />, title: 'End-to-End Journey', description: 'Clients engage with Blissmi before, during, and after seeing you. We keep them accountable between sessions — driving better outcomes and stronger retention.' },
+    { icon: <LayoutDashboard size={24} />, title: 'Partner Dashboard', description: 'A dedicated command centre for your practice — clients, bookings, progress, revenue, and insights all in one beautifully simple interface.' },
+    { icon: <Users size={24} />, title: 'Whole-Health Network', description: 'Collaborate with psychologists, nutritionists, physios, and coaches within the Blissmi ecosystem for coordinated, wraparound care.' },
+    { icon: <Sprout size={24} />, title: 'Built for Relationships', description: "We don't monetise on volume. Our model aligns with yours — the better clients do, the better we all do. Long-term outcomes are baked into how we operate." },
+    { icon: <Zap size={24} />, title: 'Fast, Simple Onboarding', description: 'Get set up in under 48 hours. No complex integrations, no IT department required. Your profile, availability, and intake process — live in minutes.' },
   ];
 
   const testimonials = [
-    {
-      name: 'Dr. Priya Sharma',
-      specialty: 'Ayurvedic Physician',
-      practice: 'Holistic Wellness Clinic',
-      content: 'Blissmi has tripled my patient base. The quality of referrals is exceptional - patients come already educated and motivated.'
-    },
-    {
-      name: 'Michael Torres',
-      specialty: 'Functional Nutritionist',
-      practice: 'Vitality Nutrition',
-      content: 'The integration with patient health data is a game-changer. I can provide truly personalized recommendations from day one.'
-    }
+    { name: 'Caitlin S', role: 'Physiotherapist', content: "When we heard about Blissmi we got very excited. Not only is it a unique platform dedicated to a very important yet overlooked population, it's also a platform that is fair to vendors. Blissmi fills a much needed gap for a consumer while effortlessly helping vendors reach more people.", initials: 'CS' },
+    { name: 'Claire VDH', role: "Women's Clinic", content: "To me, it's crazy that society, including businesses, haven't yet found a holistic way to support women and men with end-to-end service. I'm really happy that I am part of the Blissmi ecosystem where I can offer my services that I know deliver results, and do good ultimately for the society.", initials: 'CV' },
+    { name: 'Rebecca W', role: 'Life Coach', content: "When I found out I was pregnant, I was trying to find somewhere that provided all the services that people kept talking about, especially when I found myself frantically scrolling at 3am in between feeds. I found little to nothing in one easy to get to place that felt inviting, safe and informative. Blissmi enables people like me to get the help I need without having to feel alone, and where I can now help others.", initials: 'RW' },
   ];
 
-  const requirements = [
-    'Valid professional license or certification',
-    'Professional liability insurance',
-    'Minimum 2 years of practice experience',
-    'Commitment to evidence-based holistic care',
-    'HIPAA compliance training'
+  const trustItems = [
+    { icon: '🏥', text: <><strong style={{ color: '#111827' }}>200+</strong> partner practitioners</> },
+    { icon: '⭐', text: <><strong style={{ color: '#111827' }}>4.9/5</strong> partner satisfaction</> },
+    { icon: '🔒', text: 'GDPR-aligned data practices' },
+    { icon: '🚀', text: 'Setup in under 48 hours' },
+    { icon: '💬', text: 'Dedicated partner success team' },
   ];
 
   return (
@@ -101,134 +73,173 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
       <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', background: 'linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f0fdf4 100%)', padding: isMobile ? '5rem 0 3rem' : '8rem 0 5rem' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '1.5rem' : '3rem', alignItems: 'center' }}>
-            <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#ccfbf1', color: '#0d9488' }}>
-                For Health Partners
-              </div>
-              <h1 style={{ fontSize: isMobile ? '2rem' : '3.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.5rem 0' }}>
-                Join the{' '}
-                <span style={{ color: '#0d9488' }}>Holistic Health</span> Ecosystem
-              </h1>
-              <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '2rem', lineHeight: 1.75 }}>
-                Partner with Blissmi to expand your practice, access engaged patients, and be part of the future of preventive, holistic healthcare.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#0d9488', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Apply to Partner <ArrowRight size={18} />
-                </button>
-                <button
-                  style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}
-                >
-                  Download Partner Guide
-                </button>
-              </div>
+      <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: '#FDFBF8' }}>
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            background: 'radial-gradient(ellipse 80% 70% at 70% 50%, rgba(209, 180, 170, 0.15) 0%, transparent 70%)',
+          }}
+        />
+
+        <div style={{ ...containerStyle, padding: isMobile ? '5rem 1rem 3rem' : '8rem 2rem 5rem', display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center', position: 'relative', zIndex: 10, width: '100%', boxSizing: 'border-box' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#D1B4AA', color: '#000' }}>
+              For Health Partners
             </div>
-            {!isMobile && <div style={{ position: 'relative' }}>
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1743767587738-ef68817838cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwbWVkaWNhbCUyMGhlYWx0aGNhcmUlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc3MDY5NDQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Futuristic healthcare technology"
-                style={{ width: '100%', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
-              />
-            </div>}
-          </div>
-        </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Why Partner With Blissmi?
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '42rem', margin: '0 auto' }}>
-              Grow your practice while helping more people achieve optimal health
+            <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.5rem 0' }}>
+              Grow your practice with{' '}
+              <span style={{ color: '#D1B4AA' }}>purposeful</span> partnerships.
+            </h1>
+
+            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '2rem', lineHeight: 1.75 }}>
+              Blissmi connects health professionals with clients who are ready to invest in their wellbeing.
+              Join our partner network and unlock a smarter, simpler way to fill your calendar and grow your impact.
             </p>
-          </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '1rem' : '2rem' }}>
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={index} className="card-hover" style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ width: '3.5rem', height: '3.5rem', backgroundColor: '#ccfbf1', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Icon size={28} style={{ color: '#0d9488' }} />
-                    </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{benefit.title}</h3>
-                      <p style={{ color: '#4b5563', marginBottom: '0.75rem', fontSize: '0.9375rem' }}>{benefit.description}</p>
-                      <div style={{ color: '#0d9488', fontWeight: 600 }}>{benefit.stat}</div>
-                    </div>
+            <button
+              onClick={() => onNavigate('contact')}
+              style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.15)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              Apply to Partner
+            </button>
+          </motion.div>
+
+          {/* Dashboard Mock */}
+          {!isNarrow && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+            >
+              <div style={{ backgroundColor: '#fff', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden', border: '1px solid rgba(139, 175, 138, 0.2)' }}>
+                {/* Header */}
+                <div style={{ padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem', backgroundColor: '#1E2420' }}>
+                  <div style={{ display: 'flex', gap: '0.375rem' }}>
+                    <div style={{ width: '0.625rem', height: '0.625rem', borderRadius: '9999px', backgroundColor: '#FF5F57' }} />
+                    <div style={{ width: '0.625rem', height: '0.625rem', borderRadius: '9999px', backgroundColor: '#FEBC2E' }} />
+                    <div style={{ width: '0.625rem', height: '0.625rem', borderRadius: '9999px', backgroundColor: '#28C840' }} />
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginLeft: 'auto' }}>Partner Dashboard · Blissmi</div>
+                </div>
+
+                {/* Body */}
+                <div style={{ padding: '1.25rem' }}>
+                  {/* Stats */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1rem' }}>
+                    {[
+                      { label: 'New Clients', value: '24', delta: '↑ 18% this month' },
+                      { label: 'Revenue', value: '$4.2k', delta: '↑ 31% vs last' },
+                      { label: 'Retention', value: '91%', delta: '↑ 5pts' },
+                    ].map((stat, i) => (
+                      <div key={i} style={{ borderRadius: '0.75rem', padding: '0.875rem', border: '1px solid rgba(139, 175, 138, 0.2)', backgroundColor: '#F7F3EE' }}>
+                        <div style={{ fontSize: '0.6875rem', color: '#4b5563', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem', fontWeight: 500 }}>{stat.label}</div>
+                        <div style={{ fontSize: '1.5rem', fontWeight: 600, color: '#111827', marginBottom: '0.125rem' }}>{stat.value}</div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 500, color: '#324421' }}>{stat.delta}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Chart */}
+                  <div style={{ borderRadius: '0.75rem', padding: '1rem', marginBottom: '1rem', height: '6rem', display: 'flex', alignItems: 'flex-end', gap: '0.375rem', border: '1px solid rgba(139, 175, 138, 0.2)', backgroundColor: '#F7F3EE' }}>
+                    {[45, 60, 40, 75, 55, 90, 70].map((height, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          flex: 1,
+                          borderRadius: '0.25rem 0.25rem 0 0',
+                          height: `${height}%`,
+                          backgroundColor: i === 5 ? '#324421' : '#D1B4AA',
+                          transition: 'all 0.3s',
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Client rows */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {[
+                      { initials: 'SL', name: 'Sarah L.', detail: 'Nutrition · Session 3 of 6', badge: 'Active', color: '#8BAF8A' },
+                      { initials: 'MK', name: 'Marcus K.', detail: 'Mental Health · Intake pending', badge: 'New', color: '#D4895A' },
+                    ].map((client, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', borderRadius: '0.5rem', padding: '0.75rem', border: '1px solid rgba(139, 175, 138, 0.2)', backgroundColor: '#F7F3EE' }}>
+                        <div style={{ width: '1.75rem', height: '1.75rem', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.6875rem', fontWeight: 600, color: '#fff', flexShrink: 0, backgroundColor: client.color }}>
+                          {client.initials}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#111827' }}>{client.name}</div>
+                          <div style={{ fontSize: '0.75rem', color: '#4b5563' }}>{client.detail}</div>
+                        </div>
+                        <div style={{ fontSize: '0.75rem', padding: '0.25rem 0.625rem', borderRadius: '9999px', fontWeight: 500, whiteSpace: 'nowrap', backgroundColor: `${client.color}33`, color: client.color }}>
+                          {client.badge}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
-      {/* Partner Types */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#f9fafb' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              We Partner With Leading Holistic Providers
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>
-              Diverse specialties, unified mission
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: isMobile ? '1.5rem' : '2rem' }}>
-            {partnerTypes.map((category, index) => (
-              <div key={index} className="card-hover" style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', textAlign: 'center' }}>
-                <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 600, color: '#111827', marginBottom: '1rem' }}>{category.title}</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {category.types.map((type, tIndex) => (
-                    <li key={tIndex} style={{ fontSize: '0.875rem', color: '#4b5563' }}>{type}</li>
-                  ))}
-                </ul>
+      {/* Trust Bar */}
+      <section style={{ borderTop: '1px solid rgba(139, 175, 138, 0.2)', borderBottom: '1px solid rgba(139, 175, 138, 0.2)', padding: '1.5rem 0', backgroundColor: '#F7F3EE' }}>
+        <div style={containerStyle}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: isMobile ? '1rem 1.5rem' : '1rem 3rem', fontSize: '0.875rem', color: '#4b5563' }}>
+            {trustItems.map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+                <span style={{ fontSize: '1.125rem' }}>{item.icon}</span>
+                <span>{item.text}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Simple Partnership Process
+      {/* Benefits / Why Partner */}
+      <section style={{ padding: sectionPy, backgroundColor: '#fff' }}>
+        <div style={containerStyle}>
+          <div style={{ marginBottom: isMobile ? '2rem' : '4rem' }}>
+            <div style={{ display: 'inline-block', border: '1px solid rgba(50, 68, 33, 0.2)', borderRadius: '9999px', padding: '0.375rem 1rem', marginBottom: '1.25rem', backgroundColor: 'rgba(50, 68, 33, 0.08)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#324421' }}>Why Partner</span>
+            </div>
+            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
+              Four ways Blissmi moves the needle for you.
             </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>Get started in 4 easy steps</p>
+            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>
+              We've built a platform that doesn't just send you clients — it builds your practice sustainably,
+              with tools that work while you sleep.
+            </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: isMobile ? '1.5rem' : '2rem' }}>
-            {[
-              { step: '1', title: 'Apply', desc: 'Submit your application and credentials', icon: Handshake },
-              { step: '2', title: 'Verify', desc: 'Our team reviews and verifies your qualifications', icon: Award },
-              { step: '3', title: 'Onboard', desc: 'Complete training and set up your profile', icon: Sparkles },
-              { step: '4', title: 'Grow', desc: 'Start receiving patient referrals and grow', icon: TrendingUp }
-            ].map((item, index) => {
-              const Icon = item.icon;
+          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '2rem' }}>
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
               return (
-                <div key={index} style={{ textAlign: 'center' }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-                    <Icon size={isMobile ? 36 : 48} style={{ color: '#0d9488' }} />
+                <div
+                  key={index}
+                  style={{ border: '2px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', transition: 'box-shadow 0.2s, border-color 0.2s' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = '#324421'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = '#e5e7eb'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                    <div style={{ width: '3rem', height: '3rem', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1.25rem', fontWeight: 700, backgroundColor: '#f5ede9', color: '#D1B4AA' }}>
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{benefit.title}</h3>
+                      <p style={{ color: '#4b5563', lineHeight: 1.6 }}>{benefit.description}</p>
+                    </div>
                   </div>
-                  <div style={{ width: '3rem', height: '3rem', backgroundColor: '#0d9488', color: '#fff', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 700, margin: '0 auto 1rem' }}>
-                    {item.step}
-                  </div>
-                  <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{item.title}</h3>
-                  <p style={{ color: '#4b5563', fontSize: isMobile ? '0.875rem' : '0.9375rem' }}>{item.desc}</p>
                 </div>
               );
             })}
@@ -236,23 +247,53 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
         </div>
       </section>
 
-      {/* Platform Features */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', background: 'linear-gradient(135deg, #0d9488 0%, #059669 100%)', color: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, marginBottom: '1rem' }}>
-              Powerful Tools for Your Practice
+      {/* What Sets Us Apart — dark section */}
+      <section style={{ padding: sectionPy, backgroundColor: '#1E2420' }}>
+        <div style={containerStyle}>
+          <div style={{ marginBottom: isMobile ? '2rem' : '4rem' }}>
+            <div style={{ display: 'inline-block', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '9999px', padding: '0.375rem 1rem', marginBottom: '1.25rem', backgroundColor: 'rgba(255, 255, 255, 0.08)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#B8CEB7' }}>What Sets Us Apart</span>
+            </div>
+            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#fff', marginBottom: '1rem' }}>
+              Blissmi isn't just another directory.
             </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', opacity: 0.9 }}>
-              Everything you need to manage and grow your holistic practice
+            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '48rem', margin: '0 auto' }}>
+              We're a health engagement platform — and that changes everything about how your practice benefits.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: isMobile ? '1rem' : '1.5rem' }}>
-            {features.map((feature, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', backgroundColor: 'rgba(255,255,255,0.1)', padding: '1.5rem', borderRadius: '0.5rem' }}>
-                <CheckCircle size={20} style={{ flexShrink: 0, marginTop: '0.125rem' }} />
-                <span style={{ fontSize: isMobile ? '0.875rem' : '0.9375rem' }}>{feature}</span>
+          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1px', borderRadius: '1rem', overflow: 'hidden', backgroundColor: 'rgba(255, 255, 255, 0.06)' }}>
+            {differentiators.map((diff, index) => (
+              <div
+                key={index}
+                style={{ padding: isMobile ? '1.5rem' : '2.5rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', transition: 'background-color 0.2s' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.backgroundColor = 'rgba(255, 255, 255, 0.06)'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.backgroundColor = 'rgba(255, 255, 255, 0.03)'; }}
+              >
+                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginBottom: '1.25rem', backgroundColor: '#e8ebe5' }}>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+                    animate={{
+                      opacity: [0, 1, 1, 1, 0],
+                      scale: [0.5, 1, 1, 1, 0.5],
+                      rotate: [-180, 0, 0, 0, -180],
+                    }}
+                    transition={{
+                      duration: 3,
+                      ease: 'easeInOut',
+                      repeat: Infinity,
+                      repeatDelay: 0.5,
+                      delay: index * 0.2,
+                    }}
+                    style={{ color: '#324421' }}
+                  >
+                    {diff.icon}
+                  </motion.div>
+                </div>
+                <h3 style={{ fontSize: '1.0625rem', fontWeight: 400, color: '#fff', marginBottom: '0.625rem' }}>{diff.title}</h3>
+                <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, fontWeight: 300 }}>
+                  {diff.description}
+                </p>
               </div>
             ))}
           </div>
@@ -260,27 +301,47 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
       </section>
 
       {/* Testimonials */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '4rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Success Stories from Our Partners
+      <section style={{ padding: sectionPy, position: 'relative', overflow: 'hidden' }}>
+        <img
+          src={testimonialImage}
+          alt="Health service providers"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+        />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, backgroundColor: 'rgba(253, 251, 248, 0.88)' }} />
+
+        <div style={{ ...containerStyle, position: 'relative', zIndex: 10 }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '4rem' }}>
+            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
+              Practitioners love working with Blissmi.
             </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>
-              Real practitioners, real results
+            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>
+              Don't take our word for it — hear from the health professionals already inside the network.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '1.5rem' : '2rem', maxWidth: '70rem', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="card-hover" style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <Heart size={isMobile ? 28 : 32} style={{ color: '#0d9488', marginBottom: '1rem' }} />
-                <p style={{ color: '#374151', marginBottom: '1.5rem', fontStyle: 'italic', fontSize: isMobile ? '0.9375rem' : '1rem' }}>"{testimonial.content}"</p>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+              <div
+                key={index}
+                style={{ backgroundColor: '#fff', border: '1px solid rgba(139, 175, 138, 0.2)', borderRadius: '1rem', padding: isMobile ? '1.5rem' : '2.25rem', transition: 'box-shadow 0.2s, transform 0.2s' }}
+                onMouseEnter={(e) => { const el = e.currentTarget as HTMLDivElement; el.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)'; el.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={(e) => { const el = e.currentTarget as HTMLDivElement; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)'; }}
+              >
+                <div style={{ display: 'flex', gap: '0.125rem', marginBottom: '1rem', color: '#D4895A' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} style={{ fontSize: '0.875rem' }}>★</span>
+                  ))}
+                </div>
+                <blockquote style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#111827', fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: 1.7, fontWeight: 300 }}>
+                  "{testimonial.content}"
+                </blockquote>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: '#fff', backgroundColor: '#D1B4AA', flexShrink: 0 }}>
+                    {testimonial.initials}
+                  </div>
                   <div>
-                    <div style={{ fontWeight: 600, color: '#111827', fontSize: '1rem' }}>{testimonial.name}</div>
-                    <div style={{ fontSize: '0.875rem', color: '#4b5563' }}>{testimonial.specialty}</div>
-                    <div style={{ fontSize: '0.875rem', color: '#0d9488' }}>{testimonial.practice}</div>
+                    <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{testimonial.name}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#4b5563' }}>{testimonial.role}</div>
                   </div>
                 </div>
               </div>
@@ -289,87 +350,24 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
         </div>
       </section>
 
-      {/* Requirements */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#f9fafb' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem') }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Partnership Requirements
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>
-              Ensuring quality care for our community
-            </p>
-          </div>
-
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '2rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {requirements.map((req, index) => (
-                <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <CheckCircle size={isMobile ? 20 : 24} style={{ color: '#22c55e', flexShrink: 0, marginTop: '0.125rem' }} />
-                  <span style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#374151' }}>{req}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Commission Structure */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem'), textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem' }}>
-            Transparent, Fair Commission Structure
-          </h2>
-          <div style={{ backgroundColor: '#f0fdfa', border: '2px solid #ccfbf1', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem' }}>
-            <div style={{ fontSize: isMobile ? '2.5rem' : '4rem', fontWeight: 700, color: '#0d9488', marginBottom: '1rem' }}>15%</div>
-            <p style={{ fontSize: isMobile ? '1rem' : '1.125rem', color: '#111827', marginBottom: '0.5rem' }}>Platform fee on completed sessions</p>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#4b5563' }}>No monthly fees. No hidden costs. You only pay when you succeed.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? '1rem' : '1.5rem' }}>
-            <div style={{ backgroundColor: '#f9fafb', padding: '1.5rem', borderRadius: '0.5rem' }}>
-              <CheckCircle size={isMobile ? 20 : 24} style={{ color: '#22c55e', marginBottom: '0.75rem' }} />
-              <h3 style={{ fontWeight: 600, marginBottom: '0.5rem', color: '#111827', fontSize: isMobile ? '1rem' : '1.125rem' }}>No Setup Fees</h3>
-              <p style={{ fontSize: isMobile ? '0.8125rem' : '0.875rem', color: '#4b5563' }}>Free to join and get started</p>
-            </div>
-            <div style={{ backgroundColor: '#f9fafb', padding: '1.5rem', borderRadius: '0.5rem' }}>
-              <CheckCircle size={isMobile ? 20 : 24} style={{ color: '#22c55e', marginBottom: '0.75rem' }} />
-              <h3 style={{ fontWeight: 600, marginBottom: '0.5rem', color: '#111827', fontSize: isMobile ? '1rem' : '1.125rem' }}>Weekly Payouts</h3>
-              <p style={{ fontSize: isMobile ? '0.8125rem' : '0.875rem', color: '#4b5563' }}>Receive payments every week</p>
-            </div>
-            <div style={{ backgroundColor: '#f9fafb', padding: '1.5rem', borderRadius: '0.5rem' }}>
-              <CheckCircle size={isMobile ? 20 : 24} style={{ color: '#22c55e', marginBottom: '0.75rem' }} />
-              <h3 style={{ fontWeight: 600, marginBottom: '0.5rem', color: '#111827', fontSize: isMobile ? '1rem' : '1.125rem' }}>Full Transparency</h3>
-              <p style={{ fontSize: isMobile ? '0.8125rem' : '0.875rem', color: '#4b5563' }}>Detailed analytics and reporting</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section style={{ padding: isMobile ? '3rem 0' : '5rem 0', background: 'linear-gradient(135deg, #0d9488 0%, #059669 100%)', color: '#fff' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 ' + (isMobile ? '1rem' : '2rem'), textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, marginBottom: '1.5rem' }}>
-            Ready to Join Our Ecosystem?
+      <section style={{ padding: sectionPy, backgroundColor: '#F7F3EE', textAlign: 'center' }}>
+        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}` }}>
+          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.5rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
+            Ready to build a thriving practice with Blissmi?
           </h2>
-          <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', opacity: 0.9, marginBottom: '2rem' }}>
-            Become a trusted partner and help thousands achieve better health through holistic care
+          <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '2rem', lineHeight: 1.75 }}>
+            Applications take less than five minutes. Our partner success team reviews every application
+            personally and will be in touch within 24 hours.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button
-              onClick={() => onNavigate('contact')}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#fff', color: '#0d9488', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
-            >
-              Apply Now
-              <ArrowRight size={18} />
-            </button>
-            <button
-              style={{ backgroundColor: 'rgba(255,255,255,0)', color: '#fff', border: '2px solid #fff', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0)')}
-            >
-              Schedule Info Session
-            </button>
-          </div>
+          <button
+            onClick={() => onNavigate('contact')}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2.5rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.15)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+          >
+            Apply to Partner <ArrowRight size={18} />
+          </button>
         </div>
       </section>
 
