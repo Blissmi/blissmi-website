@@ -121,10 +121,10 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
         <div style={containerStyle}>
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.8125rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#D1B4AA', color: '#000' }}>
+              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#D1B4AA', color: '#000' }}>
                 For Insurers
               </div>
-              <h1 style={{ fontSize: isMobile ? '2rem' : '3.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.25rem 0' }}>
+              <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.25rem 0' }}>
                 Transform Insurance From Reactive Coverage To{' '}
                 <span style={{ color: '#D1B4AA' }}>Proactive Care</span>
               </h1>
@@ -133,7 +133,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
               </p>
               <button
                 onClick={() => onNavigate('contact')}
-                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
               >
                 Schedule A Demo
               </button>
@@ -343,7 +343,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
                 </ul>
                 <button
                   onClick={() => onNavigate('contact')}
-                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#D1B4AA', color: '#fff', border: 'none', borderRadius: '0.5rem', fontSize: '0.9375rem', fontWeight: 500, cursor: 'pointer' }}
+                  style={{ width: '100%', padding: '0.875rem 1.5rem', backgroundColor: '#D1B4AA', color: '#111827', border: 'none', borderRadius: '9999px', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Contact Sales in your Country
                 </button>
@@ -357,7 +357,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
       <section style={{ padding: sectionPy, backgroundColor: '#f9fafb' }}>
         <div style={containerStyle}>
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.12)', height: '400px' }}>
+            <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.12)', height: isMobile ? '250px' : '400px' }}>
               <img src={testimonialImage} alt="Healthcare Executive" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -390,7 +390,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
           >
             {"Let's build value together \u2192 Talk to our team"}
           </button>

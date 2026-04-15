@@ -44,7 +44,7 @@ const pillars: Pillar[] = [
   {
     number: '02',
     audience: 'The Layer That Connects Them',
-    title: 'Population Health Intelligence',
+    title: 'Population Health Insights',
     intro:
       'Blissmi transforms anonymized, population-level data into real-time insights — segmented by life stage, risk, and behavior — so you can act earlier, allocate smarter, and predict what\'s next.',
     description:
@@ -201,7 +201,7 @@ export function PillarsAccordion() {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     style={{ overflow: 'hidden' }}
                   >
-                    <div style={{ padding: isMobile ? '1rem 1.5rem 1.5rem' : '1rem 2rem 2rem', backgroundColor: '#324421' }}>
+                    <div style={{ padding: isMobile ? '1rem 1rem 1.5rem' : '1rem 2rem 2rem', backgroundColor: '#324421' }}>
                       <p style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#fff', lineHeight: 1.75, marginBottom: '2rem' }}>
                         {pillar.description}
                       </p>

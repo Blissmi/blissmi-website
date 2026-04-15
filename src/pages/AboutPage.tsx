@@ -88,10 +88,10 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.3)' }} />
         <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '64rem', margin: '0 auto', padding: `68px ${px} 2rem`, minHeight: '38vh', justifyContent: 'center' }}>
-          <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.8125rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: 'rgba(50,68,33,0.125)', color: '#fff' }}>
+          <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: 'rgba(50,68,33,0.125)', color: '#fff' }}>
             About Blissmi
           </div>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.15, margin: 0 }}>
+          <h1 style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, lineHeight: 1.15, margin: 0 }}>
             Predicting and Personalizing{' '}
             <span style={{ color: '#D1B4AA' }}>Preventive Health</span>{' '}
             for Everyone
@@ -120,11 +120,9 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
                 </p>
               </div>
             </div>
-            {!isNarrow && (
-              <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
-                <img src={aboutImage} alt="Natasha and Ines, Blissmi founders" style={{ width: '100%', height: 'auto', display: 'block' }} />
-              </div>
-            )}
+            <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
+              <img src={aboutImage} alt="Natasha and Ines, Blissmi founders" style={{ width: '100%', height: 'auto', display: 'block' }} />
+            </div>
           </div>
         </div>
       </section>
@@ -164,12 +162,12 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
         <div style={containerStyle}>
         <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', alignItems: 'center' }}>
           {!isNarrow && (
-            <div style={{ height: '480px', overflow: 'hidden' }}>
+            <div style={{ height: '600px', overflow: 'hidden' }}>
               <img src={differenceImage} alt="Health technology" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           )}
           <div style={{ padding: isNarrow ? '3rem 1.5rem' : '3.5rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor: '#D1B4AA' }}>
-            <h2 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', marginBottom: '3rem' }}>Our Difference</h2>
+            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '3rem' }}>Our Difference</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {differenceItems.map((item, index) => {
                 const Icon = item.icon;
@@ -197,7 +195,7 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
           <div style={{ overflow: 'hidden' }}>
             <div style={{ display: 'flex', gap: '1rem', animation: 'scroll-left 60s linear infinite', width: 'max-content' }}>
               {[...team, ...team, ...team].map((member, index) => (
-                <div key={index} style={{ display: 'flex', flexDirection: 'column', width: '300px', flexShrink: 0 }}>
+                <div key={index} style={{ display: 'flex', flexDirection: 'column', width: isMobile ? '220px' : '300px', flexShrink: 0 }}>
                   <div style={{ aspectRatio: '3/4', borderRadius: '0.5rem', marginBottom: '1rem', overflow: 'hidden', backgroundColor: '#1B3025', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {member.image ? (
                       <img src={member.image} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />

@@ -150,10 +150,10 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
         <div style={containerStyle}>
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.8125rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#32442120', color: '#324421' }}>
+              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.5rem', backgroundColor: '#32442120', color: '#324421' }}>
                 For Members
               </div>
-              <h1 style={{ fontSize: isMobile ? '2rem' : '3.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.25rem 0' }}>
+              <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.15, margin: '0 0 1.25rem 0' }}>
                 One health score. One personal doctor. One{' '}
                 <span style={{ color: '#324421' }}>lifelong prevention system.</span>
               </h1>
@@ -163,7 +163,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 <button
                   onClick={() => window.open('https://membership.myblissmi.com/login', '_blank')}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Login
                 </button>
@@ -172,7 +172,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
                     const pricingSection = document.getElementById('pricing-section');
                     pricingSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', color: '#111827', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Want Access?
                 </button>
@@ -301,7 +301,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
           <section style={{ padding: '3rem 0', backgroundColor: '#fff', width: '100%' }}>
             <div style={containerStyle}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
+                <h2 style={{ fontSize: isMobile ? '1.25rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                   Personalized Wellness Programs
                 </h2>
                 <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>
@@ -389,7 +389,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
               </ul>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-              <button style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}>
+              <button style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
                 Follow Us
               </button>
               <div style={{ display: 'flex', gap: '1rem' }}>
@@ -423,7 +423,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); onNavigate('research'); }}
-            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, marginTop: '2rem', textDecoration: 'none', transition: 'opacity 0.2s' }}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, marginTop: '2rem', textDecoration: 'none', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
           >

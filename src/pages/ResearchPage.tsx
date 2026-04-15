@@ -195,10 +195,11 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
           {/* Cycle Diagram */}
           <div style={{ maxWidth: '56rem', margin: '0 auto', marginTop: '5rem', marginBottom: '5rem' }}>
             <p style={{ fontSize: isMobile ? '1.125rem' : '1.875rem', fontWeight: 600, color: '#111827', textAlign: 'center', marginBottom: '2.5rem' }}>This creates a cycle of:</p>
-            <div className="relative mx-auto" style={{ width: '600px', height: '600px', maxWidth: '100%' }}>
-              <svg className="absolute inset-0" viewBox="0 0 600 600" style={{ width: '100%', height: '100%' }}>
-                {/* Static circular track */}
-                <circle cx="300" cy="300" r="200" fill="none" stroke="#ffffff" strokeWidth="6" />
+            {/* SVG diagram — labels live inside the viewBox so it scales on all screen sizes */}
+            <div style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}>
+              <svg viewBox="0 0 800 700" style={{ width: '100%', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
+                {/* Static circular track — centred in wider viewBox */}
+                <circle cx="400" cy="350" r="200" fill="none" stroke="#ffffff" strokeWidth="6" />
 
                 {/* Moving ball */}
                 <motion.circle
@@ -206,26 +207,26 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
                   fill={DARK_GREEN}
                   animate={{
                     cx: [
-                      300,
-                      300 + 200 * Math.cos(Math.PI / 4),
-                      500,
-                      300 + 200 * Math.cos(3 * Math.PI / 4),
-                      300,
-                      300 + 200 * Math.cos(5 * Math.PI / 4),
-                      100,
-                      300 + 200 * Math.cos(7 * Math.PI / 4),
-                      300,
+                      400,
+                      400 + 200 * Math.cos(Math.PI / 4),
+                      600,
+                      400 + 200 * Math.cos(3 * Math.PI / 4),
+                      400,
+                      400 + 200 * Math.cos(5 * Math.PI / 4),
+                      200,
+                      400 + 200 * Math.cos(7 * Math.PI / 4),
+                      400,
                     ],
                     cy: [
-                      100,
-                      300 - 200 * Math.sin(Math.PI / 4),
-                      300,
-                      300 - 200 * Math.sin(3 * Math.PI / 4),
-                      500,
-                      300 - 200 * Math.sin(5 * Math.PI / 4),
-                      300,
-                      300 - 200 * Math.sin(7 * Math.PI / 4),
-                      100,
+                      150,
+                      350 - 200 * Math.sin(Math.PI / 4),
+                      350,
+                      350 - 200 * Math.sin(3 * Math.PI / 4),
+                      550,
+                      350 - 200 * Math.sin(5 * Math.PI / 4),
+                      350,
+                      350 - 200 * Math.sin(7 * Math.PI / 4),
+                      150,
                     ],
                   }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
@@ -238,83 +239,33 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
                   </marker>
                 </defs>
 
-                {/* Top arrow — fires when ball is at top */}
-                <motion.path
-                  d="M 300 100 L 320 105"
-                  stroke={DARK_GREEN} strokeWidth="2"
-                  markerEnd="url(#cycle-arrowhead)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3] }}
-                />
-                {/* Right arrow — fires when ball is at right */}
-                <motion.path
-                  d="M 500 300 L 495 320"
-                  stroke={DARK_GREEN} strokeWidth="2"
-                  markerEnd="url(#cycle-arrowhead)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 1 }}
-                />
-                {/* Bottom arrow — fires when ball is at bottom */}
-                <motion.path
-                  d="M 300 500 L 280 495"
-                  stroke={DARK_GREEN} strokeWidth="2"
-                  markerEnd="url(#cycle-arrowhead)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 2 }}
-                />
-                {/* Left arrow — fires when ball is at left */}
-                <motion.path
-                  d="M 100 300 L 105 280"
-                  stroke={DARK_GREEN} strokeWidth="2"
-                  markerEnd="url(#cycle-arrowhead)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 3 }}
-                />
+                {/* Directional arrows */}
+                <motion.path d="M 400 150 L 420 155" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3] }} />
+                <motion.path d="M 600 350 L 595 370" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 1 }} />
+                <motion.path d="M 400 550 L 380 545" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 2 }} />
+                <motion.path d="M 200 350 L 205 330" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 3 }} />
+
+                {/* Top label — Delayed Care */}
+                <text x="400" y="95" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">Delayed Care</text>
+
+                {/* Right label — Higher Long-term Costs */}
+                <text x="695" y="345" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
+                  <tspan x="695" dy="0">Higher Long-</tspan>
+                  <tspan x="695" dy="28">term Costs</tspan>
+                </text>
+
+                {/* Bottom label — Reduced Workforce Participation */}
+                <text x="400" y="620" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
+                  <tspan x="400" dy="0">Reduced Workforce</tspan>
+                  <tspan x="400" dy="28">Participation</tspan>
+                </text>
+
+                {/* Left label — Poorer Quality of Life */}
+                <text x="105" y="345" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
+                  <tspan x="105" dy="0">Poorer Quality</tspan>
+                  <tspan x="105" dy="28">of Life</tspan>
+                </text>
               </svg>
-
-              {/* Top label — Delayed Care */}
-              <motion.div
-                style={{ position: 'absolute', textAlign: 'center', width: '200px', bottom: 'calc(100% - 14%)', left: '35%', transform: 'translateX(-50%)' }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              >
-                <p style={{ color: '#fff', fontWeight: 600, fontSize: '1.25rem' }}>Delayed Care</p>
-              </motion.div>
-
-              {/* Right label — Higher Long-term Costs */}
-              <motion.div
-                style={{ position: 'absolute', textAlign: 'center', width: '220px', top: '50%', left: '86%', transform: 'translateY(-50%)' }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.0, duration: 0.5 }}
-              >
-                <p style={{ color: '#fff', fontWeight: 600, fontSize: '1.25rem' }}>Higher Long-term Costs</p>
-              </motion.div>
-
-              {/* Bottom label — Reduced Workforce Participation */}
-              <motion.div
-                style={{ position: 'absolute', textAlign: 'center', width: '240px', top: '86%', left: '33%', transform: 'translateX(-50%)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
-              >
-                <p style={{ color: '#fff', fontWeight: 600, fontSize: '1.25rem' }}>Reduced Workforce Participation</p>
-              </motion.div>
-
-              {/* Left label — Poorer Quality of Life */}
-              <motion.div
-                style={{ position: 'absolute', textAlign: 'center', width: '200px', top: '50%', right: '86%', transform: 'translateY(-50%)' }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.4, duration: 0.5 }}
-              >
-                <p style={{ color: '#fff', fontWeight: 600, fontSize: '1.25rem' }}>Poorer Quality of Life</p>
-              </motion.div>
             </div>
           </div>
         </div>
@@ -633,13 +584,13 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
       {/* CTA */}
       <section style={{ padding: isMobile ? '2.5rem 0' : '3.5rem 0', backgroundColor: '#fff' }}>
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}`, textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.25rem' : '2rem', fontWeight: 700, color: '#111827', marginBottom: '2rem' }}>Get Involved</h2>
+          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '2rem' }}>Get Involved</h2>
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {['Partner with us', 'Join our research studies', 'Become a beta user'].map((label) => (
               <button
                 key={label}
                 onClick={() => onNavigate('contact')}
-                style={{ backgroundColor: DARK_GREEN, color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', transition: 'opacity 0.2s' }}
+                style={{ backgroundColor: DARK_GREEN, color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', transition: 'opacity 0.2s' }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = '0.85'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
               >

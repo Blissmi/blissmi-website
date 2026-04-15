@@ -96,25 +96,25 @@ export function CustomersPage({ onNavigate, currentPage }: CustomersPageProps) {
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.8125rem', fontWeight: 600, marginBottom: '1.25rem', backgroundColor: '#D1B4AA', color: '#000' }}>
+              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', backgroundColor: '#D1B4AA', color: '#000' }}>
                 For Employers
               </div>
-              <h1 style={{ fontSize: isMobile ? '1.75rem' : '2.5rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 1rem 0' }}>
+              <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 1rem 0' }}>
                 The Only Platform That Connects Your People's Biology to Your{' '}
                 <span style={{ color: '#D1B4AA' }}>Bottom Line.</span>
               </h1>
-              <p style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+              <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: 1.7 }}>
                 Blissmi helps you move beyond fragmented wellness solutions to a single, intelligent platform that predicts risk, personalizes care, and activates healthier, more productive employees—at scale.
               </p>
               <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '0.75rem' }}>
                 <button
                   onClick={() => onNavigate('contact')}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 1.75rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
                 >
                   Schedule a Demo <ArrowRight size={16} />
                 </button>
                 <button
-                  style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem 1.75rem', fontSize: '0.9375rem', fontWeight: 500, cursor: 'pointer' }}
+                  style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}
                 >
                   Download ROI Report
                 </button>
@@ -364,7 +364,7 @@ export function CustomersPage({ onNavigate, currentPage }: CustomersPageProps) {
             </div>
 
             {/* Comprehensive — Most Popular */}
-            <div style={{ border: '2px solid #324421', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 10px 25px rgba(50,68,33,0.15)', transform: isMobile ? 'none' : 'scale(1.03)' }}>
+            <div style={{ border: '2px solid #324421', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 10px 25px rgba(50,68,33,0.15)', transform: isNarrow ? 'none' : 'scale(1.03)' }}>
               <div style={{ backgroundColor: '#324421', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.75rem', borderRadius: '9999px', display: 'inline-block', marginBottom: '0.75rem' }}>
                 Most Popular
               </div>
@@ -407,7 +407,7 @@ export function CustomersPage({ onNavigate, currentPage }: CustomersPageProps) {
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            style={{ display: isMobile ? 'flex' : 'inline-flex', width: isMobile ? '100%' : 'auto', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.875rem 2rem', fontSize: isMobile ? '0.9375rem' : '1rem', fontWeight: 600, cursor: 'pointer' }}
+            style={{ display: isMobile ? 'flex' : 'inline-flex', width: isMobile ? '100%' : 'auto', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: isMobile ? '0.9375rem' : '1rem', fontWeight: 600, cursor: 'pointer' }}
           >
             Let's build your health strategy → Talk to our team
           </button>

@@ -32,7 +32,7 @@ export function WhyWeExist() {
               Most health platforms are built around a single problem — tracking, or analytics, or care access. Each solves a piece. None connects them.
             </p>
             <p style={{ fontSize: '1.0625rem', color: '#374151', lineHeight: 1.75, margin: 0 }}>
-              Blissmi is the framework that changes that — three capabilities: Life-Stage Health Intelligence, Population Analytics, and Integrative Care Navigation. All unified in one platform, working simultaneously for individuals, employers, and insurers.
+              Blissmi is the framework that changes that — three capabilities: Hormonal and Life-Stage Health Intelligence, Population Health Insights, and Integrative Care Navigation. All unified in one platform, working simultaneously for individuals, employers, and insurers.
             </p>
             <p style={{ fontSize: '1.0625rem', color: '#111827', fontWeight: 600, lineHeight: 1.75, margin: 0 }}>
               We Built What Should Have Existed a Decade Ago.
