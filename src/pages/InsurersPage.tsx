@@ -141,7 +141,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
             {!isNarrow && (
               <div>
                 <video autoPlay loop muted playsInline style={{ width: '100%', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
-                  <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1775453422/TashK_A_video_of_a_multigenerational_american_asian_family_si_7f6622f4-8a8f-497e-a02e-e1b745b06c80_0_eubj89.mp4" type="video/mp4" />
+                  <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1775453422/TashK_A_video_of_a_multigenerational_american_asian_family_si_7f6622f4-8a8f-497e-a02e-e1b745b06c80_0_eubj89.mp4" type="video/mp4" />
                 </video>
               </div>
             )}
@@ -245,7 +245,7 @@ export function InsurersPage({ onNavigate, currentPage }: InsurersPageProps) {
       {/* Value Drivers */}
       <section style={{ padding: sectionPy, backgroundColor: '#324421', position: 'relative', overflow: 'hidden' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}>
-          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1775560577/TashK_Create_an_image_of_3_females_mix_of_caucasian_and_asian_c0d5ff3a-1f92-4ff8-aa3a-5c0a83c19881_3_xhtfbo.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1775560577/TashK_Create_an_image_of_3_females_mix_of_caucasian_and_asian_c0d5ff3a-1f92-4ff8-aa3a-5c0a83c19881_3_xhtfbo.mp4" type="video/mp4" />
         </video>
         <div style={{ ...containerStyle, position: 'relative', zIndex: 10 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

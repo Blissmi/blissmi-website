@@ -21,7 +21,7 @@ export function HomePage({ onNavigate, currentPage }: HomePageProps) {
       <StickyNav onNavigate={onNavigate} currentPage={currentPage} transparentOnTop />
 
       {/* Hero Section with Video Background */}
-      <VideoHero onNavigate={onNavigate} videoUrl="https://res.cloudinary.com/djz3jsrit/video/upload/v1770610596/Website_hero_video_uywj2q.mp4" />
+      <VideoHero onNavigate={onNavigate} videoUrl="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1770610596/Website_hero_video_uywj2q.mp4" />
 
       <MissionSection />
 

@@ -245,7 +245,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
                 autoPlay loop muted playsInline
                 style={{ width: '100%', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
               >
-                <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1772976303/Blissmi_Phone_layout_tcpivx.mp4" type="video/mp4" />
+                <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1772976303/Blissmi_Phone_layout_tcpivx.mp4" type="video/mp4" />
               </video>
             </div>
             {/* Right: 4 Pillars Grid */}

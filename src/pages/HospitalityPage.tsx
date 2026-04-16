@@ -228,7 +228,7 @@ export function HospitalityPage({ onNavigate, currentPage }: HospitalityPageProp
       <section style={{ padding: sectionPy, position: 'relative', overflow: 'hidden', backgroundColor: '#324421' }}>
         <div style={{ position: 'absolute', inset: 0 }}>
           <video autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
-            <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1775697005/TashK_Create_a_hyper_realistic_wellness_resort_along_the_coas_9671c95c-2a29-4f90-881a-96dae6ad7be8_2_cxjq4c.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1775697005/TashK_Create_a_hyper_realistic_wellness_resort_along_the_coas_9671c95c-2a29-4f90-881a-96dae6ad7be8_2_cxjq4c.mp4" type="video/mp4" />
           </video>
         </div>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)' }} />
@@ -315,7 +315,7 @@ export function HospitalityPage({ onNavigate, currentPage }: HospitalityPageProp
       <section style={{ padding: sectionPy, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0 }}>
           <video autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
-            <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1775646247/TashK_create_a_hyper_realistic_video_showing_a_global_wellnes_ef8b89d6-ac17-4327-9bdf-b5c17e027012_2_o2qe7u.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1775646247/TashK_create_a_hyper_realistic_video_showing_a_global_wellnes_ef8b89d6-ac17-4327-9bdf-b5c17e027012_2_o2qe7u.mp4" type="video/mp4" />
           </video>
         </div>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} />
