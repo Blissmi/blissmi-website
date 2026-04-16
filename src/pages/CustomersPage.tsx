@@ -292,7 +292,7 @@ export function CustomersPage({ onNavigate, currentPage }: CustomersPageProps) {
       {/* Implementation Made Simple */}
       <section style={{ padding: sectionPy, backgroundColor: '#324421', color: '#fff', position: 'relative', overflow: 'hidden' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}>
-          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1774827664/TashK_A_female_and_male_standing_still_on_busy_city_sidewalk__81d0cd2b-03ac-452b-88c7-70bde35c72df_1_y45lmx.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1774827664/TashK_A_female_and_male_standing_still_on_busy_city_sidewalk__81d0cd2b-03ac-452b-88c7-70bde35c72df_1_y45lmx.mp4" type="video/mp4" />
         </video>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}`, position: 'relative', zIndex: 10 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

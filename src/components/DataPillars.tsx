@@ -33,7 +33,7 @@ export function DataPillars({ dataTypes }: DataPillarsProps) {
               onVolumeChange={(e) => { const v = e.currentTarget; if (v.volume !== 0) v.volume = 0; if (!v.muted) v.muted = true; }}
               style={{ width: '100%', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
             >
-              <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1772976303/Blissmi_Phone_layout_tcpivx.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1772976303/Blissmi_Phone_layout_tcpivx.mp4" type="video/mp4" />
             </video>
           </div>
 

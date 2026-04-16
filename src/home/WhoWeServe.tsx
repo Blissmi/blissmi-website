@@ -5,7 +5,7 @@ interface WhoWeServeProps {
   onNavigate: (page: string) => void;
 }
 
-const VIDEO_SRC = 'https://res.cloudinary.com/djz3jsrit/video/upload/v1771375119/video-1771375098653mp4_v1djmr.mp4'
+const VIDEO_SRC = 'https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1771375119/video-1771375098653mp4_v1djmr.mp4'
 
 interface ServeCardProps {
   title: string
@@ -15,12 +15,11 @@ interface ServeCardProps {
   minHeight?: string
 }
 
-function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }, minHeight = '380px' }: ServeCardProps) {
+function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }, minHeight }: ServeCardProps) {
   return (
     <div style={{
       position: 'relative',
       backgroundColor: '#fff',
-      minHeight,
       display: 'flex',
       flexDirection: 'column',
       padding: '1.5rem',
@@ -56,7 +55,7 @@ function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }
       <h3 style={{ position: 'relative', zIndex: 2, fontSize: '1.375rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>
         {title}
       </h3>
-      <p style={{ position: 'relative', zIndex: 2, fontSize: '0.95rem', color: '#374151', lineHeight: 1.6, marginBottom: '1.25rem', flex: 1 }}>
+      <p style={{ position: 'relative', zIndex: 2, fontSize: '0.95rem', color: '#374151', lineHeight: 1.6, marginBottom: '1.25rem' }}>
         {body}
       </p>
       <button
@@ -83,8 +82,7 @@ function ServeCard({ title, body, onClick, videoOffset = { top: '0', left: '0' }
 }
 
 export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
-  const { isMobile, isTablet } = useResponsive()
-  const cardMinHeight = isMobile ? '280px' : isTablet ? '320px' : '380px'
+  const { isMobile } = useResponsive()
   return (
     <section style={{ backgroundColor: '#fff', padding: isMobile ? '4rem 0' : '8rem 0' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
@@ -109,28 +107,28 @@ export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
             body="From 100-person teams to multinational workforces. Whether you want to start with a leadership health program or a company-wide deployment, Blissmi's pilot structure is designed to generate measurable outcomes from month one."
             onClick={() => onNavigate('customers')}
             videoOffset={{ top: '0', left: '0' }}
-            minHeight={cardMinHeight}
+
           />
           <ServeCard
             title="Insurers & TPAs"
             body="From Phase 1 wellness program pilots to full white-label integration across your member ecosystem. The commercial model scales with your ambition — from fixed-fee pilots to outcome-based revenue sharing as claims savings are verified."
             onClick={() => onNavigate('insurers')}
             videoOffset={{ top: '0', left: '-100%' }}
-            minHeight={cardMinHeight}
+
           />
           <ServeCard
             title="Wellness Venues & Resorts"
             body="Bring Blissmi's health intelligence into your guest experience — through the Women's Longevity Hub kiosk activation or a fully integrated wellness programming partnership."
             onClick={() => onNavigate('hospitality')}
             videoOffset={{ top: '-100%', left: '0' }}
-            minHeight={cardMinHeight}
+
           />
           <ServeCard
             title="Individuals"
             body="Take control of your health before something forces you to. Blissmi's individual membership gives you the same clinical intelligence available to enterprise clients — personalized to your biology, your goals, and your life stage."
             onClick={() => onNavigate('users')}
             videoOffset={{ top: '-100%', left: '-100%' }}
-            minHeight={cardMinHeight}
+
           />
         </div>
       </div>

@@ -15,6 +15,7 @@ import shahaniImage from '../figma/assets/shahaniImage.jpeg';
 import karenImage from '../figma/assets/karenImage.jpeg';
 import lawrenceImage from '../figma/assets/lawrenceImage.jpeg';
 import arupImage from '../figma/assets/Arup Sen (1).jpg';
+import ruthImage from '../figma/assets/Ruth+Lee (1).jpg';
 
 interface AboutPageProps {
   onNavigate: (page: string) => void;
@@ -65,7 +66,8 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
     { name: 'Dr Shahani Amjah (India)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, Joseph Fraser Ninewells Hospital.', image: shahaniImage },
     { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'MOrgPsych, BSc Psych, Registered Psychologist, Council Member Hong Kong Psychological society', image: karenImage },
     { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
-    { name: 'Dr Arup Sen', role: 'General Health Advisor', description: 'MBBS, Ba Medical Sciences with Physiology and Pharmacology, Triple-accredited: Stroke, Geriatric & General Internal Medicine.', image: arupImage }
+    { name: 'Dr Arup Sen', role: 'General Health Advisor', description: 'MBBS, Ba Medical Sciences with Physiology and Pharmacology, Triple-accredited: Stroke, Geriatric & General Internal Medicine.', image: arupImage },
+    { name: 'Master Ruth Lee', role: 'TCM Advisor', description: 'Master Science, Personal health management, Registered Nutritionist of Public Health, China, Certificate of Obstetrics and Gynaecology in Western Medicine, Registered Chinese Medicine Practitioner, Licensed Dietitian in China.', image: ruthImage }
   ];
 
   const differenceItems = [
@@ -84,7 +86,7 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
       {/* Hero Section */}
       <section style={{ position: 'relative', minHeight: '38vh' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
-          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/v1774427749/TashK__--ar_9151_--video_1_45015722-0599-4354-9be4-8fdc2da88dbb_1_pzk5e4.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1774427749/TashK__--ar_9151_--video_1_45015722-0599-4354-9be4-8fdc2da88dbb_1_pzk5e4.mp4" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.3)' }} />
         <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '64rem', margin: '0 auto', padding: `68px ${px} 2rem`, minHeight: '38vh', justifyContent: 'center' }}>
