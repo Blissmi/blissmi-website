@@ -149,7 +149,7 @@ export function TermsPage({ onNavigate, currentPage }: TermsPageProps) {
           </SectionBlock>
 
           {/* 3 */}
-          <SectionBlock number="3" title="How Blissmi Works (IMPORTANT)">
+          <SectionBlock number="3" title="How Blissmi Works">
             <TermsCard>
               <CardHeading>Blissmi generates personalised outputs based on:</CardHeading>
               <BulletList style={{ marginTop: '0.875rem' }} items={[
