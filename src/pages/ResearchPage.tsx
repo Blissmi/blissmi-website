@@ -59,7 +59,6 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
     borderRadius: '9999px',
     backgroundColor: color,
     flexShrink: 0,
-    marginTop: '0.4rem',
   });
 
   return (
@@ -429,9 +428,9 @@ export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
                     <p style={{ color: '#374151', marginBottom: '0.75rem', fontSize: '0.9375rem' }}>{item.body}</p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.75rem' }}>
                       {item.points.map((p) => (
-                        <div key={p} style={{ display: 'flex', gap: '0.625rem', alignItems: 'flex-start' }}>
+                        <div key={p} style={{ display: 'flex', gap: '0.625rem', alignItems: 'center' }}>
                           <span style={dot(DARK_GREEN)} />
-                          <p style={{ color: '#374151', fontSize: '0.9375rem', lineHeight: 1.5 }}>{p}</p>
+                          <p style={{ color: '#374151', fontSize: '0.9375rem', lineHeight: 1.5, margin: 0 }}>{p}</p>
                         </div>
                       ))}
                     </div>
