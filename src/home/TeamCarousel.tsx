@@ -16,7 +16,7 @@ export const teamImages: Record<string, string> = {
   'Ali Haider': aliImage,
   'Dr Victoria Elegant (HK/AUS)': victoriaImage,
   'Dr Clare Fernandes (UK)': clareImage,
-  'Dr Shahani Amjah (India)': shahaniImage,
+  'Dr Shahani Amjah (Sri Lanka)': shahaniImage,
   'Karen Gotthelf (HK/Global)': karenImage,
   'Dr Lawrence Lau (Ireland)': lawrenceImage,
   'Dr Arup Sen': arupImage,

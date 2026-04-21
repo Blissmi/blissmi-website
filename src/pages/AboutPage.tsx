@@ -63,8 +63,8 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
     { name: 'Ali Haider', role: 'CTO', description: 'MSc Computer Science. 13+ years in enterprise software and AI systems.', image: aliImage },
     { name: 'Dr Victoria Elegant (HK/AUS)', role: "Women's Health Advisor", description: 'MBBS, DRCOG FFPM. Adjunct Professor. Ex Amgen, Sanofi.', image: victoriaImage },
     { name: 'Dr Clare Fernandes (UK)', role: 'General Health Advisor', description: 'MFOM, MS-OM. Global CMO, BBC. Ex NHS GP.', image: clareImage },
-    { name: 'Dr Shahani Amjah (India)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, Joseph Fraser Ninewells Hospital.', image: shahaniImage },
-    { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'MOrgPsych, BSc Psych, Registered Psychologist, Council Member Hong Kong Psychological society', image: karenImage },
+    { name: 'Dr Shahani Amjah (Sri Lanka)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, University Hospital KDU.', image: shahaniImage },
+    { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'Founder, WorkPsych, Registered Psychologist (AHPRA), Registered IO Psychologist, Hong Kong Psychological Society (RIOP, HKPS), M(Res) Professional Practice Occ Psych, MOrgPsych & Counselling.', image: karenImage },
     { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
     { name: 'Dr Arup Sen', role: 'General Health Advisor', description: 'MBBS, Ba Medical Sciences with Physiology and Pharmacology, Triple-accredited: Stroke, Geriatric & General Internal Medicine.', image: arupImage },
     { name: 'Master Ruth Lee', role: 'TCM Advisor', description: 'Master Science, Personal health management, Registered Nutritionist of Public Health, China, Certificate of Obstetrics and Gynaecology in Western Medicine, Registered Chinese Medicine Practitioner, Licensed Dietitian in China.', image: ruthImage }
