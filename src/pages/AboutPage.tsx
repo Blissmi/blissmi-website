@@ -62,7 +62,7 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
     { name: 'Ines Gafsi', role: 'Founder & CRO', description: 'Tatler & Gen T nominee. Built international communities of 20K+ members.', image: inesImage },
     { name: 'Ali Haider', role: 'CTO', description: 'MSc Computer Science. 13+ years in enterprise software and AI systems.', image: aliImage },
     { name: 'Dr Victoria Elegant (HK/AUS)', role: "Women's Health Advisor", description: 'MBBS, DRCOG FFPM. Adjunct Professor. Ex Amgen, Sanofi.', image: victoriaImage },
-    { name: 'Dr Clare Fernandes (UK)', role: 'General Health Advisor', description: 'MFOM, MS-OM. Global CMO, BBC. Ex NHS GP.', image: clareImage },
+    { name: 'Dr Clare Fernandes (UK)', role: 'General Health Advisor', description: 'MBBS, BSc, DRCOG, DOccMed, MSc, MFOM. Accredited Specialist (Consultant) in Occupational Medicine.', image: clareImage },
     { name: 'Dr Shahani Amjah (Sri Lanka)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, University Hospital KDU.', image: shahaniImage },
     { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'Founder, WorkPsych, Registered Psychologist (AHPRA), Registered IO Psychologist, Hong Kong Psychological Society (RIOP, HKPS), M(Res) Professional Practice Occ Psych, MOrgPsych & Counselling.', image: karenImage },
     { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
