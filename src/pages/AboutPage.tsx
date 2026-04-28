@@ -72,7 +72,7 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
 
   const differenceItems = [
     { icon: Brain, text: 'Our proprietary intelligence combines medical expertise with advanced data modeling to deliver personalized health insights.' },
-    { icon: Gauge, text: 'Blissmi LifeOS Blissmi Health Score designed by global doctors and practitioners.' },
+    { icon: Gauge, text: 'Blissmi LifeOS and Blissmi Thrive Index (BTI) designed by global doctors and practitioners.' },
     { icon: FileText, text: 'Every recommendation is backed by medical research.' },
     { icon: Stethoscope, text: 'A personalized health engine that learns from your data to adapt to your body, lifestyle, and goals.' },
     { icon: HeartPulse, text: 'We prevent illness, not treat it.' },
