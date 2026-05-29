@@ -117,13 +117,6 @@ export function WhoWeServe({ onNavigate }: WhoWeServeProps) {
 
           />
           <ServeCard
-            title="Wellness Venues & Resorts"
-            body="Bring Blissmi's health intelligence into your guest experience — through the Women's Longevity Hub kiosk activation or a fully integrated wellness programming partnership."
-            onClick={() => onNavigate('hospitality')}
-            videoOffset={{ top: '-100%', left: '0' }}
-
-          />
-          <ServeCard
             title="Individuals"
             body="Take control of your health before something forces you to. Blissmi's individual membership gives you the same clinical intelligence available to enterprise clients — personalized to your biology, your goals, and your life stage."
             onClick={() => onNavigate('users')}

@@ -83,14 +83,6 @@ export function Footer({ onNavigate }: FooterProps) {
                 )}
 
                 <li>
-                  <button onClick={() => onNavigate('hospitality')} style={linkStyle}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
-                    For Hospitality
-                  </button>
-                </li>
-
-                <li>
                   <button onClick={() => onNavigate('partners')} style={linkStyle}
                     onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                     onMouseLeave={e => (e.currentTarget.style.color = '#d1d5db')}>
