@@ -162,12 +162,6 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 <button
-                  onClick={() => window.open('https://membership.myblissmi.com/login', '_blank')}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Login
-                </button>
-                <button
                   onClick={() => {
                     const pricingSection = document.getElementById('pricing-section');
                     pricingSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -27,12 +27,6 @@ export function UsersHero({ onNavigate, image }: UsersHeroProps) {
             </p>
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
               <button
-                onClick={() => window.open('https://membership.myblissmi.com/login', '_blank')}
-                style={{ backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem 2rem', fontSize: isMobile ? '0.875rem' : '1rem', fontWeight: 600, cursor: 'pointer' }}
-              >
-                Login
-              </button>
-              <button
                 onClick={() => {
                   const target = document.getElementById('free-access-section');
                   if (target) {

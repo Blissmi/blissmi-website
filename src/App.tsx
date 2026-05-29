@@ -7,7 +7,6 @@ import { CustomersPage } from './pages/CustomersPage'
 import { PartnersPage } from './pages/PartnersPage'
 import { ResearchPage } from './pages/ResearchPage'
 import { InsurersPage } from './pages/InsurersPage'
-import { HospitalityPage } from './pages/HospitalityPage'
 import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
 
@@ -18,7 +17,6 @@ const PAGE_TO_PATH: Record<string, string> = {
   users:       '/members',
   customers:   '/employers',
   insurers:    '/insurers',
-  hospitality: '/hospitality',
   partners:    '/partners',
   research:    '/research',
   contact:     '/contact',
@@ -74,9 +72,6 @@ export default function App() {
   }
   if (currentPage === 'insurers') {
     return <InsurersPage currentPage={currentPage} onNavigate={navigate} />
-  }
-  if (currentPage === 'hospitality') {
-    return <HospitalityPage currentPage={currentPage} onNavigate={navigate} />
   }
   if (currentPage === 'terms') {
     return <TermsPage currentPage={currentPage} onNavigate={navigate} />

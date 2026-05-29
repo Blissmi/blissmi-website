@@ -65,7 +65,6 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
     { label: 'For Insurers', page: 'insurers' },
     { label: 'For Partners', page: 'partners' },
     { label: 'Research & Advocacy', page: 'research' },
-    { label: 'For Hospitality', page: 'hospitality' },
   ];
 
   const visibleLeftLinks = leftLinks.filter(l => isPageVisible(l.page));
@@ -209,7 +208,6 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
                       { label: 'For Members', page: 'users' },
                       { label: 'For Employers', page: 'customers' },
                       { label: 'For Insurers', page: 'insurers' },
-                      { label: 'For Hospitality', page: 'hospitality' },
                       { label: 'For Health Partners', page: 'partners' },
                       { label: 'Research & Advocacy', page: 'research' },
                       { label: 'Contact Us', page: 'contact' },
@@ -283,7 +281,6 @@ export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }:
             { label: 'For Members', page: 'users' },
             { label: 'For Employers', page: 'customers' },
             { label: 'For Insurers', page: 'insurers' },
-            { label: 'For Hospitality', page: 'hospitality' },
             { label: 'For Health Partners', page: 'partners' },
             { label: 'Research & Advocacy', page: 'research' },
             { label: 'Contact Us', page: 'contact' },
