@@ -16,6 +16,7 @@ import karenImage from '../figma/assets/karenImage.jpeg';
 import lawrenceImage from '../figma/assets/lawrenceImage.jpeg';
 import arupImage from '../figma/assets/Arup Sen (1).jpg';
 import ruthImage from '../figma/assets/Ruth+Lee (1).jpg';
+import fongImage from '../figma/assets/Dr Fong Yeat Min (MY).png';
 
 interface AboutPageProps {
   onNavigate: (page: string) => void;
@@ -65,8 +66,9 @@ export function AboutPage({ onNavigate, currentPage }: AboutPageProps) {
     { name: 'Dr Clare Fernandes (UK)', role: 'General Health Advisor', description: 'MBBS, BSc, DRCOG, DOccMed, MSc, MFOM. Accredited Specialist (Consultant) in Occupational Medicine.', image: clareImage },
     { name: 'Dr Shahani Amjah (Sri Lanka)', role: "Women's Health Advisor", description: 'MBBS, DCH. Senior Medical Officer, University Hospital KDU.', image: shahaniImage },
     { name: 'Karen Gotthelf (HK/Global)', role: 'Mental Health Advisor', description: 'Founder, WorkPsych, Registered Psychologist (AHPRA), Registered IO Psychologist, Hong Kong Psychological Society (RIOP, HKPS), M(Res) Professional Practice Occ Psych, MOrgPsych & Counselling.', image: karenImage },
-    { name: 'Dr Lawrence Lau (Ireland)', role: "Men's Health Advisor", description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
+    { name: 'Dr Lawrence Lau (Ireland)', role: 'General Health Advisor', description: 'MSCGP. Top 5 GP in Dublin.', image: lawrenceImage },
     { name: 'Dr Arup Sen', role: 'General Health Advisor', description: 'MBBS, Ba Medical Sciences with Physiology and Pharmacology, Triple-accredited: Stroke, Geriatric & General Internal Medicine.', image: arupImage },
+    { name: 'Dr Fong Yeat Min (MY)', role: 'General Health Advisor', description: 'MBBS, MBA, ex Country GM Doctor Anywhere.', image: fongImage },
     { name: 'Master Ruth Lee', role: 'TCM Advisor', description: 'Master Science, Personal health management, Registered Nutritionist of Public Health, China, Certificate of Obstetrics and Gynaecology in Western Medicine, Registered Chinese Medicine Practitioner, Licensed Dietitian in China.', image: ruthImage }
   ];
 
