@@ -1,8 +1,11 @@
 import React from 'react';
 import { Shield, Lock, Globe, Mail } from 'lucide-react';
-import { GREEN, GOLD } from '../ui/theme';
+import { StickyNav } from '../components/StickyNav';
+import { Footer } from '../components/Footer';
 
-const BG = '#F5F1EB';
+const GREEN = '#324421';
+const BLUSH = '#D1B4AA';
+const BG = '#f5ede9';
 
 interface PrivacyPageProps {
   onNavigate: (page: string) => void;
@@ -13,7 +16,7 @@ function PrivacyCard({ children, accent = false }: { children: React.ReactNode; 
   return (
     <div style={{
       backgroundColor: accent ? BG : '#fff',
-      border: `2px solid ${accent ? GREEN : GOLD}`,
+      border: `2px solid ${accent ? GREEN : BLUSH}`,
       borderRadius: '0.75rem',
       padding: '1.75rem 2rem',
     }}>
@@ -71,12 +74,13 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
 export function PrivacyPage({ onNavigate, currentPage }: PrivacyPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
+      <StickyNav onNavigate={onNavigate} currentPage={currentPage} transparentOnTop />
 
       {/* Hero */}
       <section style={{ backgroundColor: GREEN, padding: '7rem 1rem 5rem' }}>
         <div style={{ maxWidth: '56rem', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.875rem', marginBottom: '1.25rem' }}>
-            <Shield size={44} style={{ color: GOLD }} />
+            <Shield size={44} style={{ color: BLUSH }} />
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, color: '#fff', margin: 0 }}>
               Privacy Policy
             </h1>
@@ -404,6 +408,7 @@ export function PrivacyPage({ onNavigate, currentPage }: PrivacyPageProps) {
         </div>
       </section>
 
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

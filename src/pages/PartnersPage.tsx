@@ -1,5 +1,7 @@
 import { ArrowRight, Brain, RefreshCw, LayoutDashboard, Users, Sprout, Zap, UserPlus, ClipboardCheck, TrendingUp, Target } from 'lucide-react';
 import { motion } from 'motion/react';
+import { StickyNav } from '../components/StickyNav';
+import { Footer } from '../components/Footer';
 import { useResponsive } from '../hooks/useResponsive';
 import testimonialImage from 'figma:asset/TashK_a_group_of_health_service_providers_asian_caucasian_and_841cbb24-1ee4-434a-aee9-c1db843adf8a_0.png.png';
 
@@ -68,6 +70,7 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
 
       {/* Hero Section */}
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: '#FDFBF8' }}>
@@ -368,6 +371,7 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
         </div>
       </section>
 
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { Heart, Smartphone, Brain, TrendingUp, Activity, Gamepad2, Upload, Check
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
+import { StickyNav } from '../components/StickyNav';
+import { Footer } from '../components/Footer';
 import { useResponsive } from '../hooks/useResponsive';
 import pricingBg from 'figma:asset/pricingBg.png';
 import connectDataImg from 'figma:asset/connectDataImg.png';
@@ -141,6 +143,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
 
       {/* Hero Section */}
       <section style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #eff6ff 100%)', padding: isMobile ? '6rem 0 3rem' : '8rem 0 5rem' }}>
@@ -424,6 +427,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
         </div>
       </section>
 
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

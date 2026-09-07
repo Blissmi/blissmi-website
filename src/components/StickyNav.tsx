@@ -1,211 +1,322 @@
-import { motion } from 'motion/react';
-import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
+import { isPageVisible } from '../config/featureFlags';
 
-interface NavigationProps {
-  currentPage: string;
+interface StickyNavProps {
   onNavigate: (page: string) => void;
+  currentPage: string;
+  /** If true, starts transparent (for pages with a video/dark hero). Default false = always white. */
+  transparentOnTop?: boolean;
 }
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-
-const forDropdown = [
-  { id: 'customers',    label: 'Employers',             sub: 'Understand and improve workforce health' },
-  { id: 'insurers',     label: 'Health Insurers',       sub: 'Strengthen your health proposition' },
-  { id: 'brokers',      label: 'Brokers & Consultants', sub: 'Bring a smarter health strategy to clients' },
-];
-
-const desktopLinks = [
-  { id: 'why-blissmi',  label: 'Why Blissmi' },
-  { id: 'how-it-works', label: 'How It Works' },
-];
-
-const mobileItems = [
-  { id: 'why-blissmi',  label: 'Why Blissmi' },
-  { id: 'how-it-works', label: 'How It Works' },
-  { id: 'customers',    label: 'Employers',             indent: true },
-  { id: 'insurers',     label: 'Health Insurers',       indent: true },
-  { id: 'brokers',      label: 'Brokers & Consultants', indent: true },
-  { id: 'about',        label: 'About' },
-  { id: 'contact',      label: 'Contact Us' },
-];
-
-export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [forOpen, setForOpen] = useState(false);
+export function StickyNav({ onNavigate, currentPage, transparentOnTop = false }: StickyNavProps) {
   const [scrolled, setScrolled] = useState(false);
-  const forRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
+  const desktopMenuRef = useRef<HTMLDivElement>(null);
+  const hideAtTop = currentPage === 'users';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleScroll();
+    handleResize();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
+  // Close desktop menu on outside click
   useEffect(() => {
-    function handleOutside(e: MouseEvent) {
-      if (forRef.current && !forRef.current.contains(e.target as Node)) setForOpen(false);
+    if (!desktopMenuOpen) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target as Node)) {
+        setDesktopMenuOpen(false);
+      }
     }
-    document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [desktopMenuOpen]);
 
-  const go = (page: string) => {
-    onNavigate(page);
-    setIsMenuOpen(false);
-    setForOpen(false);
-  };
+  const isHidden = hideAtTop && !scrolled;
+  const isTransparent = transparentOnTop && !scrolled;
+  const textColor = isTransparent ? 'rgba(255,255,255,0.92)' : '#111827';
 
-  const forActive = ['customers', 'insurers', 'brokers'].includes(currentPage);
+  const leftLinks = [
+    { label: 'Home', page: 'home' },
+    { label: 'About Us', page: 'about' },
+    { label: 'For Members', page: 'users' },
+  ];
+
+  const rightLinks = [
+    { label: 'For Employers', page: 'customers' },
+    { label: 'For Insurers', page: 'insurers' },
+    { label: 'For Partners', page: 'partners' },
+    { label: 'Research & Advocacy', page: 'research' },
+  ];
+
+  const visibleLeftLinks = leftLinks.filter(l => isPageVisible(l.page));
+  const visibleRightLinks = rightLinks.filter(l => isPageVisible(l.page));
+
+  function NavLink({ label, page }: { label: string; page: string }) {
+    const isActive = page === currentPage;
+    return (
+      <li>
+        <button
+          onClick={() => {
+            onNavigate(page);
+            setMobileMenuOpen(false);
+          }}
+          style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: isActive ? (isTransparent ? '#fff' : '#2563eb') : textColor,
+              fontSize: isMobile ? '0.875rem' : '0.875rem',
+              fontWeight: isActive ? 600 : 500,
+              padding: isMobile ? '0.75rem 0' : 0,
+            }}
+        >
+          {label}
+        </button>
+      </li>
+    );
+  }
 
   return (
-    <nav
-      className="sticky top-0 z-50"
+    <header
       style={{
-        backgroundColor: GREEN,
-        boxShadow: scrolled ? '0 1px 0 rgba(255,255,255,0.07), 0 4px 24px rgba(0,0,0,0.18)' : 'none',
-        transition: 'box-shadow 0.4s ease',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        transition: 'all 0.3s ease',
+        opacity: isHidden ? 0 : 1,
+        visibility: isHidden ? 'hidden' : 'visible',
+        transform: isHidden ? 'translateY(-20px)' : 'translateY(0)',
+        backgroundColor: isTransparent ? 'transparent' : '#fff',
+        boxShadow: isTransparent ? 'none' : '0 1px 8px rgba(0,0,0,0.1)',
+        padding: isMobile ? '1rem' : '1.125rem 1.5rem',
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: -14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]"
+      <nav
+        style={{
+          maxWidth: '80rem',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: isMobile ? 'space-between' : 'space-between',
+          position: 'relative',
+        }}
       >
-        <div className="flex items-center h-[88px] gap-12">
-
+        {/* Mobile Menu Button */}
+        {isMobile && (
           <button
-            onClick={() => go('home')}
-            className="flex-shrink-0 font-bold tracking-tight transition-opacity hover:opacity-80"
-            style={{ color: '#fff', fontSize: 'clamp(28px, 3vw, 40px)', letterSpacing: '-0.03em' }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: textColor,
+              padding: '0.5rem',
+            }}
           >
-            BLiSSMi
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-
-          <div className="hidden lg:flex items-center gap-8 flex-1">
-            {desktopLinks.map((link) => {
-              const active = currentPage === link.id;
-              return (
-                <motion.button
-                  key={link.id}
-                  onClick={() => go(link.id)}
-                  className="relative text-sm font-medium whitespace-nowrap pb-0.5 cursor-pointer"
-                  style={{ color: active ? '#fff' : 'rgba(255,255,255,0.55)' }}
-                  whileHover={{ color: '#ffffff' }}
-                  transition={{ duration: 0.15, ease: 'easeOut' }}
-                >
-                  {link.label}
-                  {active && (
-                    <span
-                      className="absolute -bottom-1 left-0 right-0 h-px rounded-full"
-                      style={{ backgroundColor: GOLD }}
-                    />
-                  )}
-                </motion.button>
-              );
-            })}
-
-            <div ref={forRef} className="relative">
-              <motion.button
-                onClick={() => setForOpen(!forOpen)}
-                className="flex items-center gap-1 text-sm font-medium whitespace-nowrap pb-0.5 cursor-pointer"
-                style={{ color: forActive ? '#fff' : 'rgba(255,255,255,0.55)' }}
-                whileHover={{ color: '#ffffff' }}
-                transition={{ duration: 0.15, ease: 'easeOut' }}
-              >
-                Who it's for
-                <ChevronDown
-                  size={14}
-                  className="transition-transform duration-200"
-                  style={{ transform: forOpen ? 'rotate(180deg)' : 'rotate(0deg)', opacity: 0.6 }}
-                />
-                {forActive && (
-                  <span
-                    className="absolute -bottom-1 left-0 right-0 h-px rounded-full"
-                    style={{ backgroundColor: GOLD }}
-                  />
-                )}
-              </motion.button>
-
-              {forOpen && (
-                <div
-                  className="absolute top-full left-0 mt-4 w-80 rounded-2xl overflow-hidden shadow-2xl"
-                  style={{ backgroundColor: '#fff', border: '1px solid rgba(27,48,37,0.08)' }}
-                >
-                  {forDropdown.map((item, i) => (
-                    <button
-                      key={item.id}
-                      onClick={() => go(item.id)}
-                      className="w-full text-left px-6 py-4 transition-colors hover:bg-gray-50 flex flex-col gap-0.5"
-                      style={{
-                        borderBottom: i < forDropdown.length - 1 ? '1px solid rgba(27,48,37,0.05)' : 'none',
-                        backgroundColor: currentPage === item.id ? 'rgba(27,48,37,0.03)' : undefined,
-                      }}
-                    >
-                      <span className="text-sm font-semibold" style={{ color: GREEN }}>{item.label}</span>
-                      <span className="text-xs" style={{ color: 'rgba(27,48,37,0.45)' }}>{item.sub}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 ml-auto">
-            <button
-              onClick={() => go('contact')}
-              className="hidden sm:inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:opacity-90"
-              style={{ backgroundColor: GOLD, color: '#fff' }}
-            >
-              Contact Us
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-md transition-colors"
-              style={{ color: 'rgba(255,255,255,0.80)' }}
-            >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </div>
-
-        {isMenuOpen && (
-          <div className="lg:hidden pb-6 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-            <div className="flex flex-col pt-2">
-              {mobileItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => go(item.id)}
-                  className="py-3 text-left font-medium transition-colors"
-                  style={{
-                    paddingLeft: item.indent ? '32px' : '4px',
-                    paddingRight: '4px',
-                    fontSize: item.indent ? '13px' : '15px',
-                    color: currentPage === item.id
-                      ? '#fff'
-                      : item.indent
-                        ? 'rgba(255,255,255,0.45)'
-                        : 'rgba(255,255,255,0.70)',
-                    borderBottom: '1px solid rgba(255,255,255,0.05)',
-                  }}
-                >
-                  {item.indent && <span style={{ color: 'rgba(200,149,42,0.50)', marginRight: '8px' }}>↳</span>}
-                  {item.label}
-                </button>
-              ))}
-              <button
-                onClick={() => go('contact')}
-                className="mt-5 py-3.5 rounded-full text-sm font-semibold text-white text-center"
-                style={{ backgroundColor: GOLD }}
-              >
-                Contact Us →
-              </button>
-            </div>
-          </div>
         )}
-      </motion.div>
-    </nav>
+
+        {/* Logo */}
+        <span
+          style={{
+            position: isMobile ? 'relative' : 'absolute',
+            left: isMobile ? '0' : '50%',
+            transform: isMobile ? 'none' : 'translateX(-50%)',
+            color: textColor,
+            fontSize: isMobile ? '0.875rem' : '1rem',
+            fontWeight: 600,
+            pointerEvents: 'none',
+            userSelect: 'none',
+            letterSpacing: '0.02em',
+          }}
+        >
+          BLiSSMi
+        </span>
+
+        {/* Desktop Navigation */}
+        {!isMobile && (
+          <>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              {visibleLeftLinks.map((l) => <NavLink key={l.page} {...l} />)}
+            </ul>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                {visibleRightLinks.map((l) => <NavLink key={l.page} {...l} />)}
+              </ul>
+
+              {/* Desktop Hamburger Menu */}
+              <div ref={desktopMenuRef} style={{ position: 'relative' }}>
+                <button
+                  onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
+                  aria-label="Open menu"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: desktopMenuOpen ? '#324421' : textColor,
+                    padding: '0.375rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderRadius: '0.375rem',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#324421')}
+                  onMouseLeave={e => (e.currentTarget.style.color = desktopMenuOpen ? '#324421' : textColor)}
+                >
+                  {desktopMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                </button>
+
+                {desktopMenuOpen && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 0.75rem)',
+                    right: 0,
+                    minWidth: '220px',
+                    backgroundColor: '#fff',
+                    borderRadius: '0.75rem',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                    border: '1px solid #f0ebe8',
+                    overflow: 'hidden',
+                    zIndex: 200,
+                  }}>
+                    {[
+                      { label: 'Home', page: 'home' },
+                      { label: 'About Us', page: 'about' },
+                      { label: 'For Members', page: 'users' },
+                      { label: 'For Employers', page: 'customers' },
+                      { label: 'For Insurers', page: 'insurers' },
+                      { label: 'For Health Partners', page: 'partners' },
+                      { label: 'Research & Advocacy', page: 'research' },
+                      { label: 'Contact Us', page: 'contact' },
+                      null, // divider
+                      { label: 'Terms & Conditions', page: 'terms' },
+                      { label: 'Privacy Policy', page: 'privacy' },
+                    ].map((item, i) => {
+                      if (item === null) return (
+                        <div key={`divider-${i}`} style={{ height: '1px', backgroundColor: '#f0ebe8', margin: '0.25rem 0' }} />
+                      );
+                      const isActive = item.page === currentPage;
+                      return (
+                        <button
+                          key={item.page}
+                          onClick={() => { onNavigate(item.page); setDesktopMenuOpen(false); }}
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            textAlign: 'left',
+                            background: isActive ? '#f5ede9' : 'none',
+                            border: 'none',
+                            padding: '0.7rem 1.25rem',
+                            fontSize: '0.9rem',
+                            fontWeight: isActive ? 600 : 400,
+                            color: isActive ? '#324421' : '#374151',
+                            cursor: 'pointer',
+                            transition: 'background 0.15s, color 0.15s',
+                          }}
+                          onMouseEnter={e => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = '#faf6f4';
+                              e.currentTarget.style.color = '#324421';
+                            }
+                          }}
+                          onMouseLeave={e => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.color = '#374151';
+                            }
+                          }}
+                        >
+                          {item.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </nav>
+
+      {/* Mobile Navigation Menu */}
+      {isMobile && mobileMenuOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            backgroundColor: isTransparent ? 'rgba(0,0,0,0.95)' : '#fff',
+            borderTop: `1px solid ${isTransparent ? 'rgba(255,255,255,0.2)' : '#e5e7eb'}`,
+            padding: '0.5rem 0',
+            zIndex: 99,
+          }}
+        >
+          {[
+            { label: 'Home', page: 'home' },
+            { label: 'About Us', page: 'about' },
+            { label: 'For Members', page: 'users' },
+            { label: 'For Employers', page: 'customers' },
+            { label: 'For Insurers', page: 'insurers' },
+            { label: 'For Health Partners', page: 'partners' },
+            { label: 'Research & Advocacy', page: 'research' },
+            { label: 'Contact Us', page: 'contact' },
+            null,
+            { label: 'Terms & Conditions', page: 'terms' },
+            { label: 'Privacy Policy', page: 'privacy' },
+          ].map((item, i) => {
+            if (item === null) return (
+              <div key={`divider-${i}`} style={{ height: '1px', backgroundColor: '#e5e7eb', margin: '0.25rem 0' }} />
+            );
+            const isActive = item.page === currentPage;
+            return (
+              <button
+                key={item.page}
+                onClick={() => { onNavigate(item.page); setMobileMenuOpen(false); }}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  textAlign: 'left',
+                  background: isActive ? '#f5ede9' : 'none',
+                  border: 'none',
+                  padding: '0.875rem 1.5rem',
+                  fontSize: '0.9375rem',
+                  fontWeight: isActive ? 600 : 400,
+                  color: isActive ? '#324421' : (isTransparent ? 'rgba(255,255,255,0.9)' : '#374151'),
+                  cursor: 'pointer',
+                }}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </header>
   );
 }
+
+export default StickyNav;
