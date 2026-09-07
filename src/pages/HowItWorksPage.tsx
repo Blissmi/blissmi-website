@@ -12,34 +12,9 @@ import recoveryLabImg from '../figma/assets/a026a8ed6e452a926a59f7473b8687c6.png
 import integrativeLabImg from '../figma/assets/ea9ece78eead57b440fa7a6f7fb0a75c.png';
 import personalisationLabImg from '../figma/assets/800aa053b983167dcdd21c216113ba39.png';
 import brainLabImg from '../figma/assets/brainlab.png';
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <p className="text-sm font-semibold tracking-widest uppercase mb-5"
-      style={{ color: light ? 'rgba(200,149,42,0.80)' : 'rgba(27,48,37,0.40)' }}>
-      {children}
-    </p>
-  );
-}
-
-function Btn({ onClick, children }: { onClick: () => void; children: ReactNode }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold"
-      style={{ backgroundColor: GOLD, color: '#fff', fontSize: '16px', fontWeight: 500 }}
-      whileHover={{ opacity: 0.88, scale: 1.02 }}
-      transition={{ duration: 0.22 }}
-    >
-      {children}
-    </motion.button>
-  );
-}
+import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+import { Btn } from '../ui/Btn';
 
 function Placeholder({ tint }: { tint: string }) {
   return <div style={{ width: '100%', height: '100%', backgroundColor: tint }} />;

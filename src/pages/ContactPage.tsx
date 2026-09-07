@@ -2,10 +2,7 @@ import { useState, CSSProperties, FormEvent, ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import contactPhoto from '../figma/assets/89ce871bcea596e6bf491bf804b3bbf6.png';
-
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
-const CREAM = '#F5F1EB';
+import { GREEN, GOLD, CREAM } from '../ui/theme';
 
 const inquiryTypes = [
   { id: 'employer', label: 'Employer' },

@@ -1,20 +1,11 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
 import heroImage from '../figma/assets/99f81a795a0fa0da23ecb7e806492c79.png';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '20px', color: light ? GOLD : TX_MUTED }}>
-      {children}
-    </p>
-  );
-}
 
 export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (

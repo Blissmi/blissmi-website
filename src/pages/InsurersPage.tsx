@@ -8,34 +8,12 @@ import illNight from '../figma/assets/a026a8ed6e452a926a59f7473b8687c6.png';
 import illDesk from '../figma/assets/ab3c2605df36f412137658440107e6a1.png';
 import illWalking from '../figma/assets/ea9ece78eead57b440fa7a6f7fb0a75c.png';
 import illFactory from '../figma/assets/800aa053b983167dcdd21c216113ba39.png';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+import { Btn } from '../ui/Btn';
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p className="text-sm font-semibold tracking-widest uppercase mb-5" style={{ color: light ? GOLD : 'rgba(27,48,37,0.45)' }}>
-      {children}
-    </p>
-  );
-}
-
-function Btn({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      whileHover={{ opacity: 0.88, scale: 1.02 }}
-      transition={{ duration: 0.22, ease: 'easeOut' }}
-      className="rounded-full px-8 py-4 cursor-pointer"
-      style={{ backgroundColor: GOLD, color: '#fff', fontSize: '16px', fontWeight: 500 }}
-    >
-      {children}
-    </motion.button>
-  );
-}
 
 const challengeCards = [
   { num: '01', title: 'Rising Healthcare Costs', body: 'Help identify opportunities for prevention and earlier intervention.' },

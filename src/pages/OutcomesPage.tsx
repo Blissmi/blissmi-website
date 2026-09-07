@@ -1,8 +1,6 @@
 import { motion } from 'motion/react';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
 const GHOST = 'rgba(27,48,37,0.07)';
 const GHOST_LIGHT = 'rgba(255,255,255,0.07)';
 

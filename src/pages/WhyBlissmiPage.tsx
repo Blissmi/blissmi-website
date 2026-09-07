@@ -7,39 +7,12 @@ import karenImage from '../figma/assets/new/karenReal.jpg';
 import lawrenceImage from '../figma/assets/new/lawrenceReal.jpg';
 import employeeJourneyImage from '../figma/assets/ab3c2605df36f412137658440107e6a1.png';
 import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
+import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+import { Btn } from '../ui/Btn';
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
 const TX = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-function Eyebrow({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <p style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '20px', color: light ? 'rgba(200,149,42,0.80)' : TX_MUTED }}>
-      {children}
-    </p>
-  );
-}
-
-function Btn({ onClick, children, variant = 'primary' }: {
-  onClick: () => void; children: ReactNode; variant?: 'primary' | 'outline';
-}) {
-  return (
-    <motion.button
-      onClick={onClick}
-      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold"
-      style={variant === 'primary'
-        ? { backgroundColor: GOLD, color: '#fff', fontSize: '16px', fontWeight: 500 }
-        : { border: `1.5px solid ${GOLD}`, color: GOLD, backgroundColor: 'transparent', fontSize: '16px', fontWeight: 500 }}
-      whileHover={{ opacity: 0.88, scale: 1.02 }}
-      transition={{ duration: 0.22 }}
-    >
-      {children}
-    </motion.button>
-  );
-}
 
 const CAPABILITIES = [
   { num: '01', title: 'See workforce risk earlier', label: 'Workforce Risk Visibility', body: 'Bring signals together to understand where health risks are emerging across your organisation before they escalate.' },

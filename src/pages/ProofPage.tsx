@@ -1,34 +1,8 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p className="uppercase mb-4" style={{ color: light ? 'rgba(200,149,42,0.80)' : GOLD, fontSize: '13px', fontWeight: 500, letterSpacing: '0.12em' }}>
-      {children}
-    </p>
-  );
-}
-
-function Btn({ onClick, children, variant = 'primary' }: { onClick: () => void; children: React.ReactNode; variant?: 'primary' | 'outline' }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      whileHover={{ opacity: 0.88, scale: 1.02 }}
-      transition={{ duration: 0.22, ease: 'easeOut' }}
-      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full cursor-pointer"
-      style={variant === 'primary'
-        ? { backgroundColor: GOLD, color: '#fff', fontSize: '16px', fontWeight: 500 }
-        : { border: `1.5px solid ${GOLD}`, color: GOLD, backgroundColor: 'transparent', fontSize: '16px', fontWeight: 500 }}
-    >
-      {children}
-    </motion.button>
-  );
-}
+import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+import { Btn } from '../ui/Btn';
 
 const caseStudies: { client: string; label: string; description: string; photo: string | null; photoAlt: string; linkedIn: string | null }[] = [
   { client: 'AIA Hong Kong', label: 'Health Education Event', description: 'A health intelligence and preventive education event for senior leadership, focused on workforce health strategy and early risk identification.', photo: null, photoAlt: 'Blissmi health education event at AIA Hong Kong', linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7436660491604873216' },
@@ -131,7 +105,7 @@ export function ProofPage({ onNavigate }: { onNavigate: (page: string) => void }
             Ready to see what Blissmi can do for your organisation?
           </h2>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4">
-            <Btn onClick={() => onNavigate('contact')} variant="primary">
+            <Btn onClick={() => onNavigate('contact')}>
               Get your Workforce Health Value Assessment &rarr;
             </Btn>
           </div>

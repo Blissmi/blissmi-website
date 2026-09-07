@@ -1,9 +1,6 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
 
 const phases = [
   { eyebrow: 'Phase 1', title: 'Understand', body: "Establish baselines and identify the organisation's potential health and business impact." },

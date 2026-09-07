@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
 
 const CATEGORIES = ['All', 'Workforce Health', "Women's Health", 'Prevention', 'Mental Health', 'Healthcare Costs', 'Employee Engagement', 'Benefits Strategy', 'ROI and Measurement'];
 
