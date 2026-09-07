@@ -3,24 +3,11 @@ import { HoverLift } from '../ui/animations';
 import researchHeroImage from '../figma/assets/backgroundImage.png';
 import womenChattingNewImage from '../figma/assets/6fa05115d2b235c3777982ae94d9635a.png';
 import threeWomenImage from '../figma/assets/eb2530bd9c55d670b97113cd4a7734a9.png';
+import { GREEN, GOLD, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
 
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
-const CREAM = '#F5F1EB';
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p style={{
-      fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em',
-      textTransform: 'uppercase', marginBottom: '20px',
-      color: light ? 'rgba(200,149,42,0.80)' : TX_MUTED,
-    }}>
-      {children}
-    </p>
-  );
-}
 
 const DATA_POINTS = [
   {

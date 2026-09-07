@@ -5,12 +5,8 @@ import { Reveal, Stagger, StaggerItem, HoverLift } from './ui/animations';
 import womenChattingImage from './figma/assets/ea9ece78eead57b440fa7a6f7fb0a75c.png';
 import valueAssessmentImage from './figma/assets/d858f3333fcb6d80de0f35e86ca7709e.jpeg';
 import preventiveHealthImage from './figma/assets/fa4c1585b888fd37bcd22b0ce1c12527.jpeg';
-
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
-const CREAM = '#F5F1EB';
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import heroVideo from './figma/assets/TashK_A_5-second_seamless_looping_video_of_a_small_group_of_A_4ef0fda2-c7cd-4688-9158-6eb1d9c33d37_3.mp4';
+import { GREEN, GOLD, CREAM, EASE } from './ui/theme';
 
 export function HomePage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [hoveredPartner, setHoveredPartner] = useState<string | null>(null);
@@ -36,7 +32,7 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
           }}
         >
           <video
-            src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1770610596/Website_hero_video_uywj2q.mp4"
+            src={heroVideo}
             autoPlay
             loop
             muted

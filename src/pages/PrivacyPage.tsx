@@ -1,8 +1,7 @@
 import React from 'react';
 import { Shield, Lock, Globe, Mail } from 'lucide-react';
+import { GREEN, GOLD } from '../ui/theme';
 
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
 const BG = '#F5F1EB';
 
 interface PrivacyPageProps {

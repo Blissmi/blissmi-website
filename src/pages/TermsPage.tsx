@@ -1,8 +1,7 @@
 import React from 'react';
 import { FileText, AlertTriangle, Database, Scale } from 'lucide-react';
+import { GREEN, GOLD } from '../ui/theme';
 
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
 const BG = '#f5ede9';
 
 interface TermsPageProps {

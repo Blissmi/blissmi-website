@@ -1,9 +1,7 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { GREEN, GOLD, CREAM } from '../ui/theme';
 
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
-const CREAM = '#F5F1EB';
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
 

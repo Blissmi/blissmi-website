@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
 import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
+import { GREEN, GOLD, CREAM, EASE } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
 
 import natashaImage from '../figma/assets/natashaHiRes.jpeg';
 import inesImage from '../figma/assets/inesHiRes.jpeg';
@@ -14,25 +16,8 @@ import arupImage from '../figma/assets/new/arupReal.jpg';
 const founderIllustration = natashaImage;
 const founderIllustration2 = inesImage;
 
-const GREEN = '#1B3025';
-const GOLD = '#C8952A';
-const CREAM = '#F5F1EB';
 const TX = 'rgba(27,48,37,0.70)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p style={{
-      fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em',
-      textTransform: 'uppercase', marginBottom: '24px',
-      color: light ? 'rgba(200,149,42,0.80)' : TX_MUTED,
-    }}>
-      {children}
-    </p>
-  );
-}
 
 function GoldRule() {
   return <div style={{ width: '40px', height: '2px', backgroundColor: GOLD, marginBottom: '32px' }} />;

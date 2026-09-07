@@ -9,47 +9,9 @@ import navImage from '../figma/assets/new/navReal.jpg';
 import arupImage from '../figma/assets/new/arupReal.jpg';
 import fongImage from '../figma/assets/new/fongReal.jpg';
 import zaraChanImage from '../figma/assets/new/zaraChanReal.jpg';
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p
-      className="text-xs font-semibold tracking-widest uppercase mb-4"
-      style={{ color: light ? 'rgba(200,149,42,0.80)' : GOLD }}
-    >
-      {children}
-    </p>
-  );
-}
-
-function Btn({
-  onClick,
-  children,
-  variant = 'primary',
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-  variant?: 'primary' | 'outline';
-}) {
-  return (
-    <motion.button
-      onClick={onClick}
-      whileHover={{ opacity: 0.88, scale: 1.02 }}
-      transition={{ duration: 0.22, ease: 'easeOut' }}
-      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full cursor-pointer"
-      style={
-        variant === 'primary'
-          ? { backgroundColor: GOLD, color: '#fff', fontSize: '16px', fontWeight: 500 }
-          : { border: `1.5px solid ${GOLD}`, color: GOLD, backgroundColor: 'transparent', fontSize: '16px', fontWeight: 500 }
-      }
-    >
-      {children}
-    </motion.button>
-  );
-}
+import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+import { Btn } from '../ui/Btn';
 
 const clinicalLayers = [
   { number: '01', title: 'AI identifies patterns at scale', body: "Blissmi's platform analyses individual and workforce data to surface patterns that would otherwise go undetected. This creates a real-time view of health across the organisation." },
@@ -257,7 +219,7 @@ export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) =
             Understand workforce health without compromising trust
           </h2>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4">
-            <Btn onClick={() => onNavigate('contact')} variant="primary">
+            <Btn onClick={() => onNavigate('contact')}>
               Get your Workforce Health Value Assessment &rarr;
             </Btn>
           </div>

@@ -5,20 +5,11 @@ import aiaEventPhoto from '../figma/assets/5851c3c2a84e3c278e69310504c10b5e.png'
 import lvmhEventPhoto from '../figma/assets/cc5f4c12cfc3dfc6a5292c3e5f50c101.jpeg';
 import harmlessHarvestPhoto from '../figma/assets/71f1382b49f14df9da49a78b46af02cf.png';
 import zurichEventPhoto from '../figma/assets/eefd2a2c75c62973f91b5950a602632b.png';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-const CREAM = '#F5F1EB';
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '20px', color: light ? GOLD : TX_MUTED }}>
-      {children}
-    </p>
-  );
-}
 
 const caseStudies = [
   {
