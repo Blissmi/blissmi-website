@@ -1,420 +1,251 @@
-import React from 'react';
-import { TrendingDown, Users, BarChart3, TrendingUp, CheckCircle, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
-import { StickyNav } from '../components/StickyNav';
-import Footer from '../components/Footer';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { useResponsive } from '../hooks/useResponsive';
+import { HoverLift } from '../ui/animations';
+import heroIllustration from '../figma/assets/295b486791b63183ced3925f384ce927.png';
+import aiaEventPhoto from '../figma/assets/5851c3c2a84e3c278e69310504c10b5e.png';
+import lvmhEventPhoto from '../figma/assets/cc5f4c12cfc3dfc6a5292c3e5f50c101.jpeg';
+import harmlessHarvestPhoto from '../figma/assets/71f1382b49f14df9da49a78b46af02cf.png';
+import zurichEventPhoto from '../figma/assets/eefd2a2c75c62973f91b5950a602632b.png';
+import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { Eyebrow } from '../ui/Eyebrow';
+
+const TX_BODY = 'rgba(27,48,37,0.65)';
+const TX_MUTED = 'rgba(27,48,37,0.40)';
+
+const caseStudies = [
+  {
+    client: 'AIA Hong Kong',
+    label: 'Health Education Event',
+    description: 'A health intelligence and preventive education event for senior leadership, focused on workforce health strategy and early risk identification.',
+    photo: aiaEventPhoto,
+    photoAlt: 'Blissmi health education event at AIA Hong Kong',
+    linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7436660491604873216',
+  },
+  {
+    client: 'LVMH',
+    label: 'Live Wellness Experience and Platform Trial',
+    description: 'A live wellness experience and Blissmi platform trial delivered to employees, combining health education, preventive screenings and personalised health insights.',
+    photo: lvmhEventPhoto,
+    photoAlt: 'Blissmi live wellness experience at LVMH',
+    linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7439895330403500032',
+  },
+  {
+    client: 'Harmless Harvest',
+    label: 'Executive Pilot',
+    description: 'An executive-level pilot of the Blissmi platform, focused on understanding individual health profiles and translating insights into personalised preventive action.',
+    photo: harmlessHarvestPhoto,
+    photoAlt: 'Harmless Harvest organic coconut water products illustration',
+    linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7436660491604873216',
+  },
+  {
+    client: 'Zurich Insurance',
+    label: "Women's Health Leadership Panel",
+    description: "A senior women's health leadership panel combining clinical expertise, lived experience and workforce health intelligence to support women's health strategy.",
+    photo: zurichEventPhoto,
+    photoAlt: "Blissmi women's health leadership panel at Zurich Insurance",
+    linkedIn: 'https://lnkd.in/p/eqjySzXb',
+  },
+];
+
+const engagementItems = [
+  {
+    title: 'What was delivered',
+    body: "Each engagement is scoped to the organisation's needs, from health education events and leadership panels to platform trials and preventive screenings. Deliverables are defined before the engagement begins.",
+  },
+  {
+    title: 'Who it was for',
+    body: 'Blissmi works with organisations of varying sizes and sectors. Engagements are designed for senior leadership, broader employee populations, or both, depending on the strategic objective.',
+  },
+  {
+    title: 'The context',
+    body: "Every engagement begins with an understanding of the organisation's health priorities. Context shapes the format, the clinical focus and the way insights are presented.",
+  },
+];
+
+const valuePillars = [
+  {
+    num: '01',
+    title: 'Understand the opportunity',
+    body: 'Use the Workforce Health Value Assessment to model healthcare cost exposure, productivity loss, turnover costs and preventable risk burden using your own data.',
+  },
+  {
+    num: '02',
+    title: 'Engage your people',
+    body: 'Experience Labs give employees a tangible, human entry point into their own health, combining interactive assessments with personalised insight.',
+  },
+  {
+    num: '03',
+    title: 'Build personalised journeys',
+    body: 'The Blissmi platform connects individual health data to personalised guidance, coaching and care recommendations.',
+  },
+  {
+    num: '04',
+    title: 'Measure what is working',
+    body: 'Aggregated and anonymised workforce insights show where engagement is happening, where risk is emerging and where investment is creating the greatest value.',
+  },
+];
 
 interface CustomersPageProps {
   onNavigate: (page: string) => void;
-  currentPage: string;
 }
 
-export function CustomersPage({ onNavigate, currentPage }: CustomersPageProps) {
-  const { isMobile, isTablet } = useResponsive();
-  const isNarrow = isMobile || isTablet;
-
-  const benefits = [
-    {
-      icon: TrendingDown,
-      title: 'Lower Healthcare Costs',
-      description: 'Preventive health engagement can reduce long-term claims costs by 3–6% annually.',
-      stat: 'McKinsey & Company',
-    },
-    {
-      icon: Users,
-      title: 'Reduce Preventable Absenteeism',
-      description: 'Companies with strong wellbeing programs see up to 25% lower absenteeism and presenteeism.',
-      stat: 'Deloitte, Global Human Capital Trends',
-    },
-    {
-      icon: BarChart3,
-      title: 'Make Better Decisions',
-      description: 'Access live population health analytics and predictive workforce risk insights through a centralized dashboard—enabling proactive, data-driven decision-making at scale.',
-      stat: '',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Get 3x ROI',
-      description: 'Every $1 invested in workplace wellness returns ~$3.27 in reduced healthcare costs.',
-      stat: 'American Journal of Health Promotion',
-    },
-  ];
-
-  const features = [
-    'Seamless integration with existing HR systems',
-    'GDPR-compliant data management',
-    'Year-long custom wellness program design',
-    'Dedicated account management',
-    'White-label options available',
-    'Comprehensive ROI tracking',
-    'Employee engagement campaigns',
-    'Predictive health risk modeling',
-  ];
-
-  const differentiators = [
-    { num: 1, from: 'Fragmentation', to: 'Integration', desc: 'We unify physical, hormonal, mental, and cognitive health into one platform—eliminating vendor sprawl.', delay: 0 },
-    { num: 2, from: 'Reactive', to: 'Predictive', desc: 'Our intelligence layer identifies early risk signals and activates preventive care before costs escalate.', delay: 0.5 },
-    { num: 3, from: 'Generic', to: 'Personalized', desc: 'Every employee receives tailored programs based on their life stage, health data, and goals.', delay: 1.0 },
-    { num: 4, from: 'Engagement', to: 'Action', desc: "We don't just inform—we connect employees directly to programs, providers, and services they can act on.", delay: 1.5 },
-  ];
-
-  const insuranceCards = [
-    { icon: TrendingUp, text: 'Drives higher utilization of covered services' },
-    { icon: ShieldCheck, text: 'Steers employees toward preventive, lower-cost care pathways' },
-    { icon: Users, text: 'Improves member engagement across the policy lifecycle' },
-    { icon: TrendingDown, text: 'Supports insurers in reducing avoidable claims' },
-  ];
-
-  const caseStudies = [
-    { company: 'Driver 1', result: 'Reduce Avoidable Claims', description: 'Prevent high-cost conditions early and avoid unnecessary treatments and emergency care.', icon: ShieldCheck },
-    { company: 'Driver 2', result: 'Control Premium Growth', description: 'Improve workforce risk profiles to reduce claims pressure and slow rising insurance costs.', icon: TrendingDown },
-    { company: 'Driver 3', result: 'Improve Workforce Productivity', description: 'Address fatigue, burnout, and health risks to boost energy, reduce absenteeism, and enhance performance.', icon: Zap },
-  ];
-
-  const steps = [
-    { step: '1', title: 'Deploy fast', desc: 'Launch in days with seamless integration into your existing systems — no IT overhaul required.' },
-    { step: '2', title: 'Activate your workforce', desc: 'Drive engagement from day one with onboarding, targeted campaigns, and embedded wellness experiences.' },
-    { step: '3', title: 'Understand your population', desc: 'Access real-time, anonymized insights across life stages, risks, and behaviors — all in one dashboard.' },
-    { step: '4', title: 'Measure what matters', desc: 'Track engagement, health trends, and cost impact — and continuously optimize for better outcomes.' },
-  ];
-
-  const corpFeatures = ['Personalized Health Dashboard', 'Evidence-based Health Recommendations', 'Ongoing Tailored Health Learning Content', '1 x Wellness Event', 'Access to Discounted Services', 'Built-in Rewards Program', 'Dashboard for Population Health and Analytics'];
-  const execFeatures = ['Personalized Health Dashboard', 'Evidence-based Health Recommendations', 'Ongoing Tailored Health Learning Content', 'Specialized Health Tests & Longevity Services', 'Executive Leadership Workshop', 'Manager Enablement Toolkit', 'Dashboard for Population Health and Analytics'];
-  const compFeatures = ['Dedicated Account Manager', '1 Additional Wellness Event', 'Priority Access to New Feature Releases'];
-
-  const px = isMobile ? '1rem' : '2rem';
-  const sectionPy = isMobile ? '3rem 0' : '5rem 0';
-
+export function CustomersPage({ onNavigate }: CustomersPageProps) {
   return (
-    <div style={{ minHeight: '100vh' }}>
-      <StickyNav onNavigate={onNavigate} currentPage={currentPage} />
+    <div>
 
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #eff6ff 100%)', padding: isMobile ? '6rem 0 2rem' : '6rem 0 3rem' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: isNarrow ? '2rem' : '4rem', alignItems: 'center' }}>
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section style={{ backgroundColor: GREEN, minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] w-full py-16 lg:py-[100px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '1.25rem', backgroundColor: '#D1B4AA', color: '#000' }}>
-                For Employers
-              </div>
-              <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: 700, color: '#111827', lineHeight: 1.2, margin: '0 0 1rem 0' }}>
-                The Only Platform That Connects Your People's Biology to Your{' '}
-                <span style={{ color: '#D1B4AA' }}>Bottom Line.</span>
+              <Eyebrow light>Blissmi for Employers</Eyebrow>
+              <h1 className="text-white leading-none mb-7" style={{ fontSize: 'clamp(40px, 5vw, 60px)', letterSpacing: '-0.02em', fontWeight: 600 }}>
+                Help me understand and improve the health of my workforce.
               </h1>
-              <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '1.5rem', lineHeight: 1.7 }}>
-                Blissmi helps you move beyond fragmented wellness solutions to a single, intelligent platform that predicts risk, personalizes care, and activates healthier, more productive employees—at scale.
+              <p style={{ color: 'rgba(255,255,255,0.65)', maxWidth: '480px', lineHeight: 1.55, fontSize: '17px' }}>
+                Blissmi gives employers a workforce health intelligence layer, connecting existing health investments, employee engagement and measurable outcomes.
               </p>
-              <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '0.75rem' }}>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Schedule a Demo <ArrowRight size={16} />
-                </button>
-                <button
-                  style={{ backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}
-                >
-                  Download ROI Report
-                </button>
-              </div>
             </div>
-            {!isMobile && (
-              <div>
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-                  alt="Business professionals collaborating"
-                  style={{ width: '100%', maxHeight: '480px', objectFit: 'cover', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section style={{ padding: sectionPy, backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Enterprise Wellness Solutions That Deliver Results
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>
-              The data is clear—health outcomes improve when care is proactive, personalized, and continuous.
-            </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}>
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div
-                  key={index}
-                  style={{ border: '2px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', transition: 'box-shadow 0.2s, border-color 0.2s' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = '#324421'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = '#e5e7eb'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                    <div style={{ width: '3.5rem', height: '3.5rem', backgroundColor: '#e8ebe5', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: [0, 1, 1, 0], y: [-10, 0, 0, -10] }}
-                        transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.5 }}
-                      >
-                        <Icon size={28} style={{ color: '#324421' }} />
-                      </motion.div>
-                    </div>
-                    <div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{benefit.title}</h3>
-                      <p style={{ color: '#4b5563', marginBottom: '0.5rem', fontSize: '0.9375rem', lineHeight: 1.6 }}>{benefit.description}</p>
-                      {benefit.stat && <div style={{ fontSize: '0.75rem', color: '#324421', fontWeight: 500 }}>{benefit.stat}</div>}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* What Makes Blissmi Different */}
-      <section style={{ padding: sectionPy, backgroundColor: '#f9fafb' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              What Makes Blissmi Different
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>
-              Blissmi is not another wellness app. It's a connected health ecosystem designed to deliver measurable outcomes.
-            </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}>
-            {differentiators.map((item) => (
-              <div key={item.num} style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                  <motion.div
-                    style={{ width: '3rem', height: '3rem', backgroundColor: '#f5ede9', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1.25rem', fontWeight: 700, color: '#D1B4AA' }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: [0, 1, 1, 1, 0], scale: [0, 1.2, 1, 1, 0] }}
-                    transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1, delay: item.delay }}
-                  >
-                    {item.num}
-                  </motion.div>
-                  <div>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>
-                      From <span style={{ color: '#111827' }}>{item.from}</span>{' → '}
-                      <span style={{ color: '#324421' }}>{item.to}</span>
-                    </h3>
-                    <p style={{ color: '#4b5563', fontSize: '0.9375rem', lineHeight: 1.6 }}>{item.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section style={{ padding: sectionPy, backgroundColor: '#324421' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#fff' }}>
-              Total Employee Productivity Solution
-            </h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '1rem' }}>
-            {features.map((feature, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', backgroundColor: '#fff', padding: '1.25rem', borderRadius: '0.5rem', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <CheckCircle size={20} style={{ color: '#D1B4AA', flexShrink: 0, marginTop: '0.125rem' }} />
-                <span style={{ color: '#374151', fontSize: '0.9375rem' }}>{feature}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Insurance Partner */}
-      <section style={{ padding: sectionPy, backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Designed to Work With Your Existing Insurance Partner
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '48rem', margin: '0 auto' }}>
-              Blissmi doesn't replace your insurer—it makes your existing benefits work harder.
-            </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
-            {insuranceCards.map(({ icon: Icon, text }, i) => (
-              <div key={i} style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <Icon size={24} style={{ color: '#324421', marginBottom: '0.75rem' }} />
-                <p style={{ color: '#374151', fontSize: '0.9375rem', lineHeight: 1.6 }}>{text}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem' }}>This creates a winning model:</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1rem' }}>
-              {['Employers reduce costs', 'Insurers improve performance', 'Employees get better care'].map((label) => (
-                <div key={label} style={{ padding: '1.5rem', borderRadius: '0.75rem', backgroundColor: '#f5ede9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontWeight: 600, fontSize: '1.125rem', color: '#111827' }}>{label}</p>
-                </div>
-              ))}
+            <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '540px', justifySelf: 'end' }}>
+              <img
+                src={heroIllustration}
+                alt="Diverse workforce — multiple people looking forward"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* How We Show Traction */}
-      <section style={{ padding: sectionPy, backgroundColor: '#f9fafb' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              How We Show Traction
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', maxWidth: '56rem', margin: '0 auto' }}>
-              We reduce the drivers of rising insurance premiums and workforce productivity loss by identifying and managing risk before it becomes a claim.
-            </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
-            {caseStudies.map((study, index) => (
-              <div key={index} style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <study.icon size={32} style={{ color: '#D1B4AA', marginBottom: '1rem' }} />
-                <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{study.company}</h3>
-                <div style={{ fontSize: '1.25rem', fontWeight: 700, color: '#324421', marginBottom: '0.75rem' }}>{study.result}</div>
-                <p style={{ color: '#4b5563', fontSize: '0.9375rem', lineHeight: 1.6 }}>{study.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Implementation Made Simple */}
-      <section style={{ padding: sectionPy, backgroundColor: '#324421', color: '#fff', position: 'relative', overflow: 'hidden' }}>
-        <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}>
-          <source src="https://res.cloudinary.com/djz3jsrit/video/upload/f_auto,q_auto,vc_auto,w_1280,c_limit/v1774827664/TashK_A_female_and_male_standing_still_on_busy_city_sidewalk__81d0cd2b-03ac-452b-88c7-70bde35c72df_1_y45lmx.mp4" type="video/mp4" />
-        </video>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}`, position: 'relative', zIndex: 10 }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, marginBottom: '1rem' }}>Implementation Made Simple</h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', opacity: 0.9 }}>Go live in weeks — not months</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? '1.5rem' : '2rem' }}>
-            {steps.map((item, index) => (
-              <div key={index} style={{ textAlign: 'center' }}>
-                <motion.div
-                  style={{ width: '4rem', height: '4rem', backgroundColor: '#fff', color: '#324421', borderRadius: '9999px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 700, margin: '0 auto 1rem' }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.2, ease: 'easeOut' }}
-                >
-                  {item.step}
-                </motion.div>
-                <h3 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '0.5rem' }}>{item.title}</h3>
-                <p style={{ opacity: 0.9, fontSize: '0.875rem', lineHeight: 1.6 }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Flexible Programs */}
-      <section style={{ padding: sectionPy, backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>
-              Flexible Programs for Every Organization
-            </h2>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563' }}>Scalable solutions that grow with your company</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem', alignItems: 'start' }}>
-            {/* Corporate */}
-            <div style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>Corporate Health Program</h3>
-              <p style={{ color: '#4b5563', fontSize: '0.9375rem', marginBottom: '1.5rem' }}>Integrated digital wellness solution for your entire workforce</p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {corpFeatures.map((f) => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                    <CheckCircle size={18} style={{ color: '#324421', flexShrink: 0, marginTop: '0.125rem' }} />
-                    <span style={{ fontSize: '0.875rem', color: '#374151' }}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button onClick={() => onNavigate('contact')} style={{ width: '100%', backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}>
-                Contact Sales in your Country
-              </button>
-            </div>
-
-            {/* Executive */}
-            <div style={{ border: '1px solid #e5e7eb', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>Executive Package: Leadership Health Strategy</h3>
-              <p style={{ color: '#4b5563', fontSize: '0.9375rem', marginBottom: '1.5rem' }}>Premium health optimization for C-suite and senior leadership only</p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {execFeatures.map((f) => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                    <CheckCircle size={18} style={{ color: '#324421', flexShrink: 0, marginTop: '0.125rem' }} />
-                    <span style={{ fontSize: '0.875rem', color: '#374151' }}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button onClick={() => onNavigate('contact')} style={{ width: '100%', backgroundColor: 'transparent', color: '#111827', border: '1px solid #d1d5db', borderRadius: '0.5rem', padding: '0.75rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}>
-                Contact Sales in your Country
-              </button>
-            </div>
-
-            {/* Comprehensive — Most Popular */}
-            <div style={{ border: '2px solid #324421', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: '#fff', boxShadow: '0 10px 25px rgba(50,68,33,0.15)', transform: isNarrow ? 'none' : 'scale(1.03)' }}>
-              <div style={{ backgroundColor: '#324421', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.75rem', borderRadius: '9999px', display: 'inline-block', marginBottom: '0.75rem' }}>
-                Most Popular
-              </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>Comprehensive Health Program For Everyone</h3>
-              <p style={{ color: '#4b5563', fontSize: '0.9375rem', marginBottom: '1.25rem' }}>
-                A fully integrated corporate health program combining digital onboarding, personalised learning, live wellness experiences, and executive leadership health strategy.
-              </p>
-              <p style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>Includes Everything from Corporate Health and Executive Package</p>
-              <p style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#111827', marginBottom: '0.75rem' }}>Plus</p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {compFeatures.map((f) => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                    <CheckCircle size={18} style={{ color: '#324421', flexShrink: 0, marginTop: '0.125rem' }} />
-                    <span style={{ fontSize: '0.875rem', color: '#374151' }}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <div style={{ backgroundColor: '#f5ede9', borderRadius: '0.5rem', padding: '0.75rem 1rem', marginBottom: '1.25rem' }}>
-                <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827', margin: 0 }}>12-month program tailored to your organization</p>
-              </div>
-              <button onClick={() => onNavigate('contact')} style={{ width: '100%', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '0.5rem', padding: '0.75rem', fontSize: '0.9375rem', fontWeight: 600, cursor: 'pointer' }}>
-                Contact Sales in your Country
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cost of Doing Nothing */}
-      <section style={{ padding: sectionPy, backgroundColor: '#f9fafb' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}`, textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '1.5rem' }}>
-            The Cost of Doing Nothing Is Already on Your Balance Sheet
+      {/* ── THE EMPLOYER JOURNEY ─────────────────────────────── */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>The employer journey</Eyebrow>
+          <h2 className="mb-14 max-w-xl" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: GREEN, letterSpacing: '-0.02em', fontWeight: 600 }}>
+            From health investment to measurable value
           </h2>
-          <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', color: '#4b5563', marginBottom: '1rem', lineHeight: 1.75 }}>
-            The companies that will lead the next decade are not those that spend more on health benefits. They are those that spend smarter — with data, with prevention, and with a platform that connects individual biology to organizational strategy.
-          </p>
-          <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', fontWeight: 600, color: '#324421', marginBottom: '2rem' }}>
-            That is what Blissmi was built to do.
-          </p>
-          <button
-            onClick={() => onNavigate('contact')}
-            style={{ display: isMobile ? 'flex' : 'inline-flex', width: isMobile ? '100%' : 'auto', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', backgroundColor: '#324421', color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: isMobile ? '0.9375rem' : '1rem', fontWeight: 600, cursor: 'pointer' }}
-          >
-            Let's build your health strategy → Talk to our team
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {valuePillars.map((p) => (
+              <HoverLift key={p.num} lift={6} shadow>
+                <div className="rounded-2xl p-8 flex flex-col gap-4 relative overflow-hidden bg-white cursor-pointer h-full" style={{ border: '1px solid rgba(27,48,37,0.07)' }}>
+                  <span className="absolute top-3 right-4 font-black leading-none select-none pointer-events-none" style={{ fontSize: 'clamp(48px, 5vw, 72px)', color: 'rgba(27,48,37,0.06)' }}>
+                    {p.num}
+                  </span>
+                  <span className="tracking-widest uppercase" style={{ color: GOLD, fontSize: '13px', fontWeight: 500 }}>{p.num}</span>
+                  <h3 style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.25, color: GREEN }}>{p.title}</h3>
+                  <p style={{ color: TX_BODY, fontSize: '17px', lineHeight: 1.55 }}>{p.body}</p>
+                </div>
+              </HoverLift>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Footer onNavigate={onNavigate} />
+      {/* ── CLIENT ENGAGEMENTS ───────────────────────────────── */}
+      <section className="py-16 lg:py-[120px] bg-white">
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>Client engagements</Eyebrow>
+          <h2 className="mb-4 max-w-xl" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: GREEN, letterSpacing: '-0.02em', fontWeight: 600 }}>
+            Real organisations. Real impact
+          </h2>
+          <p className="mb-16 max-w-2xl" style={{ color: 'rgba(27,48,37,0.55)', fontSize: '17px', lineHeight: 1.55 }}>
+            A selection of engagements delivered to date.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {caseStudies.map((cs) => (
+              <HoverLift key={cs.client} lift={6} shadow>
+                <div className="rounded-2xl overflow-hidden flex flex-col h-full cursor-pointer" style={{ border: '1px solid rgba(27,48,37,0.08)', backgroundColor: '#fff' }}>
+                  <div className="h-52 overflow-hidden flex-shrink-0">
+                    <motion.img
+                      src={cs.photo}
+                      alt={cs.photoAlt}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.04 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col gap-4 flex-1">
+                    <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: GOLD }}>
+                      {cs.label}
+                    </p>
+                    <h3 style={{ color: GREEN, fontSize: '24px', fontWeight: 600, lineHeight: 1.25 }}>{cs.client}</h3>
+                    <p style={{ color: 'rgba(27,48,37,0.65)', fontSize: '17px', lineHeight: 1.55 }}>
+                      {cs.description}
+                    </p>
+                    <div className="mt-auto pt-5 border-t flex items-center justify-between gap-4" style={{ borderColor: 'rgba(27,48,37,0.08)' }}>
+                      {cs.linkedIn && (
+                        <motion.a
+                          href={cs.linkedIn}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold flex-shrink-0"
+                          style={{ color: GOLD }}
+                          whileHover={{ x: 3 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                        >
+                          View on LinkedIn →
+                        </motion.a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </HoverLift>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ENGAGEMENT MODEL ─────────────────────────────────── */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>How we work</Eyebrow>
+          <h2 className="mb-14 max-w-2xl" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: GREEN, letterSpacing: '-0.02em', fontWeight: 600 }}>
+            What to expect from a Blissmi engagement
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+            {engagementItems.map((item, i) => (
+              <div key={item.title} className="flex gap-8">
+                <span className="leading-none select-none flex-shrink-0 mt-1" style={{ color: 'rgba(200,149,42,0.20)', fontSize: '56px', fontWeight: 600 }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="mb-3" style={{ color: GREEN, fontSize: '24px', fontWeight: 600, lineHeight: 1.25 }}>{item.title}</h3>
+                  <p style={{ color: TX_BODY, fontSize: '17px', lineHeight: 1.55 }}>{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="py-16 lg:py-[120px] bg-white">
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="font-bold leading-tight mb-5" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', color: GREEN, letterSpacing: '-0.02em' }}>
+                See what Blissmi can do for your organisation
+              </h2>
+              <p style={{ color: TX_BODY, maxWidth: '480px', lineHeight: 1.55, fontSize: '17px' }}>
+                Experience Labs work best as part of a structured Blissmi pilot, combining workforce intelligence, employee engagement and personalised health journeys.
+              </p>
+            </div>
+            <div>
+              <motion.button
+                onClick={() => onNavigate('how-to-start')}
+                whileHover={{ opacity: 0.88, scale: 1.02 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                className="inline-flex items-center justify-center rounded-full cursor-pointer"
+                style={{ backgroundColor: GOLD, color: '#fff', fontSize: '15px', fontWeight: 500, padding: '14px 32px' }}
+              >
+                Start your 12-week pilot →
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
