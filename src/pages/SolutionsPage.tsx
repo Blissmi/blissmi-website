@@ -29,9 +29,18 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (page: string) => vo
       <section style={{ backgroundColor: CREAM }} className="py-16 lg:py-[120px]">
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
           <p className="uppercase mb-16" style={{ color: GREEN, fontSize: '13px', fontWeight: 500, letterSpacing: '0.12em', opacity: 0.55 }}>Our Offerings</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(27,48,37,0.12)' }}>
-            {solutions.map((s) => (
-              <div key={s.number} className="relative overflow-hidden flex flex-col justify-between" style={{ backgroundColor: CREAM, padding: 'clamp(2rem, 4vw, 3.5rem)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            {solutions.map((s, i) => (
+              <div
+                key={s.number}
+                className="relative overflow-hidden flex flex-col justify-between"
+                style={{
+                  backgroundColor: CREAM,
+                  padding: 'clamp(2rem, 4vw, 3.5rem)',
+                  borderTop: '1px solid rgba(27,48,37,0.12)',
+                  borderLeft: i > 0 ? '1px solid rgba(27,48,37,0.12)' : undefined,
+                }}
+              >
                 <span aria-hidden="true" className="absolute top-0 right-4 select-none pointer-events-none leading-none" style={{ fontSize: 'clamp(72px, 10vw, 120px)', color: GHOST, lineHeight: 0.9, fontWeight: 700 }}>{s.number}</span>
                 <div className="relative z-10">
                   <p className="uppercase mb-8" style={{ color: GREEN, fontSize: '13px', fontWeight: 500, letterSpacing: '0.12em' }}>{s.tag}</p>
