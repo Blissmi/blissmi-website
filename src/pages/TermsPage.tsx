@@ -1,10 +1,8 @@
 import React from 'react';
 import { FileText, AlertTriangle, Database, Scale } from 'lucide-react';
-import { StickyNav } from '../components/StickyNav';
-import { Footer } from '../components/Footer';
 
-const GREEN = '#324421';
-const BLUSH = '#D1B4AA';
+const GREEN = '#1B3025';
+const GOLD = '#C8952A';
 const BG = '#f5ede9';
 
 interface TermsPageProps {
@@ -17,7 +15,7 @@ function TermsCard({ children, accent = false }: { children: React.ReactNode; ac
   return (
     <div style={{
       backgroundColor: accent ? BG : '#fff',
-      border: `2px solid ${accent ? GREEN : BLUSH}`,
+      border: `1px solid ${GOLD}`,
       borderRadius: '0.75rem',
       padding: '1.75rem 2rem',
     }}>
@@ -79,13 +77,12 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
 export function TermsPage({ onNavigate, currentPage }: TermsPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
-      <StickyNav onNavigate={onNavigate} currentPage={currentPage} transparentOnTop />
 
       {/* Hero */}
       <section style={{ backgroundColor: GREEN, padding: '7rem 1rem 5rem' }}>
         <div style={{ maxWidth: '56rem', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.875rem', marginBottom: '1.25rem' }}>
-            <FileText size={44} style={{ color: BLUSH }} />
+            <FileText size={44} style={{ color: GOLD }} />
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, color: '#fff', margin: 0 }}>
               Terms &amp; Conditions
             </h1>
@@ -442,7 +439,6 @@ export function TermsPage({ onNavigate, currentPage }: TermsPageProps) {
         </div>
       </section>
 
-      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

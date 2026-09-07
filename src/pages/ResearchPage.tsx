@@ -1,606 +1,333 @@
-import React from 'react';
-import { Users, Award, BookOpen, AlertCircle, Target, Lightbulb, Microscope, Heart, Brain, Activity, UserPlus, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
-import { StickyNav } from '../components/StickyNav';
-import { Footer } from '../components/Footer';
-import { useResponsive } from '../hooks/useResponsive';
-import womenChattingNewImage from '../figma/assets/womenChattingNewImage.png';
-import threeWomenImage from '../figma/assets/threeWomenImage.png';
+import { HoverLift } from '../ui/animations';
 import researchHeroImage from '../figma/assets/backgroundImage.png';
+import womenChattingNewImage from '../figma/assets/6fa05115d2b235c3777982ae94d9635a.png';
+import threeWomenImage from '../figma/assets/eb2530bd9c55d670b97113cd4a7734a9.png';
 
-const betaBackgroundImage = 'https://images.unsplash.com/photo-1622352496174-9e1d969b1945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZlcnNlJTIwd29tZW4lMjBncm91cCUyMHN0YW5kaW5nJTIwaGFwcHklMjBoZWFsdGglMjB3ZWxsbmVzcyUyMHdvcmtpbmclMjBhY3RpdmUlMjBhZnJpY2FuJTIwYWFkanVzdHNheXlsb2d28T8xfHx8fDE3NzYwODI3NzV8MA&ixlib=rb-4.1.0&q=80&w=1080';
+const GREEN = '#1B3025';
+const GOLD = '#C8952A';
+const CREAM = '#F5F1EB';
+const TX_BODY = 'rgba(27,48,37,0.65)';
+const TX_MUTED = 'rgba(27,48,37,0.40)';
 
-const BLUSH = '#D1B4AA';
-const DARK_GREEN = '#324421';
-const MAX_WIDTH = '80rem';
-
-function HoverCard({ text }: { text: string }) {
-  const [hovered, setHovered] = React.useState(false);
+function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        border: '2px solid white',
-        borderRadius: '0.75rem',
-        padding: '1.25rem',
-        backgroundColor: hovered ? '#fff' : 'transparent',
-        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.15)' : 'none',
-        transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
-        cursor: 'default',
-      }}
-    >
-      <p style={{ color: '#111827', fontSize: '1rem', lineHeight: 1.6 }}>{text}</p>
-    </div>
+    <p style={{
+      fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em',
+      textTransform: 'uppercase', marginBottom: '20px',
+      color: light ? 'rgba(200,149,42,0.80)' : TX_MUTED,
+    }}>
+      {children}
+    </p>
   );
 }
 
+const DATA_POINTS = [
+  {
+    num: '01',
+    title: 'Women Spend More Years in Poor Health',
+    body: 'Across 183 WHO member states, women live longer than men, but spend an average of 2.4 more years in poor health or disability. This healthspan–lifespan gap defines the challenge.',
+    quote: 'Women are living more years managing symptoms, chronic conditions, and functional strain, often during their prime working years.',
+  },
+  {
+    num: '02',
+    title: 'Menstrual Symptoms Reduce Workplace Performance',
+    body: 'A 2025 study found that severe menstrual symptoms directly reduce productivity through presenteeism: employees are at work but cognitively impaired, not absent.',
+    quote: "Many women are working through pain, brain fog, and fatigue. It's measurable.",
+  },
+  {
+    num: '03',
+    title: '6 in 10 Working Mothers Struggle with Work–Life Balance',
+    body: '60% of working mothers in Southeast Asia struggle to balance work and caregiving, driving sleep issues, anxiety, and cognitive overload, while return-to-work remains a high-risk period with little structured support.',
+    quote: "This isn't an individual failure. It's a systemic support gap.",
+  },
+];
+
+const CYCLE_ITEMS = ['Delayed care', 'Higher long-term costs', 'Reduced workforce participation', 'Poorer quality of life'];
+
+const RESEARCH_METHODS = [
+  {
+    num: '01',
+    title: 'Real-World, Longitudinal Studies',
+    body: 'We track users over time (6+ months) to measure symptom improvement, behavioural change, and adherence to personalised plans, capturing real-life health patterns across cycles and life stages.',
+  },
+  {
+    num: '02',
+    title: 'Focused on the Highest-Impact Health Gaps',
+    body: 'We focus on high-impact, under-addressed areas: hormonal transitions (menstrual, postpartum, perimenopause), maternal mental health, and cognitive load and return-to-work performance.',
+  },
+  {
+    num: '03',
+    title: 'Linking Behaviour to Outcomes',
+    body: 'We measure not just outcomes, but why they happen. Do personalised recommendations improve results? Does higher adherence lead to better outcomes? This creates causal insight, not just correlation.',
+  },
+  {
+    num: '04',
+    title: 'Clinical and Ecosystem Validation',
+    body: 'We integrate clinical testing (hormonal panels), physiological markers, and service provider engagement, bridging the gap between digital health and real-world care.',
+  },
+];
+
+const FOCUS_AREAS = [
+  { title: "Women's Full Lifespan Health", body: 'From menstruation → fertility → postpartum → menopause → longevity' },
+  { title: 'Hormonal and Metabolic Health', body: 'Root-cause drivers of long-term disease' },
+  { title: 'Mental and Cognitive Health', body: 'Including presenteeism, burnout, and cognitive decline' },
+  { title: 'Behavioural Change and Adherence', body: 'What actually drives sustained health improvement' },
+];
+
+const PARTNER_TYPES = [
+  {
+    num: '01',
+    title: 'Research Institutions and Universities',
+    items: ['Co-develop studies', 'Validate methodologies', 'Publish findings'],
+  },
+  {
+    num: '02',
+    title: 'Employers and Insurers',
+    items: ['Pilot programmes at scale', 'Generate population-level insights', 'Quantify ROI and outcomes'],
+  },
+  {
+    num: '03',
+    title: 'Healthcare and Service Providers',
+    items: ['Integrate clinical pathways', 'Validate treatment impact', 'Build evidence across modalities'],
+  },
+];
+
 interface ResearchPageProps {
   onNavigate: (page: string) => void;
-  currentPage: string;
 }
 
-export function ResearchPage({ onNavigate, currentPage }: ResearchPageProps) {
-  const { isMobile, isTablet } = useResponsive();
-  const isNarrow = isMobile || isTablet;
-  const px = isMobile ? '1rem' : '2rem';
-  const sectionPy = isMobile ? '3rem 0' : '5rem 0';
-
-  const containerStyle = {
-    maxWidth: MAX_WIDTH,
-    margin: '0 auto',
-    padding: `0 ${px}`,
-  };
-
-  const dot = (color: string) => ({
-    display: 'inline-block',
-    width: '0.5rem',
-    height: '0.5rem',
-    borderRadius: '9999px',
-    backgroundColor: color,
-    flexShrink: 0,
-  });
-
+export function ResearchPage({ onNavigate }: ResearchPageProps) {
   return (
-    <div style={{ minHeight: '100vh' }}>
-      <StickyNav onNavigate={onNavigate} currentPage={currentPage} transparentOnTop />
+    <div className="min-h-screen">
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: BLUSH, padding: isMobile ? '0' : '0' }}>
-        <div style={{ maxWidth: MAX_WIDTH, margin: '0 auto', padding: `68px ${px} ${isMobile ? '3rem' : '4rem'}` }}>
-          <div style={{ display: 'inline-block', padding: '0.375rem 1rem', borderRadius: '9999px', fontSize: '0.875rem', fontWeight: 600, marginBottom: '2rem', backgroundColor: '#fff', color: '#111827' }}>
-            Research & Advocacy
-          </div>
-          <div style={{ maxWidth: '56rem', margin: '0 auto', textAlign: 'center' }}>
-            <h1 style={{ color: '#111827', fontSize: isMobile ? '2rem' : 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 700, lineHeight: 1.2, marginBottom: '1.5rem' }}>
-              Closing the women's health gap—through data, science, and lived experience
-            </h1>
-            <p style={{ fontSize: isMobile ? '1.0625rem' : '1.25rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>
-              Healthcare was not built for women. And the data proves it.
-            </p>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1rem', color: '#374151', lineHeight: 1.75 }}>
-              Women live longer—but spend more years in poor health, with a measurable gap between lifespan and healthspan. At the same time, over 70% of health datasets used in AI and clinical research underrepresent women, leading to missed diagnoses, delayed treatment, and ineffective care design.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Systemic Problem Banner — researchHeroImage background */}
-      <section style={{ position: 'relative', padding: isMobile ? '3rem 0' : '4.5rem 0', overflow: 'hidden' }}>
-        <img
-          src={researchHeroImage}
-          alt=""
-          aria-hidden="true"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.55)' }} />
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: `0 ${px}` }}>
-          <p style={{ fontSize: isMobile ? '1.25rem' : '1.75rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>
-            This is not just a health issue.
-          </p>
-          <p style={{ fontSize: isMobile ? '1.25rem' : '1.75rem', fontWeight: 700, color: BLUSH }}>
-            It's a systemic, economic, and societal problem.
+      {/* HERO */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow light>Advocacy</Eyebrow>
+          <h1 style={{ fontSize: 'clamp(40px, 5vw, 60px)', fontWeight: 600, lineHeight: 1.1, color: '#ffffff', letterSpacing: '-0.02em', maxWidth: '680px', marginBottom: '24px' }}>
+            Closing the women's health gap through data, science, and lived experience
+          </h1>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.65)', maxWidth: '560px' }}>
+            Healthcare was not built for women. And the data proves it. Women live longer, but spend more years in poor health, with a measurable gap between lifespan and healthspan.
           </p>
         </div>
       </section>
 
-      {/* The Hidden Gap */}
-      <section style={{ padding: sectionPy, backgroundColor: BLUSH }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-              <AlertCircle size={36} style={{ color: DARK_GREEN }} />
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827' }}>
-                The{' '}
-                {['H', 'i', 'd', 'd', 'e', 'n'].map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    style={{ display: 'inline-block' }}
-                    animate={{ opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', times: [0, 0.3, 0.7, 1], delay: index * 0.8 }}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}{' '}
-                Gap in Women's Health
-              </h2>
-            </div>
-          </div>
-
-          <div style={{ maxWidth: '56rem', margin: '0 auto', marginBottom: '3rem' }}>
-            <p style={{ fontSize: isMobile ? '1.25rem' : '1.5rem', color: '#fff', fontWeight: 600, marginBottom: '2rem' }}>Women's Health Is Still:</p>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2rem' }}>
-              {[
-                { label: 'Under-researched', desc: 'Skewed toward reproductive events, not lifelong conditions' },
-                { label: 'Under-measured', desc: 'Critical issues like hormonal, cognitive, and metabolic health are often invisible' },
-                { label: 'Under-supported', desc: 'Workplace and insurance systems remain reactive, not preventive' },
-              ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                  <div style={{ width: '100%', maxWidth: '220px', marginBottom: '1rem' }}>
-                    <svg viewBox="0 0 200 200" style={{ width: '100%', height: 'auto' }}>
-                      <motion.circle
-                        cx="100" cy="100" r="95"
-                        fill="none" stroke="white" strokeWidth="4"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', times: [0, 0.4, 0.6, 1], delay: i * 2 }}
-                        style={{ strokeLinecap: 'round' }}
-                      />
-                      <text x="100" y="105" textAnchor="middle" fill="white" fontSize="16" fontWeight="600">{item.label}</text>
-                    </svg>
-                  </div>
-                  <p style={{ color: '#374151', lineHeight: 1.6, fontSize: '0.9375rem' }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* The Data Behind the Gap */}
-          <div style={{ maxWidth: MAX_WIDTH, margin: '0 auto', marginBottom: '3rem' }}>
-            <h3 style={{ fontSize: isMobile ? '1.25rem' : '1.75rem', fontWeight: 700, color: '#111827', textAlign: 'center', marginBottom: '2rem' }}>The Data Behind the Gap</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
-              {[
-                {
-                  n: '1',
-                  title: 'Women Spend More Years in Poor Health Than Men',
-                  body: 'Across 183 WHO member states, women live longer than men — but spend an average of 2.4 more years in poor health or disability. This is called the healthspan–lifespan gap.',
-                  quote: '"Women aren\'t just living longer. They are living more years managing symptoms, chronic conditions, and functional strain — often during their prime working years."',
-                },
-                {
-                  n: '2',
-                  title: 'Menstrual Symptoms Directly Reduce Workplace Performance',
-                  body: 'A 2025 Japanese study found that more severe menstrual symptoms directly reduce productivity — primarily through presenteeism, where employees are at work but cognitively impaired.',
-                  quote: '"Many women are working through pain, brain fog, and fatigue — and it\'s measurable."',
-                },
-                {
-                  n: '3',
-                  title: '6 in 10 Working Mothers in Southeast Asia Struggle With Work–Life Balance',
-                  body: '60% of working mothers struggle to balance work and caregiving—driving sleep issues, anxiety, and cognitive overload—while return-to-work remains a high-risk period with little structured support.',
-                  quote: '"This isn\'t an individual failure. It\'s a systemic support gap."',
-                },
-              ].map((item) => (
-                <div key={item.n} style={{ backgroundColor: '#fff', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '9999px', backgroundColor: DARK_GREEN, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '1rem', marginBottom: '1rem', flexShrink: 0 }}>
-                    {item.n}
-                  </div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem', lineHeight: 1.4 }}>{item.title}</h4>
-                  <p style={{ fontSize: '0.9375rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem', flex: 1 }}>{item.body}</p>
-                  <p style={{ fontSize: '0.875rem', color: BLUSH, fontWeight: 600, fontFamily: 'Georgia, serif', fontStyle: 'italic', lineHeight: 1.5 }}>{item.quote}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Cycle Diagram */}
-          <div style={{ maxWidth: '56rem', margin: '0 auto', marginTop: '5rem', marginBottom: '5rem' }}>
-            <p style={{ fontSize: isMobile ? '1.125rem' : '1.875rem', fontWeight: 600, color: '#111827', textAlign: 'center', marginBottom: '2.5rem' }}>This creates a cycle of:</p>
-            {/* SVG diagram — labels live inside the viewBox so it scales on all screen sizes */}
-            <div style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}>
-              <svg viewBox="0 0 800 700" style={{ width: '100%', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
-                {/* Static circular track — centred in wider viewBox */}
-                <circle cx="400" cy="350" r="200" fill="none" stroke="#ffffff" strokeWidth="6" />
-
-                {/* Moving ball */}
-                <motion.circle
-                  r="12"
-                  fill={DARK_GREEN}
-                  animate={{
-                    cx: [
-                      400,
-                      400 + 200 * Math.cos(Math.PI / 4),
-                      600,
-                      400 + 200 * Math.cos(3 * Math.PI / 4),
-                      400,
-                      400 + 200 * Math.cos(5 * Math.PI / 4),
-                      200,
-                      400 + 200 * Math.cos(7 * Math.PI / 4),
-                      400,
-                    ],
-                    cy: [
-                      150,
-                      350 - 200 * Math.sin(Math.PI / 4),
-                      350,
-                      350 - 200 * Math.sin(3 * Math.PI / 4),
-                      550,
-                      350 - 200 * Math.sin(5 * Math.PI / 4),
-                      350,
-                      350 - 200 * Math.sin(7 * Math.PI / 4),
-                      150,
-                    ],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-                />
-
-                {/* Arrow marker */}
-                <defs>
-                  <marker id="cycle-arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                    <polygon points="0 0, 10 3, 0 6" fill={DARK_GREEN} />
-                  </marker>
-                </defs>
-
-                {/* Directional arrows */}
-                <motion.path d="M 400 150 L 420 155" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3] }} />
-                <motion.path d="M 600 350 L 595 370" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 1 }} />
-                <motion.path d="M 400 550 L 380 545" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 2 }} />
-                <motion.path d="M 200 350 L 205 330" stroke={DARK_GREEN} strokeWidth="2" markerEnd="url(#cycle-arrowhead)" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, times: [0, 0.15, 0.3], delay: 3 }} />
-
-                {/* Top label — Delayed Care */}
-                <text x="400" y="95" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">Delayed Care</text>
-
-                {/* Right label — Higher Long-term Costs */}
-                <text x="695" y="345" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
-                  <tspan x="695" dy="0">Higher Long-</tspan>
-                  <tspan x="695" dy="28">term Costs</tspan>
-                </text>
-
-                {/* Bottom label — Reduced Workforce Participation */}
-                <text x="400" y="620" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
-                  <tspan x="400" dy="0">Reduced Workforce</tspan>
-                  <tspan x="400" dy="28">Participation</tspan>
-                </text>
-
-                {/* Left label — Poorer Quality of Life */}
-                <text x="105" y="345" textAnchor="middle" fill="white" fontSize="22" fontWeight="600">
-                  <tspan x="105" dy="0">Poorer Quality</tspan>
-                  <tspan x="105" dy="28">of Life</tspan>
-                </text>
-              </svg>
-            </div>
-          </div>
+      {/* STATEMENT */}
+      <section style={{ position: 'relative', minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <img src={researchHeroImage} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(27,48,37,0.68)' }} />
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '80px 24px', maxWidth: '760px', margin: '0 auto' }}>
+          <p style={{ fontSize: 'clamp(24px, 3vw, 38px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
+            This is not just a health issue.{' '}
+            <span style={{ color: GOLD }}>It is a systemic, economic, and societal problem.</span>
+          </p>
         </div>
       </section>
 
-      {/* Why This Matters */}
-      <section style={{ padding: sectionPy, backgroundColor: BLUSH }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-                <Lightbulb size={36} style={{ color: DARK_GREEN }} />
-              </motion.div>
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827' }}>Why This Matters</h2>
-            </div>
-            <p style={{ fontSize: isMobile ? '1.0625rem' : '1.25rem', fontWeight: 600, color: '#111827', maxWidth: '48rem', margin: '0 auto' }}>
-              Closing the women's health gap is not just ethical—it's economic.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            {/* Left column */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              {/* 3 transparent hover cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1rem' }}>
-                {[
-                  "Women's health gaps impact workforce productivity, retention, and performance",
-                  'Employers and insurers are absorbing rising, avoidable costs',
-                  'Individuals are left navigating fragmented, confusing care pathways',
-                ].map((t) => (
-                  <HoverCard key={t} text={t} />
-                ))}
-              </div>
-
-              {/* Yet most systems treat health as */}
-              <div>
-                <p style={{ fontSize: '1.125rem', color: '#111827', fontWeight: 600, marginBottom: '1rem' }}>
-                  Yet most systems still treat health as:
-                </p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  {['Episodic', 'Reactive', 'One-Size-Fits-All', 'Fragmented'].map((t) => (
-                    <div key={t} style={{ border: `2px solid ${BLUSH}`, borderRadius: '0.75rem', padding: '1rem', textAlign: 'center', backgroundColor: '#fff' }}>
-                      <p style={{ color: '#111827', fontWeight: 600 }}>{t}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right column — image */}
-            {!isNarrow && (
-              <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.2)', height: '460px' }}>
-                <img
-                  src={womenChattingNewImage}
-                  alt="Women chatting in modern lounge"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* What We're Doing About It */}
-      <section style={{ padding: sectionPy, backgroundColor: BLUSH }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <Microscope size={36} style={{ color: DARK_GREEN }} />
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827' }}>What We're Doing About It</h2>
-            </div>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.0625rem', color: '#374151', maxWidth: '48rem', margin: '0 auto' }}>
-              Blissmi is building a new evidence base for women's and lifespan health—powered by real-world data, behavior, and outcomes.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
-            {!isNarrow && (
-              <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.2)', height: '460px' }}>
-                <img
-                  src={threeWomenImage}
-                  alt="Three women representing health and wellness"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
-            )}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              <div>
-                <p style={{ fontSize: '1.0625rem', fontWeight: 600, color: '#111827', marginBottom: '1rem' }}>We combine:</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                  {['Biometric and lifestyle data', 'Life-stage context', 'Behavioral adherence tracking', 'Clinical and service integration'].map((t) => (
-                    <div key={t} style={{ border: `2px solid ${BLUSH}`, borderRadius: '0.5rem', padding: '0.875rem', backgroundColor: '#fff' }}>
-                      <p style={{ color: '#111827', fontWeight: 600, fontSize: '0.9375rem' }}>{t}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div style={{ backgroundColor: '#fff', borderRadius: '1rem', padding: '1.5rem' }}>
-                <p style={{ fontSize: '1.0625rem', fontWeight: 600, color: '#111827', marginBottom: '0.75rem' }}>To shift healthcare from:</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-                  <span style={{ color: '#374151', fontSize: '1rem' }}>reactive treatment</span>
-                  <span style={{ color: DARK_GREEN, fontWeight: 700, fontSize: '1.25rem' }}>→</span>
-                  <span style={{ color: '#111827', fontWeight: 700, fontSize: '1rem' }}>predictive, personalized prevention</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Research Approach */}
-      <section style={{ padding: sectionPy, backgroundColor: BLUSH }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <Activity size={36} style={{ color: DARK_GREEN }} />
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827' }}>Our Research Approach</h2>
-            </div>
-            <p style={{ fontSize: isMobile ? '1.125rem' : '1.375rem', fontWeight: 600, color: '#111827', marginBottom: '0.25rem' }}>We don't just collect data.</p>
-            <p style={{ fontSize: isMobile ? '1.125rem' : '1.375rem', fontWeight: 600, color: '#111827' }}>We prove what works.</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}>
-            {[
-              {
-                n: '1',
-                title: 'Real-World, Longitudinal Studies',
-                body: 'We track users over time (6+ months) to measure:',
-                points: ['symptom improvement', 'behavioral change', 'adherence to personalized plans'],
-                footer: '→ Designed to capture real-life health patterns across cycles and life stages',
-              },
-              {
-                n: '2',
-                title: 'Focused on the Highest-Impact Health Gaps',
-                body: 'We focus on high-impact, under-addressed areas:',
-                points: ['Hormonal transitions (menstrual, postpartum, perimenopause)', 'Maternal mental health', 'Cognitive load & return-to-work performance'],
-                footer: '→ Clinically validated outcome metrics tied to real-world health, productivity, and cost outcomes',
-              },
-              {
-                n: '3',
-                title: 'Linking Behavior to Outcomes',
-                body: 'We measure not just outcomes—but why they happen:',
-                points: ['Do personalized recommendations improve results?', 'Does higher adherence lead to better outcomes?', 'Do integrated services accelerate recovery?'],
-                footer: '→ This creates causal insight, not just correlation',
-              },
-              {
-                n: '4',
-                title: 'Clinical & Ecosystem Validation',
-                body: 'We integrate:',
-                points: ['clinical testing (e.g. hormonal panels)', 'physiological markers', 'service provider engagement'],
-                footer: '→ Bridging the gap between digital health and real-world care',
-              },
-            ].map((item) => (
-              <div key={item.n} style={{ border: '2px solid rgba(255,255,255,0.6)', borderRadius: '0.75rem', padding: '1.5rem', backgroundColor: 'rgba(255,255,255,0.35)' }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <div style={{ width: '2.75rem', height: '2.75rem', borderRadius: '9999px', backgroundColor: DARK_GREEN, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '1.125rem', flexShrink: 0 }}>
-                    {item.n}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h3 style={{ fontSize: isMobile ? '1rem' : '1.125rem', fontWeight: 700, color: '#111827', marginBottom: '0.75rem' }}>{item.title}</h3>
-                    <p style={{ color: '#374151', marginBottom: '0.75rem', fontSize: '0.9375rem' }}>{item.body}</p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                      {item.points.map((p) => (
-                        <div key={p} style={{ display: 'flex', gap: '0.625rem', alignItems: 'center' }}>
-                          <span style={dot(DARK_GREEN)} />
-                          <p style={{ color: '#374151', fontSize: '0.9375rem', lineHeight: 1.5, margin: 0 }}>{p}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <p style={{ color: '#111827', fontWeight: 600, fontSize: '0.875rem' }}>{item.footer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Focus Areas */}
-      <section style={{ padding: sectionPy, backgroundColor: BLUSH }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-                <Target size={36} style={{ color: DARK_GREEN }} />
-              </motion.div>
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827' }}>Our Focus Areas</h2>
-            </div>
-            <p style={{ fontSize: isMobile ? '0.9375rem' : '1.0625rem', color: '#374151', maxWidth: '40rem', margin: '0 auto' }}>
-              We are building one of the most comprehensive datasets across:
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '1rem', maxWidth: '56rem', margin: '0 auto' }}>
-            {[
-              { Icon: Heart, title: "Women's Full Lifespan Health", desc: 'From menstruation → fertility → postpartum → menopause → longevity' },
-              { Icon: Activity, title: 'Hormonal & Metabolic Health', desc: 'Root-cause drivers of long-term disease' },
-              { Icon: Brain, title: 'Mental & Cognitive Health', desc: 'Including presenteeism, burnout, and cognitive decline' },
-              { Icon: TrendingUp, title: 'Behavioral Change & Adherence', desc: 'What actually drives sustained health improvement' },
-            ].map(({ Icon, title, desc }) => (
-              <div key={title} style={{ backgroundColor: '#fff', borderRadius: '0.75rem', padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'flex-start', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-                <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '9999px', backgroundColor: BLUSH + '60', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Icon size={20} style={{ color: DARK_GREEN }} />
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1B3025', marginBottom: '0.375rem' }}>{title}</h3>
-                  <p style={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.5 }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partner With Us */}
-      <section style={{ padding: sectionPy, backgroundColor: DARK_GREEN }}>
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#fff', marginBottom: '0.75rem' }}>Partner With Us</h2>
-            <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.85)' }}>We are actively collaborating with:</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
-            {[
-              {
-                Icon: BookOpen,
-                title: 'Research Institutions & Universities',
-                points: ['Co-develop studies', 'Validate methodologies', 'Publish findings'],
-              },
-              {
-                Icon: Users,
-                title: 'Employers & Insurers',
-                points: ['Pilot programs at scale', 'Generate population-level insights', 'Quantify ROI and outcomes'],
-              },
-              {
-                Icon: Award,
-                title: 'Healthcare & Service Providers',
-                points: ['Integrate clinical pathways', 'Validate treatment impact', 'Build evidence across modalities'],
-              },
-            ].map(({ Icon, title, points }) => (
-              <div key={title} style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '0.75rem', padding: '2rem', border: '1px solid rgba(255,255,255,0.2)' }}>
-                <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                  <Icon size={28} style={{ color: '#fff' }} />
-                </div>
-                <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#fff', textAlign: 'center', marginBottom: '1.25rem' }}>{title}</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {points.map((p) => (
-                    <div key={p} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                      <span style={dot('#fff')} />
-                      <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9375rem' }}>{p}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Join Our Beta */}
-      <section style={{ position: 'relative', padding: isMobile ? '4rem 0' : '6rem 0' }}>
-        <img
-          src={betaBackgroundImage}
-          alt="Diverse women group"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.45)' }} />
-        <div style={{ position: 'relative', zIndex: 10, maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}` }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <UserPlus size={36} style={{ color: '#fff' }} />
-              <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#fff' }}>Join Our Beta & Research Programs</h2>
-            </div>
-            <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.9)' }}>We are inviting individuals to participate in our ongoing studies.</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '2rem' }}>
-            <div>
-              <h3 style={{ fontSize: isMobile ? '1.125rem' : '1.375rem', fontWeight: 700, color: '#fff', marginBottom: '1.25rem' }}>Who it's for:</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {['Women across all life stages', 'Individuals experiencing hormonal, mental, or cognitive health challenges', 'Anyone looking to better understand and improve their health'].map((t) => (
-                  <div key={t} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <span style={dot('#fff')} />
-                    <p style={{ color: '#fff', lineHeight: 1.6, fontSize: '0.9375rem' }}>{t}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 style={{ fontSize: isMobile ? '1.125rem' : '1.375rem', fontWeight: 700, color: '#fff', marginBottom: '1.25rem' }}>What you get:</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {['Personalized health insights and programs', 'Access to curated providers and services', 'The opportunity to contribute to groundbreaking research'].map((t) => (
-                  <div key={t} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <span style={dot(BLUSH)} />
-                    <p style={{ color: '#fff', lineHeight: 1.6, fontSize: '0.9375rem' }}>{t}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Building the Future */}
-      <section style={{ padding: isMobile ? '2.5rem 0' : '3.5rem 0', backgroundColor: DARK_GREEN }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}`, textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.25rem' : '2rem', fontWeight: 700, color: '#fff', marginBottom: '1rem' }}>
-            Partner With Us to Close the Women's Health Gap
+      {/* THE DATA */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>The evidence</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '56px', maxWidth: '560px' }}>
+            Three data points that define the gap
           </h2>
-          <p style={{ fontSize: isMobile ? '0.9375rem' : '1.125rem', fontWeight: 600, color: BLUSH, lineHeight: 1.7 }}>
-            Help build the infrastructure for preventive, personalized health, shape a better tomorrow for our future generations to come.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ padding: isMobile ? '2.5rem 0' : '3.5rem 0', backgroundColor: '#fff' }}>
-        <div style={{ maxWidth: '56rem', margin: '0 auto', padding: `0 ${px}`, textAlign: 'center' }}>
-          <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '2rem' }}>Get Involved</h2>
-          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['Partner with us', 'Join our research studies', 'Become a beta user'].map((label) => (
-              <button
-                key={label}
-                onClick={() => onNavigate('contact')}
-                style={{ backgroundColor: DARK_GREEN, color: '#fff', border: 'none', borderRadius: '9999px', padding: '0.875rem 2rem', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', transition: 'opacity 0.2s' }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = '0.85'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
-              >
-                {label}
-              </button>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {DATA_POINTS.map((point) => (
+              <HoverLift key={point.num} lift={6} shadow>
+                <div className="rounded-2xl p-8 flex flex-col gap-5 cursor-pointer h-full" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(27,48,37,0.08)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD }}>{point.num}</span>
+                  <h3 style={{ fontSize: '22px', fontWeight: 600, lineHeight: 1.25, color: GREEN }}>{point.title}</h3>
+                  <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY }}>{point.body}</p>
+                  <p style={{ fontSize: '14px', lineHeight: 1.5, fontStyle: 'italic', color: TX_MUTED, borderTop: '1px solid rgba(27,48,37,0.08)', paddingTop: '16px', marginTop: 'auto' }}>
+                    "{point.quote}"
+                  </p>
+                </div>
+              </HoverLift>
             ))}
           </div>
         </div>
       </section>
 
-      <Footer onNavigate={onNavigate} />
+      {/* THE CYCLE */}
+      <section className="py-16 lg:py-[120px] bg-white">
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>The consequence</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '560px' }}>
+            This creates a cycle that affects everyone
+          </h2>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY, maxWidth: '540px', marginBottom: '48px' }}>
+            When women's health is under-supported, the consequences compound for individuals, organisations, and economies.
+          </p>
+          <div className="flex flex-wrap items-center gap-0">
+            {CYCLE_ITEMS.map((item, i) => (
+              <div key={item} className="flex items-center">
+                <div className="rounded-2xl px-5 py-3" style={{ backgroundColor: CREAM, border: '1px solid rgba(27,48,37,0.10)' }}>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: GREEN }}>{item}</span>
+                </div>
+                {i < CYCLE_ITEMS.length - 1 && (
+                  <span className="mx-3" style={{ color: 'rgba(200,149,42,0.50)', fontSize: '18px', fontWeight: 600 }}>→</span>
+                )}
+              </div>
+            ))}
+            <span className="ml-3" style={{ color: 'rgba(200,149,42,0.35)', fontSize: '18px', fontWeight: 600 }}>↩</span>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY THIS MATTERS */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <Eyebrow>Why it matters</Eyebrow>
+              <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '24px' }}>
+                Closing the gap is not just ethical. It's economic
+              </h2>
+              <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY, marginBottom: '20px' }}>
+                Women's health gaps impact workforce productivity, retention, and performance. Employers and insurers are absorbing rising, avoidable costs. Individuals are left navigating fragmented, confusing care pathways.
+              </p>
+              <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY }}>
+                Yet most systems still treat health as episodic, reactive, one-size-fits-all, and fragmented. Blissmi is built to change that.
+              </p>
+            </div>
+            <div className="rounded-2xl overflow-hidden" style={{ maxHeight: '480px' }}>
+              <img src={womenChattingNewImage} alt="Women collaborating" className="w-full h-full object-cover" style={{ objectPosition: 'top' }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT WE'RE DOING */}
+      <section className="py-16 lg:py-[120px] bg-white">
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="rounded-2xl overflow-hidden" style={{ maxHeight: '480px' }}>
+              <img src={threeWomenImage} alt="Three women" className="w-full h-full object-cover" style={{ objectPosition: 'top' }} />
+            </div>
+            <div>
+              <Eyebrow>Our approach</Eyebrow>
+              <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '24px' }}>
+                Building a new evidence base for women's health
+              </h2>
+              <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY, marginBottom: '32px' }}>
+                Blissmi combines biometric and lifestyle data, life-stage context, behavioural adherence tracking, and clinical and service integration, to shift healthcare from reactive treatment to predictive, personalised prevention.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['Biometric data', 'Life-stage context', 'Behavioural tracking', 'Clinical integration'].map((tag) => (
+                  <span key={tag} className="px-4 py-2 rounded-full" style={{ backgroundColor: CREAM, color: GREEN, border: '1px solid rgba(27,48,37,0.10)', fontSize: '14px', fontWeight: 500 }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RESEARCH APPROACH */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>Research methodology</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '560px' }}>
+            We don't just collect data. We prove what works
+          </h2>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY, maxWidth: '540px', marginBottom: '56px' }}>
+            Our research is designed to generate causal insight, not just correlation.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {RESEARCH_METHODS.map((method) => (
+              <HoverLift key={method.num} lift={6} shadow>
+                <div className="rounded-2xl p-8 flex flex-col gap-4 cursor-pointer h-full" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(27,48,37,0.08)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD }}>{method.num}</span>
+                  <h3 style={{ fontSize: '22px', fontWeight: 600, lineHeight: 1.25, color: GREEN }}>{method.title}</h3>
+                  <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY }}>{method.body}</p>
+                </div>
+              </HoverLift>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOCUS AREAS */}
+      <section className="py-16 lg:py-[120px] bg-white">
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>Focus areas</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '56px', maxWidth: '560px' }}>
+            Building a comprehensive women's health dataset
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {FOCUS_AREAS.map((area, i) => (
+              <HoverLift key={area.title} lift={6} shadow>
+                <div className="rounded-2xl p-8 flex flex-col gap-3 cursor-pointer h-full" style={{ backgroundColor: CREAM, border: '1px solid rgba(27,48,37,0.08)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(27,48,37,0.25)' }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 style={{ fontSize: '22px', fontWeight: 600, lineHeight: 1.25, color: GREEN }}>{area.title}</h3>
+                  <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY }}>{area.body}</p>
+                </div>
+              </HoverLift>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PARTNER WITH US */}
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow light>Collaborate</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '560px' }}>
+            Seeking partners who share this mission
+          </h2>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.65)', maxWidth: '540px', marginBottom: '56px' }}>
+            Our work is stronger with the right partners. Reach out to explore how we can build this evidence base together.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {PARTNER_TYPES.map((partner) => (
+              <HoverLift key={partner.num} lift={5} shadow>
+                <div className="rounded-2xl p-8 flex flex-col gap-5 cursor-pointer h-full" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.10)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD }}>{partner.num}</span>
+                  <h3 style={{ fontSize: '22px', fontWeight: 600, lineHeight: 1.25, color: '#ffffff' }}>{partner.title}</h3>
+                  <ul className="flex flex-col gap-2 mt-1">
+                    {partner.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-[9px] shrink-0 rounded-full" style={{ width: '5px', height: '5px', backgroundColor: GOLD, display: 'inline-block' }} />
+                        <span style={{ fontSize: '15px', lineHeight: 1.5, color: 'rgba(255,255,255,0.70)' }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </HoverLift>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* JOIN BETA */}
+      <section style={{ position: 'relative', minHeight: '460px', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        <img src={researchHeroImage} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(27,48,37,0.92) 0%, rgba(27,48,37,0.70) 55%, rgba(27,48,37,0.15) 100%)' }} />
+        <div style={{ position: 'relative', zIndex: 10, padding: '80px 40px' }}>
+          <p style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(200,149,42,0.80)', marginBottom: '20px' }}>Join our beta</p>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: '#ffffff', letterSpacing: '-0.02em', maxWidth: '520px', marginBottom: '16px' }}>
+            Join our beta and research programmes
+          </h2>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.65)', maxWidth: '480px', marginBottom: '40px' }}>
+            We are inviting individuals across all life stages to participate in our ongoing studies and shape what preventive health looks like for women.
+          </p>
+          <motion.button
+            onClick={() => onNavigate('contact')}
+            whileHover={{ opacity: 0.88, scale: 1.02 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="inline-flex w-full sm:w-auto items-center justify-center rounded-full cursor-pointer"
+            style={{ backgroundColor: GOLD, color: '#ffffff', fontSize: '15px', fontWeight: 500, padding: '14px 32px' }}
+          >
+            Get involved →
+          </motion.button>
+        </div>
+      </section>
+
     </div>
   );
 }
