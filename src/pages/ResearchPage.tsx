@@ -103,7 +103,7 @@ export function ResearchPage({ onNavigate }: ResearchPageProps) {
 
       {/* STATEMENT */}
       <section style={{ position: 'relative', minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        <img src={researchHeroImage} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+        <img src={researchHeroImage} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(27,48,37,0.68)' }} />
         <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '80px 24px', maxWidth: '760px', margin: '0 auto' }}>
           <p style={{ fontSize: 'clamp(24px, 3vw, 38px)', fontWeight: 600, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
@@ -158,7 +158,10 @@ export function ResearchPage({ onNavigate }: ResearchPageProps) {
                 )}
               </div>
             ))}
-            <span className="ml-3" style={{ color: 'rgba(200,149,42,0.35)', fontSize: '18px', fontWeight: 600 }}>↩</span>
+            <svg className="ml-3" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(200,149,42,0.55)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 1 0 3-6.7" />
+              <path d="M3 3v5h5" />
+            </svg>
           </div>
         </div>
       </section>

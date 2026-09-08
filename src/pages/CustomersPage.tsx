@@ -34,7 +34,7 @@ const caseStudies = [
     description: 'An executive-level pilot of the Blissmi platform, focused on understanding individual health profiles and translating insights into personalised preventive action.',
     photo: harmlessHarvestPhoto,
     photoAlt: 'Harmless Harvest organic coconut water products illustration',
-    linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7436660491604873216',
+    linkedIn: null,
   },
   {
     client: 'Zurich Insurance',
