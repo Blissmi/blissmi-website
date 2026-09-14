@@ -58,7 +58,7 @@ export function Footer({ onNavigate }: FooterProps) {
     <footer style={{ backgroundColor: GREEN }} className="text-white/65">
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] pt-20 pb-10">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1.5fr_1.5fr_1fr] gap-10 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1.5fr_1.5fr_1fr] gap-10 mb-16">
 
           <div>
             <button
@@ -93,9 +93,11 @@ export function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          <NavCol heading="Platform"  links={COL_PLATFORM} onNavigate={onNavigate} />
-          <NavCol heading="For"       links={COL_FOR}      onNavigate={onNavigate} />
-          <NavCol heading="Company"   links={COL_COMPANY}  onNavigate={onNavigate} />
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 lg:contents">
+            <NavCol heading="Platform"  links={COL_PLATFORM} onNavigate={onNavigate} />
+            <NavCol heading="For"       links={COL_FOR}      onNavigate={onNavigate} />
+            <NavCol heading="Company"   links={COL_COMPANY}  onNavigate={onNavigate} />
+          </div>
         </div>
 
         <div className="border-t pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4" style={{ borderColor: 'rgba(255,255,255,0.10)' }}>

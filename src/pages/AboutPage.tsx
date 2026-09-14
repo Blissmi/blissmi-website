@@ -4,6 +4,7 @@ import { GREEN, GOLD, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 
 import natashaImage from '../figma/assets/natashaHiRes.jpeg';
+import heroIllustration from '../figma/assets/Image.png';
 import inesImage from '../figma/assets/inesHiRes.jpeg';
 import aliImage from '../figma/assets/new/aliReal.jpg';
 import victoriaImage from '../figma/assets/new/victoriaReal.jpg';
@@ -12,9 +13,6 @@ import shahaniImage from '../figma/assets/new/shahaniReal.jpg';
 import karenImage from '../figma/assets/new/karenReal.jpg';
 import lawrenceImage from '../figma/assets/new/lawrenceReal.jpg';
 import arupImage from '../figma/assets/new/arupReal.jpg';
-
-const founderIllustration = natashaImage;
-const founderIllustration2 = inesImage;
 
 const TX = 'rgba(27,48,37,0.70)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -105,7 +103,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }
                 transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
                 style={{ color: 'rgba(255,255,255,0.55)', fontSize: '18px', lineHeight: 1.65, maxWidth: '440px' }}
               >
-                Blissmi was built because the healthcare system wasn't designed for us. It was designed for disease. We started with a different question.
+                Blissmi was built because the healthcare system wasn't designed for us. It was designed for disease.
               </motion.p>
             </div>
 
@@ -117,8 +115,8 @@ export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }
               style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '560px', justifySelf: 'end' }}
             >
               <img
-                src={founderIllustration}
-                alt="Natasha King, CEO & Co-Founder"
+                src={heroIllustration}
+                alt="Blissmi"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
             </motion.div>
@@ -129,17 +127,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }
 
       <section className="py-20 lg:py-[140px]" style={{ backgroundColor: CREAM }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-start">
-
-            <Reveal>
-              <div className="rounded-2xl overflow-hidden" style={{ width: '100%', maxWidth: '420px', aspectRatio: '3 / 4' }}>
-                <img
-                  src={founderIllustration2}
-                  alt="Inès Gafsi, CGO & Co-Founder"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
-                />
-              </div>
-            </Reveal>
+          <div className="grid grid-cols-1" style={{ maxWidth: '720px' }}>
 
             <div>
               <Reveal>
