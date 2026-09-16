@@ -13,19 +13,24 @@ npm run type-check   # TypeScript type checking (tsc --noEmit)
 
 No test suite is configured (`npm test` exits with an error).
 
+## Git commit conventions
+
+Do not add `Co-Authored-By: Claude` (or any Anthropic/Claude attribution) lines to commit messages or pull request descriptions in this repo.
+
 ## Architecture
 
-This is a React 19 + TypeScript + Vite single-page application styled with Tailwind CSS v4. There is **no router** — navigation is handled entirely via a `currentPage` string state in `App.tsx`, with a `navigate(page: string)` callback passed down the tree.
+This is a React 19 + TypeScript + Vite single-page application styled with Tailwind CSS v4. Routing uses `react-router-dom` (`createBrowserRouter`), configured in `src/routes.tsx`.
 
 ### Navigation pattern
 
-`App.tsx` holds `currentPage` state and renders one of the page components based on its value. Every page component and the `StickyNav` receives `{ currentPage, onNavigate }` props. `StickyNav` uses `isPageVisible()` to filter which nav links render (controlled by feature flags).
+`src/routes.tsx` defines the route tree and a `PAGE_TO_PATH` map between legacy page-id strings (e.g. `'about'`) and URL paths (e.g. `/about`). Its `Root` layout component reads the current route via `useLocation`/`useNavigate` and derives a `currentPage` id, then renders `StickyNav` and `Footer` around an `<Outlet>`. Individual page components still take the legacy `{ currentPage, onNavigate }` props — a thin `R` wrapper in `routes.tsx` bridges router context into that shape, so page components themselves didn't need to change during the router migration. When adding a page, register it in both `PAGE_TO_PATH` and the `router` route list, and keep `public/sitemap.xml` in sync.
 
 ### Page structure
 
-- `src/App.tsx` — root router (state-based)
+- `src/routes.tsx` — router configuration (route tree, `PAGE_TO_PATH`, `Root` layout)
+- `src/App.tsx` — mounts `RouterProvider`
 - `src/HomePage.tsx` — home page composition
-- `src/pages/` — all other pages (AboutPage, UsersPage, ContactPage, CustomersPage, PartnersPage, ResearchPage, InsurersPage, HospitalityPage)
+- `src/pages/` — all other pages (AboutPage, UsersPage, ContactPage, CustomersPage, PartnersPage, ResearchPage, InsurersPage, HospitalityPage, etc.)
 - `src/home/` — sections used exclusively on the home page and about page (MissionSection, WhyWeExist, PillarsAccordion, etc.)
 - `src/components/` — shared components used across multiple pages (StickyNav, Footer, CTASection, etc.)
 
@@ -34,10 +39,6 @@ This is a React 19 + TypeScript + Vite single-page application styled with Tailw
 Components use **inline styles** extensively rather than Tailwind class names — this is intentional. Tailwind is used in some components but inline styles dominate for layout, spacing, colours, and responsive behaviour. Don't convert inline styles to Tailwind classes unless asked.
 
 Responsive breakpoints are detected with the `useResponsive` hook (`src/hooks/useResponsive.ts`) — mobile ≤ 640px, tablet 641–1024px. There is also a legacy `useIsMobile` utility in `src/utils/responsiveStyles.ts` that uses `window.innerWidth <= 768` (not reactive).
-
-### Feature flags
-
-`src/config/featureFlags.ts` controls which pages appear in the nav. Defaults are set in `DEFAULT_VISIBLE_PAGES`. Override at build/run time via the `VITE_VISIBLE_PAGES` environment variable (comma-separated page keys, e.g. `VITE_VISIBLE_PAGES=home,users,contact`).
 
 ### UI primitives
 
