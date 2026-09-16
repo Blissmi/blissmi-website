@@ -24,6 +24,7 @@ import { ProofPage } from './pages/ProofPage'
 import { ExperienceLabsPage } from './pages/ExperienceLabsPage'
 
 // page-id → URL path
+// Keep public/sitemap.xml in sync with this list when adding/removing/renaming routes.
 export const PAGE_TO_PATH: Record<string, string> = {
   home:             '/',
   'why-blissmi':    '/why-blissmi',
