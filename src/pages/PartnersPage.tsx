@@ -1,6 +1,7 @@
 import { ArrowRight, Brain, RefreshCw, LayoutDashboard, Users, Sprout, Zap, UserPlus, ClipboardCheck, TrendingUp, Target } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useResponsive } from '../hooks/useResponsive';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import testimonialImage from 'figma:asset/TashK_a_group_of_health_service_providers_asian_caucasian_and_841cbb24-1ee4-434a-aee9-c1db843adf8a_0.png.png';
 
 interface PartnersPageProps {
@@ -8,7 +9,7 @@ interface PartnersPageProps {
   currentPage: string;
 }
 
-export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
+export function PartnersPage({ onNavigate, currentPage: _currentPage }: PartnersPageProps) {
   const { isMobile, isTablet } = useResponsive();
   const isNarrow = isMobile || isTablet;
   const px = isMobile ? '1rem' : '2rem';
@@ -220,7 +221,6 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
 
           <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : '1fr 1fr', gap: '2rem' }}>
             {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
               return (
                 <div
                   key={index}
@@ -299,7 +299,7 @@ export function PartnersPage({ onNavigate, currentPage }: PartnersPageProps) {
 
       {/* Testimonials */}
       <section style={{ padding: sectionPy, position: 'relative', overflow: 'hidden' }}>
-        <img
+        <ImageWithFallback
           src={testimonialImage}
           alt="Health service providers"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}

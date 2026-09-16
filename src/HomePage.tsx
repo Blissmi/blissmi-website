@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { TrustStrip } from './TrustStrip';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Reveal, Stagger, StaggerItem, HoverLift } from './ui/animations';
 import womenChattingImage from './figma/assets/ea9ece78eead57b440fa7a6f7fb0a75c.png';
 import valueAssessmentImage from './figma/assets/d858f3333fcb6d80de0f35e86ca7709e.jpeg';
@@ -124,7 +125,7 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
           <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch" style={{ gap: 'clamp(48px, 4vw, 64px)' }}>
 
             <Reveal className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1' }}>
-              <img
+              <ImageWithFallback
                 src={womenChattingImage}
                 alt="Colleagues in conversation"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }}

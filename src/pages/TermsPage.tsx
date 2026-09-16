@@ -73,7 +73,7 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
   );
 }
 
-export function TermsPage({ onNavigate, currentPage }: TermsPageProps) {
+export function TermsPage({ onNavigate: _onNavigate, currentPage: _currentPage }: TermsPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
 

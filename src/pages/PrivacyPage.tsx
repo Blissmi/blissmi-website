@@ -1,8 +1,8 @@
 import React from 'react';
 import { Shield, Lock, Globe, Mail } from 'lucide-react';
-import { GREEN, GOLD } from '../ui/theme';
+import { GREEN, GOLD, CREAM } from '../ui/theme';
 
-const BG = '#F5F1EB';
+const BG = CREAM;
 
 interface PrivacyPageProps {
   onNavigate: (page: string) => void;
@@ -68,7 +68,7 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
   );
 }
 
-export function PrivacyPage({ onNavigate, currentPage }: PrivacyPageProps) {
+export function PrivacyPage({ onNavigate: _onNavigate, currentPage: _currentPage }: PrivacyPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
 

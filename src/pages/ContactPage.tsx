@@ -1,6 +1,7 @@
 import { useState, CSSProperties, FormEvent, ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import contactPhoto from '../figma/assets/89ce871bcea596e6bf491bf804b3bbf6.png';
 import { GREEN, GOLD, CREAM } from '../ui/theme';
 
@@ -95,7 +96,7 @@ interface ContactPageProps {
   onNavigate: (page: string) => void;
 }
 
-export function ContactPage({}: ContactPageProps) {
+export function ContactPage(_props: ContactPageProps) {
   const [inquiry, setInquiry] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -230,7 +231,7 @@ export function ContactPage({}: ContactPageProps) {
             className="hidden lg:block rounded-2xl overflow-hidden"
             style={{ position: 'sticky', top: '100px', aspectRatio: '3 / 4' }}
           >
-            <img
+            <ImageWithFallback
               src={contactPhoto}
               alt="Person climbing a mountain"
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}

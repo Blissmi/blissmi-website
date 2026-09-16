@@ -1,7 +1,7 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-import type { ReactNode } from 'react';
 import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import healthMapImg from '../figma/assets/85431c74a2deebdf30ae6d6281f06199-trimmed.png';
 import helloAgainImg from '../figma/assets/11d1a391ddfe385145c768572f9e0552.png';
 import yourPlanImg from '../figma/assets/034439506c2fe5a1b5f0de3ef5bd5eb2-trimmed.png';
@@ -15,10 +15,6 @@ import brainLabImg from '../figma/assets/brainlab.png';
 import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
-
-function Placeholder({ tint }: { tint: string }) {
-  return <div style={{ width: '100%', height: '100%', backgroundColor: tint }} />;
-}
 
 const STEPS = [
   { num: '01', title: 'Connect', body: 'Aggregate health data from wearables, self-reported inputs and existing health records.', tint: '#0e1e15', image: healthMapImg },
@@ -36,12 +32,12 @@ const SOLUTIONS = [
 const HEALTH_AREAS = ["Women's Health", 'Prevention and Risk Reduction', 'Mental and Cognitive Health', 'Healthy Ageing', 'Chronic Disease Support', 'Environmental Health'];
 
 const LABS = [
-  { num: '01', name: 'Longevity Checkpoint', subtitle: 'Functional strength and movement', body: 'Grip strength, sit-to-stand and balance tests that reveal how your body is ageing.', duration: '4–6 mins', capacity: 'High capacity', tint: '#C8952A', image: longevityLabImg },
-  { num: '02', name: 'Metabolic Health Lab', subtitle: 'Look beyond the number on the scale', body: 'Body composition analysis including muscle, body fat and more with expert interpretation.', duration: '3–5 mins', capacity: 'High capacity', tint: '#1B3025', image: metabolicLabImg },
+  { num: '01', name: 'Longevity Checkpoint', subtitle: 'Functional strength and movement', body: 'Grip strength, sit-to-stand and balance tests that reveal how your body is ageing.', duration: '4–6 mins', capacity: 'High capacity', tint: GOLD, image: longevityLabImg },
+  { num: '02', name: 'Metabolic Health Lab', subtitle: 'Look beyond the number on the scale', body: 'Body composition analysis including muscle, body fat and more with expert interpretation.', duration: '3–5 mins', capacity: 'High capacity', tint: GREEN, image: metabolicLabImg },
   { num: '03', name: 'Recovery Lab', subtitle: 'Reset. Recover. Perform better.', body: 'See your stress response in real time with HRV biofeedback and guided breathing.', duration: '5–10 mins', capacity: 'Medium–High capacity', tint: '#3a5744', image: recoveryLabImg },
   { num: '04', name: 'Brain Lab', subtitle: 'Challenge your brain. Sharpen your edge.', body: 'Quick tests for reaction time, attention and processing speed with instant results.', duration: '4–5 mins', capacity: 'High capacity', tint: '#8a6a2e', image: brainLabImg },
   { num: '05', name: 'Integrative Health Lab', subtitle: 'Another path to wellbeing.', body: 'Experience evidence-informed integrative approaches that support recovery and balance.', duration: '10–15 mins', capacity: 'Small group experience', tint: '#5a7d68', image: integrativeLabImg },
-  { num: '06', name: 'Blissmi Personalisation Lab', subtitle: 'Your insights. Your decision. Your next step.', body: 'Understand your results, identify what matters most and choose your One Better Decision.', duration: '3–5 mins', capacity: 'High capacity', tint: '#C8952A', image: personalisationLabImg },
+  { num: '06', name: 'Blissmi Personalisation Lab', subtitle: 'Your insights. Your decision. Your next step.', body: 'Understand your results, identify what matters most and choose your One Better Decision.', duration: '3–5 mins', capacity: 'High capacity', tint: GOLD, image: personalisationLabImg },
 ];
 
 const OUTCOME_AREAS = [
@@ -71,7 +67,7 @@ function LabCard({ lab }: { lab: (typeof LABS)[0] }) {
     <HoverLift lift={7} shadow>
       <div className="rounded-2xl overflow-hidden flex flex-col" style={{ border: '1.5px solid rgba(27,48,37,0.12)', height: '480px' }}>
         <div style={{ height: '200px', flexShrink: 0, overflow: 'hidden', backgroundColor: lab.tint }}>
-          {lab.image && <img src={lab.image} alt={lab.name} className="w-full h-full object-cover" />}
+          {lab.image && <ImageWithFallback src={lab.image} alt={lab.name} className="w-full h-full object-cover" />}
         </div>
         <div className="flex flex-col p-6" style={{ flex: 1, backgroundColor: '#ffffff' }}>
           <span className="text-xs font-bold tracking-widest mb-2" style={{ color: GOLD }}>{lab.num}</span>
@@ -158,7 +154,7 @@ export function HowItWorksPage({ onNavigate }: { onNavigate: (page: string) => v
                 <HoverLift lift={8} shadow>
                   <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(27,48,37,0.10)' }}>
                     <div style={{ height: '380px', overflow: 'hidden', backgroundColor: step.tint, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={step.image} alt={`${step.title} app screen`} className="w-full h-full" style={{ objectFit: 'contain', padding: '20px' }} />
+                      <ImageWithFallback src={step.image} alt={`${step.title} app screen`} className="w-full h-full" style={{ objectFit: 'contain', padding: '20px' }} />
                     </div>
                     <div className="p-8 flex flex-col gap-2" style={{ backgroundColor: 'white', minHeight: '120px' }}>
                       <span className="text-xs font-bold tracking-widest uppercase" style={{ color: GOLD }}>{step.num}. {step.title}</span>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import imiLogo from './figma/assets/4cb06c32dda781a759edbabcc2d43eef.png';
 import fastFitLogo from './figma/assets/895cc71527365e57ccc5be167ac0e2d7.png';
 import jdEvolveLogo from './figma/assets/21474fd274ce29364e5424661717932e.jpeg';
@@ -19,7 +20,7 @@ function LogoImage({ src, label, scale }: { src: string; label: string; scale: n
       className="flex-shrink-0 flex items-center justify-center mx-5"
       style={{ height: '80px', width: '180px' }}
     >
-      <img
+      <ImageWithFallback
         src={src}
         alt={label}
         style={{

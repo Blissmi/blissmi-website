@@ -1,6 +1,6 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-import type { ReactNode } from 'react';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import victoriaImage from '../figma/assets/new/victoriaReal.jpg';
 import clareImage from '../figma/assets/new/clareReal.jpg';
 import karenImage from '../figma/assets/new/karenReal.jpg';
@@ -137,7 +137,7 @@ const ADVISORS = [
   { name: 'Dr Lawrence Lau', role: "Men's Health", image: lawrenceImage },
 ];
 
-export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+export function WhyBlissmiPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
 
@@ -341,7 +341,7 @@ export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => v
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <Reveal delay={0.1}>
               <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1' }}>
-                <img src={employeeJourneyImage} alt="Employee at desk illustration" className="w-full h-full object-cover" />
+                <ImageWithFallback src={employeeJourneyImage} alt="Employee at desk illustration" className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <div>
@@ -386,7 +386,7 @@ export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => v
             {ADVISORS.map((a) => (
               <StaggerItem key={a.name}>
                 <div className="rounded-2xl overflow-hidden bg-white" style={{ border: '1px solid rgba(27,48,37,0.07)' }}>
-                  <img src={a.image} alt={a.name} className="w-full object-cover" style={{ aspectRatio: '1', objectPosition: 'top' }} />
+                  <ImageWithFallback src={a.image} alt={a.name} className="w-full object-cover" style={{ aspectRatio: '1', objectPosition: 'top' }} />
                   <div className="p-5">
                     <p className="font-bold" style={{ fontSize: '15px', color: GREEN }}>{a.name}</p>
                     <p className="text-xs" style={{ color: TX_MUTED }}>{a.role}</p>

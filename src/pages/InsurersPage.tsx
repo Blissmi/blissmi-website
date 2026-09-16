@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import heroIllustration from '../figma/assets/7336ad7f03c9d83c38e647b0b487e77b.png';
 import illGym from '../figma/assets/16332b7b6755ebdedcaa634b59368ab8.png';
 import illFood from '../figma/assets/f755a6796736573b8358c0a511e3db9d.png';
@@ -81,7 +82,7 @@ export function InsurersPage({ onNavigate }: InsurersPageProps) {
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '540px', justifySelf: 'end' }}>
-              <img
+              <ImageWithFallback
                 src={heroIllustration}
                 alt="Illustrated rolling hills landscape"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}

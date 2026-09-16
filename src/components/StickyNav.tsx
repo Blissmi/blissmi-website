@@ -1,14 +1,12 @@
 import { motion } from 'motion/react';
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { GOLD, GREEN } from '../ui/theme';
 
 interface NavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
 }
-
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
 
 const forDropdown = [
   { id: 'customers',    label: 'Employers',             sub: 'Understand and improve workforce health' },
@@ -165,6 +163,8 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 rounded-md transition-colors"
               style={{ color: 'rgba(255,255,255,0.80)' }}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import heroImage from '../figma/assets/99f81a795a0fa0da23ecb7e806492c79.png';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
@@ -24,7 +25,7 @@ export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '540px', justifySelf: 'end' }}>
-              <img src={heroImage} alt="Broker strategy illustration" className="w-full h-full object-cover" />
+              <ImageWithFallback src={heroImage} alt="Broker strategy illustration" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

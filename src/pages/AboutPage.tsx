@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
 import { GREEN, GOLD, CREAM, EASE } from '../ui/theme';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { Eyebrow } from '../ui/Eyebrow';
 
 import natashaImage from '../figma/assets/natashaHiRes.jpeg';
@@ -71,7 +72,7 @@ const journey = [
   { period: 'Now', label: 'Building for what comes next', body: 'Expanding across APAC and into new markets, building the infrastructure to bring personalised, preventive health to millions of people.' },
 ];
 
-export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+export function AboutPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div>
 
@@ -114,7 +115,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }
               className="rounded-2xl overflow-hidden"
               style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '560px', justifySelf: 'end' }}
             >
-              <img
+              <ImageWithFallback
                 src={heroIllustration}
                 alt="Blissmi"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}

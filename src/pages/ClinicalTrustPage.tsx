@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import lawrenceImage from '../figma/assets/new/lawrenceReal.jpg';
 import victoriaImage from '../figma/assets/new/victoriaReal.jpg';
 import clareImage from '../figma/assets/new/clareReal.jpg';
@@ -92,7 +93,7 @@ export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) =
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-16 rounded-2xl overflow-hidden" style={{ backgroundColor: GREEN }}>
             <div className="overflow-hidden" style={{ minHeight: '200px' }}>
-              <img src={lawrenceImage} alt="Dr Lawrence Lau, Clinical Director" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
+              <ImageWithFallback src={lawrenceImage} alt="Dr Lawrence Lau, Clinical Director" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
             </div>
             <div className="p-6 lg:py-8 flex flex-col justify-center">
               <p className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'rgba(200,149,42,0.80)' }}>Clinical Director</p>

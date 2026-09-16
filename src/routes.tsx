@@ -1,27 +1,14 @@
+import { Suspense } from 'react'
 import { createBrowserRouter, Outlet, useNavigate, useLocation, useOutletContext } from 'react-router-dom'
 import { StickyNav as Navigation } from './components/StickyNav'
 import { Footer } from './components/Footer'
 import { HomePage } from './HomePage'
-import { AboutPage } from './pages/AboutPage'
-import { UsersPage } from './pages/UsersPage'
-import { ContactPage } from './pages/ContactPage'
-import { CustomersPage } from './pages/CustomersPage'
-import { PartnersPage } from './pages/PartnersPage'
-import { ResearchPage } from './pages/ResearchPage'
-import { InsurersPage } from './pages/InsurersPage'
-import { TermsPage } from './pages/TermsPage'
-import { PrivacyPage } from './pages/PrivacyPage'
-import { WhyBlissmiPage } from './pages/WhyBlissmiPage'
-import { HowItWorksPage } from './pages/HowItWorksPage'
-import { ClinicalTrustPage } from './pages/ClinicalTrustPage'
-import { HowToStartPage } from './pages/HowToStartPage'
-import { ResourcesPage } from './pages/ResourcesPage'
-import { BrokersPage } from './pages/BrokersPage'
-import { HospitalityPage } from './pages/HospitalityPage'
-import { SolutionsPage } from './pages/SolutionsPage'
-import { OutcomesPage } from './pages/OutcomesPage'
-import { ProofPage } from './pages/ProofPage'
-import { ExperienceLabsPage } from './pages/ExperienceLabsPage'
+import {
+  AboutPage, UsersPage, ContactPage, CustomersPage, PartnersPage, ResearchPage,
+  InsurersPage, TermsPage, PrivacyPage, WhyBlissmiPage, HowItWorksPage, ClinicalTrustPage,
+  HowToStartPage, ResourcesPage, BrokersPage, HospitalityPage, SolutionsPage,
+  OutcomesPage, ProofPage, ExperienceLabsPage,
+} from './lazyPages'
 
 // page-id → URL path
 // Keep public/sitemap.xml in sync with this list when adding/removing/renaming routes.
@@ -72,7 +59,9 @@ function Root() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
       <main className="relative">
-        <Outlet context={{ onNavigate: handleNavigate } satisfies NavCtx} />
+        <Suspense fallback={null}>
+          <Outlet context={{ onNavigate: handleNavigate } satisfies NavCtx} />
+        </Suspense>
       </main>
       <Footer onNavigate={handleNavigate} />
     </div>
@@ -83,8 +72,10 @@ export function useNavCtx() {
   return useOutletContext<NavCtx>()
 }
 
+type LegacyPageProps = { onNavigate: (pageId: string) => void; currentPage: string }
+
 // Thin wrapper: pulls onNavigate from outlet context and passes {onNavigate, currentPage} to legacy page components
-function R({ Page, pageId }: { Page: React.ComponentType<any>; pageId: string }) {
+function R({ Page, pageId }: { Page: React.ComponentType<LegacyPageProps>; pageId: string }) {
   const { onNavigate } = useNavCtx()
   return <Page onNavigate={onNavigate} currentPage={pageId} />
 }

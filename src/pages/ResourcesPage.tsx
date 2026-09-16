@@ -30,7 +30,7 @@ const TYPE_STYLES: Record<CardType, { bg: string; text: string }> = {
   'Case Study': { bg: 'rgba(200,149,42,0.08)', text: 'rgba(150,100,15,1)' },
 };
 
-export function ResourcesPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+export function ResourcesPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   const [activeCategory, setActiveCategory] = useState('All');
 
   return (

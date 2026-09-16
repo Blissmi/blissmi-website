@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import heroIllustration from '../figma/assets/295b486791b63183ced3925f384ce927.png';
 import aiaEventPhoto from '../figma/assets/5851c3c2a84e3c278e69310504c10b5e.png';
 import lvmhEventPhoto from '../figma/assets/cc5f4c12cfc3dfc6a5292c3e5f50c101.jpeg';
@@ -9,7 +10,6 @@ import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
-const TX_MUTED = 'rgba(27,48,37,0.40)';
 
 const caseStudies = [
   {
@@ -106,7 +106,7 @@ export function CustomersPage({ onNavigate }: CustomersPageProps) {
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '540px', justifySelf: 'end' }}>
-              <img
+              <ImageWithFallback
                 src={heroIllustration}
                 alt="Diverse workforce — multiple people looking forward"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
