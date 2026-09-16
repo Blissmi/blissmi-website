@@ -1,84 +1,13 @@
-import { Suspense } from 'react'
-import { createBrowserRouter, Outlet, useNavigate, useLocation, useOutletContext } from 'react-router-dom'
-import { StickyNav as Navigation } from './components/StickyNav'
-import { Footer } from './components/Footer'
+import { createBrowserRouter } from 'react-router-dom'
 import { HomePage } from './HomePage'
+import { Root } from './routing/Root'
+import { R } from './routing/PageRenderer'
 import {
   AboutPage, UsersPage, ContactPage, CustomersPage, PartnersPage, ResearchPage,
   InsurersPage, TermsPage, PrivacyPage, WhyBlissmiPage, HowItWorksPage, ClinicalTrustPage,
   HowToStartPage, ResourcesPage, BrokersPage, HospitalityPage, SolutionsPage,
   OutcomesPage, ProofPage, ExperienceLabsPage,
 } from './lazyPages'
-
-// page-id → URL path
-// Keep public/sitemap.xml in sync with this list when adding/removing/renaming routes.
-export const PAGE_TO_PATH: Record<string, string> = {
-  home:             '/',
-  'why-blissmi':    '/why-blissmi',
-  'how-it-works':   '/how-it-works',
-  'clinical-trust': '/clinical-trust',
-  'how-to-start':   '/pilot',
-  resources:        '/resources',
-  about:            '/about',
-  users:            '/members',
-  customers:        '/employers',
-  insurers:         '/insurers',
-  brokers:          '/for/brokers-consultants',
-  partners:         '/partners',
-  hospitality:      '/hospitality',
-  solutions:        '/solutions',
-  outcomes:         '/outcomes',
-  proof:            '/proof',
-  'experience-labs':'/experience-labs',
-  research:         '/research',
-  contact:          '/contact',
-  privacy:          '/privacy',
-  terms:            '/terms',
-}
-
-// URL path → page-id (derived, for active-state detection)
-const PATH_TO_PAGE: Record<string, string> = Object.fromEntries(
-  Object.entries(PAGE_TO_PATH).map(([id, path]) => [path, id])
-)
-
-type NavCtx = { onNavigate: (pageId: string) => void }
-
-function Root() {
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
-
-  const currentPage = PATH_TO_PAGE[pathname] ?? 'home'
-
-  const handleNavigate = (pageId: string) => {
-    const path = PAGE_TO_PATH[pageId] ?? '/'
-    navigate(path)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  return (
-    <div className="min-h-screen bg-white">
-      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
-      <main className="relative">
-        <Suspense fallback={null}>
-          <Outlet context={{ onNavigate: handleNavigate } satisfies NavCtx} />
-        </Suspense>
-      </main>
-      <Footer onNavigate={handleNavigate} />
-    </div>
-  )
-}
-
-export function useNavCtx() {
-  return useOutletContext<NavCtx>()
-}
-
-type LegacyPageProps = { onNavigate: (pageId: string) => void; currentPage: string }
-
-// Thin wrapper: pulls onNavigate from outlet context and passes {onNavigate, currentPage} to legacy page components
-function R({ Page, pageId }: { Page: React.ComponentType<LegacyPageProps>; pageId: string }) {
-  const { onNavigate } = useNavCtx()
-  return <Page onNavigate={onNavigate} currentPage={pageId} />
-}
 
 export const router = createBrowserRouter([
   {

@@ -49,6 +49,14 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
     return () => document.removeEventListener('mousedown', handleOutside);
   }, []);
 
+  useEffect(() => {
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') setForOpen(false);
+    }
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
   const go = (page: string) => {
     onNavigate(page);
     setIsMenuOpen(false);
@@ -112,6 +120,8 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
                 style={{ color: forActive ? '#fff' : 'rgba(255,255,255,0.55)' }}
                 whileHover={{ color: '#ffffff' }}
                 transition={{ duration: 0.15, ease: 'easeOut' }}
+                aria-haspopup="true"
+                aria-expanded={forOpen}
               >
                 Who it's for
                 <ChevronDown
