@@ -121,7 +121,7 @@ export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) =
 
       <section className="w-full py-28 bg-white">
         <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
-          <Eyebrow>Clinical Advisory Board</Eyebrow>
+          <Eyebrow>Health Advisors</Eyebrow>
           <h2 className="mb-12 max-w-2xl" style={{ color: GREEN, fontSize: '40px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.02em' }}>
             Expertise across six markets
           </h2>
@@ -178,7 +178,7 @@ export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) =
           </div>
 
           <p className="italic" style={{ color: 'rgba(27,48,37,0.38)', fontSize: '14px', lineHeight: 1.6 }}>
-            Advisory panel spanning APAC, UK and EU. Not all medical advisors are shown.
+            Health Advisors spanning APAC, UK and EU. Not all are shown.
           </p>
         </div>
       </section>

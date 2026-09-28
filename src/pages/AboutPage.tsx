@@ -79,7 +79,7 @@ export function AboutPage({ onNavigate: _onNavigate }: { onNavigate: (page: stri
       <PageSeo
         path="/about"
         title="About Blissmi | Workforce Health Intelligence Company"
-        description="Blissmi was founded in 2022 to close the gap between healthcare systems and real health understanding. Meet the team and clinical advisory board."
+        description="Blissmi was founded in 2022 to close the gap between healthcare systems and real health understanding. Meet the team and Health Advisors."
         ogTitle="About Blissmi"
       />
 
@@ -301,14 +301,14 @@ export function AboutPage({ onNavigate: _onNavigate }: { onNavigate: (page: stri
       <section className="py-20 lg:py-[140px]" style={{ backgroundColor: CREAM }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
           <Reveal>
-            <Eyebrow>Our Clinical Advisory Board</Eyebrow>
+            <Eyebrow>Our Health Advisors</Eyebrow>
             <GoldRule />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-16">
               <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 600, color: GREEN, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
                 Clinical expertise you can trust
               </h2>
               <p style={{ fontSize: '17px', lineHeight: 1.75, color: TX, alignSelf: 'end' }}>
-                Every piece of content, every health programme, and every recommendation in Blissmi is underpinned by a clinical advisory network of independent specialists: practitioners who see patients, understand nuance, and believe in honest health guidance.
+                Every piece of content, every health programme, and every recommendation in Blissmi is underpinned by a network of independent Health Advisors: practitioners who see patients, understand nuance, and believe in honest health guidance.
               </p>
             </div>
           </Reveal>
@@ -338,7 +338,7 @@ export function AboutPage({ onNavigate: _onNavigate }: { onNavigate: (page: stri
 
           <Reveal>
             <p style={{ marginTop: '56px', fontSize: '13px', fontStyle: 'italic', color: TX_MUTED, maxWidth: '480px', lineHeight: 1.6 }}>
-              Clinical advisors contribute to content, programme design and quality assurance. They are independent practitioners.
+              Health Advisors contribute to content, programme design and quality assurance. They are independent practitioners.
             </p>
           </Reveal>
         </div>

@@ -410,7 +410,7 @@ export function WhyBlissmiPage({ onNavigate: _onNavigate }: { onNavigate: (page:
 
       <section className="py-16 lg:py-[120px] bg-white">
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
-          <Reveal><Eyebrow>07. Meet our clinical advisors</Eyebrow></Reveal>
+          <Reveal><Eyebrow>07. Meet our Health Advisors</Eyebrow></Reveal>
           <Reveal delay={0.06}>
             <h2 className="font-bold mb-16" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: GREEN, letterSpacing: '-0.02em', lineHeight: 1.1, maxWidth: '600px' }}>
               Clinical rigour behind every recommendation
