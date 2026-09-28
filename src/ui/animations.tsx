@@ -1,5 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
-import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useRef } from 'react';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -144,26 +144,4 @@ export function ParallaxImg({
       />
     </div>
   );
-}
-
-// Count-up animation hook
-export function useCountUp(target: number, inView: boolean, duration = 1800): number {
-  const [count, setCount] = useState(0);
-  const hasRun = useRef(false);
-  useEffect(() => {
-    if (!inView || hasRun.current) return;
-    hasRun.current = true;
-    let startTime = 0;
-    let rafId: number;
-    const tick = (ts: number) => {
-      if (!startTime) startTime = ts;
-      const p = Math.min((ts - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.round(eased * target));
-      if (p < 1) rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
-  }, [inView, target, duration]);
-  return count;
 }

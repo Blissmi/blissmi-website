@@ -1,6 +1,39 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'How long is a Blissmi pilot?',
+    answer:
+      'Twelve weeks, structured so the organisation starts with intelligence, engages its people, delivers relevant support, and then reviews what is working and where to invest next.',
+  },
+  {
+    question: 'How does the pilot begin?',
+    answer:
+      "With a Workforce Health Value Assessment, which establishes baselines and identifies the organisation's priorities. Every decision that follows is grounded in your organisation's own data rather than generic industry averages.",
+  },
+  {
+    question: 'What do employees actually experience?',
+    answer:
+      'Employees take part in interactive Experience Labs, discover what matters most to them, understand their own results, and then receive relevant support based on what the data and their own input reveal. Experience Labs are hands-on, not a passive presentation.',
+  },
+  {
+    question: 'How is the pilot measured?',
+    answer:
+      'Engagement, health signals and relevant outcomes are tracked across the workforce throughout the engagement, so leadership can see what is working and where to invest next.',
+  },
+  {
+    question: 'Is there clinical input into the pilot?',
+    answer:
+      'Yes. Qualified clinicians and care providers across Asia contribute directly to programme design and delivery, so recommendations are evidence-informed.',
+  },
+];
 
 const phases = [
   { eyebrow: 'Phase 1', title: 'Understand', body: "Establish baselines and identify the organisation's potential health and business impact." },
@@ -21,6 +54,12 @@ const diffCards = [
 export function HowToStartPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div>
+      <PageSeo
+        path="/pilot"
+        title="Start a 12-Week Workforce Health Pilot | Blissmi"
+        description="Run a 12-week Blissmi pilot: start with a Workforce Health Value Assessment, engage employees through Experience Labs, then track outcomes throughout."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="w-full py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
@@ -103,6 +142,7 @@ export function HowToStartPage({ onNavigate }: { onNavigate: (page: string) => v
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

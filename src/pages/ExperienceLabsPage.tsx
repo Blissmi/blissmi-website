@@ -1,6 +1,34 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
 import { GREEN, GOLD, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What are Blissmi Experience Labs?',
+    answer:
+      'Hands-on health experiences built for Blissmi pilots. Rather than a passive presentation, employees move through interactive stations that help them connect with their own health, then carry the results into a personalised journey on the Blissmi platform.',
+  },
+  {
+    question: 'Which labs are included?',
+    answer:
+      'Six: the Longevity Checkpoint for functional strength and movement, the Metabolic Health Lab for body composition, the Recovery Lab for stress response with HRV biofeedback, the Brain Lab for reaction time, attention and processing speed, the Integrative Health Lab for evidence-informed integrative approaches, and the Blissmi Personalisation Lab where participants choose their One Better Decision.',
+  },
+  {
+    question: 'How long does each lab take?',
+    answer:
+      'Most labs run between three and ten minutes, with the Integrative Health Lab taking ten to fifteen minutes as a small group experience. The others are designed for high or medium-to-high throughput.',
+  },
+  {
+    question: 'How do Experience Labs connect to the Blissmi platform?',
+    answer:
+      'Employees move from the Experience Labs to the Personalisation Lab, where they understand their results and identify what matters most. That decision carries into the Blissmi platform, which continues as an ongoing personalised journey.',
+  },
+];
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -20,6 +48,12 @@ const flowItems = ['EXPERIENCE LABS', 'PERSONALISATION LAB', 'BLISSMI PLATFORM',
 export function ExperienceLabsPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/experience-labs"
+        title="Blissmi Experience Labs | On-Site Health Assessments"
+        description="Hands-on, on-site health stations covering longevity, metabolic health, recovery, cognition and integrative health, turning assessment into action."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="py-24 lg:py-32" style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
@@ -154,6 +188,7 @@ export function ExperienceLabsPage({ onNavigate }: { onNavigate: (page: string) 
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

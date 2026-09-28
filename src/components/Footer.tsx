@@ -1,10 +1,9 @@
 import { Linkedin, Instagram } from 'lucide-react';
+import { GREEN } from '../ui/theme';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
 }
-
-const GREEN = '#1B3025';
 
 const COL_PLATFORM = [
   { label: 'Why Blissmi',      page: 'why-blissmi' },
@@ -17,6 +16,7 @@ const COL_FOR = [
   { label: 'Employers',             page: 'customers' },
   { label: 'Health Insurers',       page: 'insurers' },
   { label: 'Brokers & Consultants', page: 'brokers' },
+  { label: 'Hospitality',           page: 'hospitality' },
 ];
 
 const COL_COMPANY = [
@@ -76,6 +76,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 href="https://www.linkedin.com/company/blissmihealth"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Blissmi on LinkedIn"
                 className="hover:text-white transition-colors"
                 style={{ color: 'rgba(255,255,255,0.45)' }}
               >
@@ -85,6 +86,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 href="https://www.instagram.com/blissmihealth/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Blissmi on Instagram"
                 className="hover:text-white transition-colors"
                 style={{ color: 'rgba(255,255,255,0.45)' }}
               >

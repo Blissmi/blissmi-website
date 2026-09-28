@@ -1,19 +1,18 @@
 import { motion } from 'motion/react';
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { GOLD, GREEN } from '../ui/theme';
 
 interface NavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
 }
 
-const GOLD = '#C8952A';
-const GREEN = '#1B3025';
-
 const forDropdown = [
   { id: 'customers',    label: 'Employers',             sub: 'Understand and improve workforce health' },
   { id: 'insurers',     label: 'Health Insurers',       sub: 'Strengthen your health proposition' },
   { id: 'brokers',      label: 'Brokers & Consultants', sub: 'Bring a smarter health strategy to clients' },
+  { id: 'hospitality',  label: 'Hospitality',           sub: 'Turn guest stays into lasting health insight' },
 ];
 
 const desktopLinks = [
@@ -27,6 +26,7 @@ const mobileItems = [
   { id: 'customers',    label: 'Employers',             indent: true },
   { id: 'insurers',     label: 'Health Insurers',       indent: true },
   { id: 'brokers',      label: 'Brokers & Consultants', indent: true },
+  { id: 'hospitality',  label: 'Hospitality',           indent: true },
   { id: 'about',        label: 'About' },
   { id: 'contact',      label: 'Contact Us' },
 ];
@@ -49,6 +49,14 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
     }
     document.addEventListener('mousedown', handleOutside);
     return () => document.removeEventListener('mousedown', handleOutside);
+  }, []);
+
+  useEffect(() => {
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') setForOpen(false);
+    }
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
   const go = (page: string) => {
@@ -114,6 +122,8 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
                 style={{ color: forActive ? '#fff' : 'rgba(255,255,255,0.55)' }}
                 whileHover={{ color: '#ffffff' }}
                 transition={{ duration: 0.15, ease: 'easeOut' }}
+                aria-haspopup="true"
+                aria-expanded={forOpen}
               >
                 Who it's for
                 <ChevronDown
@@ -165,6 +175,8 @@ export function StickyNav({ currentPage, onNavigate }: NavigationProps) {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 rounded-md transition-colors"
               style={{ color: 'rgba(255,255,255,0.80)' }}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>

@@ -1,15 +1,33 @@
-import { createBrowserRouter } from 'react-router-dom'
 import { HomePage } from './HomePage'
 import { Root } from './routing/Root'
 import { R } from './routing/PageRenderer'
-import {
-  AboutPage, UsersPage, ContactPage, CustomersPage, PartnersPage, ResearchPage,
-  InsurersPage, TermsPage, PrivacyPage, WhyBlissmiPage, HowItWorksPage, ClinicalTrustPage,
-  HowToStartPage, ResourcesPage, BrokersPage, HospitalityPage, SolutionsPage,
-  OutcomesPage, ProofPage, ExperienceLabsPage,
-} from './lazyPages'
+import { AboutPage } from './pages/AboutPage'
+import { UsersPage } from './pages/UsersPage'
+import { ContactPage } from './pages/ContactPage'
+import { CustomersPage } from './pages/CustomersPage'
+import { PartnersPage } from './pages/PartnersPage'
+import { ResearchPage } from './pages/ResearchPage'
+import { InsurersPage } from './pages/InsurersPage'
+import { TermsPage } from './pages/TermsPage'
+import { PrivacyPage } from './pages/PrivacyPage'
+import { WhyBlissmiPage } from './pages/WhyBlissmiPage'
+import { HowItWorksPage } from './pages/HowItWorksPage'
+import { ClinicalTrustPage } from './pages/ClinicalTrustPage'
+import { HowToStartPage } from './pages/HowToStartPage'
+import { ResourcesPage } from './pages/ResourcesPage'
+import { BrokersPage } from './pages/BrokersPage'
+import { HospitalityPage } from './pages/HospitalityPage'
+import { SolutionsPage } from './pages/SolutionsPage'
+import { OutcomesPage } from './pages/OutcomesPage'
+import { ProofPage } from './pages/ProofPage'
+import { ExperienceLabsPage } from './pages/ExperienceLabsPage'
 
-export const router = createBrowserRouter([
+// Server-only mirror of routes.tsx: same route table, but with every page
+// imported eagerly instead of via lazyPages.ts. renderToString() cannot wait
+// on React.lazy()'s Suspense boundary, so the prerender script needs plain
+// synchronous components. Keep this list in sync with routes.tsx and
+// PAGE_TO_PATH in routing/pageMap.ts when adding or removing a page.
+export const routeConfig = [
   {
     path: '/',
     Component: Root,
@@ -38,4 +56,4 @@ export const router = createBrowserRouter([
       { path: '*',                         element: <R Page={HomePage} pageId="home" /> },
     ],
   },
-])
+]

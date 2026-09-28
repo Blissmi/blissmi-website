@@ -3,6 +3,7 @@ import { HoverLift } from '../ui/animations';
 import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
 
 const caseStudies: { client: string; label: string; description: string; photo: string | null; photoAlt: string; linkedIn: string | null }[] = [
   { client: 'AIA Hong Kong', label: 'Health Education Event', description: 'A health intelligence and preventive education event for senior leadership, focused on workforce health strategy and early risk identification.', photo: null, photoAlt: 'Blissmi health education event at AIA Hong Kong', linkedIn: 'https://www.linkedin.com/feed/update/urn:li:activity:7436660491604873216' },
@@ -21,6 +22,12 @@ const engagementItems = [
 export function ProofPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/proof"
+        title="Client Engagements & Proof Points | Blissmi"
+        description="Blissmi engagements with AIA Hong Kong, LVMH, Harmless Harvest and Zurich Insurance: health education events, leadership panels and platform trials."
+        ogTitle="Blissmi Client Engagements"
+      />
 
       <section className="w-full py-36 flex items-center" style={{ backgroundColor: GREEN }}>
         <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">

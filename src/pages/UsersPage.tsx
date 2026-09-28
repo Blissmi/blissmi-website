@@ -1,20 +1,71 @@
 import { Heart, Smartphone, Brain, TrendingUp, Activity, Gamepad2, Upload, CheckCircle, ArrowRight, Star, Linkedin, Instagram, Facebook, Mail } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, type MotionValue } from 'motion/react';
 import { useRef } from 'react';
 import { useResponsive } from '../hooks/useResponsive';
+import { GREEN } from '../ui/theme';
 import pricingBg from 'figma:asset/pricingBg.png';
 import connectDataImg from 'figma:asset/connectDataImg.png';
 import understandHealthImg from 'figma:asset/understandHealthImg.png';
 import personalizedInsightsImg from 'figma:asset/gersonalizedInsightsImg.png';
 import takeActionImg from 'figma:asset/takeActionImg.png';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What can I do with Blissmi?',
+    answer:
+      'Connect wearables so your data syncs automatically, upload blood tests, genetic reports and medical documents for analysis, complete interactive health and cognitive assessments, receive personalised predictions about potential health risks, follow programmes covering nutrition, sleep, mental wellness, cognitive function and physical therapies, and connect with certified health coaches.',
+  },
+  {
+    question: 'Which wearables does Blissmi connect to?',
+    answer:
+      'Apple Watch, Fitbit, Garmin, Oura Ring and more. Once connected, data syncs automatically rather than needing manual entry.',
+  },
+  {
+    question: 'What areas of health does Blissmi track?',
+    answer:
+      'Physical health including body composition, physical activity and stress and recovery; hormonal health including reproductive and stress hormones; emotional well-being including burnout indicators, stress biomarkers and psychological well-being; and cognitive health.',
+  },
+  {
+    question: 'Can my employer see my health results?',
+    answer:
+      'No. Individual health data is never visible to employers or insurers. Anything shared at the organisation level is aggregated and anonymised, participation is voluntary, and you choose what you share.',
+  },
+];
 
 interface UsersPageProps {
   onNavigate: (page: string) => void;
   currentPage: string;
 }
 
-export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
+interface Program {
+  title: string;
+  description: string;
+  duration: string;
+}
+
+function ProgramCard({ program, index, scrollYProgress }: { program: Program; index: number; scrollYProgress: MotionValue<number> }) {
+  const startProgress = 0.1 + index * 0.15;
+  const endProgress = 0.4 + index * 0.15;
+  const y = useTransform(scrollYProgress, [startProgress, endProgress], [400, 0]);
+  return (
+    <motion.div style={{ y }}>
+      <div style={{ backgroundColor: '#D1B4AA', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.07)', height: '100%' }}>
+        <TrendingUp size={32} style={{ color: '#324421', marginBottom: '1rem' }} />
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{program.title}</h3>
+        <p style={{ color: '#374151', fontSize: '0.875rem', marginBottom: '1rem', lineHeight: 1.6 }}>{program.description}</p>
+        <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{program.duration}</div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function UsersPage({ onNavigate, currentPage: _currentPage }: UsersPageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useResponsive();
   const isNarrow = isMobile || isTablet;
@@ -141,6 +192,12 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <PageSeo
+        path="/members"
+        title="Blissmi for Members | Personalised Health Insights"
+        description="Connect your wearables, upload lab reports, take interactive assessments, and get AI health predictions plus programmes built around your health profile."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       {/* Hero Section */}
       <section style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #eff6ff 100%)', padding: isMobile ? '6rem 0 3rem' : '8rem 0 5rem' }}>
@@ -211,7 +268,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
                   onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)'; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
                 >
-                  <div style={{ width: '3rem', height: '3rem', backgroundColor: '#1B3025', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                  <div style={{ width: '3rem', height: '3rem', backgroundColor: GREEN, borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
                     <Icon size={24} style={{ color: '#fff' }} />
                   </div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{feature.title}</h3>
@@ -242,7 +299,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
             {/* Right: 4 Pillars Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', alignContent: 'end' }}>
               {dataTypes.map((data, index) => (
-                <div key={index} style={{ backgroundColor: '#1B3025', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.07)' }}>
+                <div key={index} style={{ backgroundColor: GREEN, borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.07)' }}>
                   <div style={{ fontWeight: 600, color: '#fff', fontSize: '1.125rem', marginBottom: '1rem' }}>{data.name}</div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {data.subItems.map((subItem, subIndex) => (
@@ -300,21 +357,9 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
                 </p>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '1.5rem' }}>
-                {programs.map((program, index) => {
-                  const startProgress = 0.1 + (index * 0.15);
-                  const endProgress = 0.4 + (index * 0.15);
-                  const y = useTransform(scrollYProgress, [startProgress, endProgress], [400, 0]);
-                  return (
-                    <motion.div key={index} style={{ y }}>
-                      <div style={{ backgroundColor: '#D1B4AA', borderRadius: '0.75rem', padding: '1.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.07)', height: '100%' }}>
-                        <TrendingUp size={32} style={{ color: '#324421', marginBottom: '1rem' }} />
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>{program.title}</h3>
-                        <p style={{ color: '#374151', fontSize: '0.875rem', marginBottom: '1rem', lineHeight: 1.6 }}>{program.description}</p>
-                        <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{program.duration}</div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                {programs.map((program, index) => (
+                  <ProgramCard key={index} program={program} index={index} scrollYProgress={scrollYProgress} />
+                ))}
               </div>
             </div>
           </section>
@@ -424,6 +469,7 @@ export function UsersPage({ onNavigate, currentPage }: UsersPageProps) {
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

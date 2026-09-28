@@ -1,15 +1,42 @@
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import heroImage from '../figma/assets/99f81a795a0fa0da23ecb7e806492c79.png';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
+import { FaqSection } from '../ui/FaqSection';
+import { PageSeo } from '../seo/PageSeo';
+import { faqJsonLd } from '../seo/structuredData';
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
 
+const FAQ_ITEMS = [
+  {
+    question: 'How does Blissmi support benefits brokers?',
+    answer: 'Blissmi provides brokers with a white-label benefits platform that automates plan recommendations, reduces admin time, and improves employee satisfaction scores.',
+  },
+  {
+    question: 'How can Blissmi help me grow my book of business?',
+    answer: 'Blissmi helps you differentiate your proposition, strengthen your advisory role, create deeper client engagement, and demonstrate measurable value through aggregated insights and outcome measurement.',
+  },
+  {
+    question: 'How do I get started as a Blissmi partner?',
+    answer: 'You introduce Blissmi to a client, run the Workforce Health Value Assessment together, design a pilot through Experience Labs, and then track engagement and outcomes as the programme rolls out.',
+  },
+];
+
 export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div>
+      <PageSeo
+        path="/for/brokers-consultants"
+        title="Employee Benefits Platform for Brokers & Consultants | Blissmi"
+        description="Blissmi gives brokers and consultants a workforce health data analytics layer alongside employee benefits: aggregated insight, measurable client outcomes."
+        ogTitle="Blissmi for Brokers & Consultants"
+        ogDescription="Deliver smarter, personalised employee benefits with workforce health intelligence. Built for brokers and consultants."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section style={{ backgroundColor: GREEN, minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] w-full py-16 lg:py-[100px]">
@@ -17,14 +44,14 @@ export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void
             <div>
               <Eyebrow light>For Brokers & Consultants</Eyebrow>
               <h1 className="text-white leading-none mb-7" style={{ fontSize: 'clamp(40px, 5vw, 60px)', letterSpacing: '-0.02em', fontWeight: 600 }}>
-                Give your clients a smarter health strategy.
+                The Employee Benefits Platform Built for Brokers &amp; Consultants
               </h1>
               <p style={{ color: 'rgba(255,255,255,0.65)', maxWidth: '480px', lineHeight: 1.55, fontSize: '17px' }}>
                 Blissmi gives brokers and consultants a workforce health intelligence layer that connects employee engagement, personalised health experiences and measurable outcomes.
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '540px', justifySelf: 'end' }}>
-              <img src={heroImage} alt="Broker strategy illustration" className="w-full h-full object-cover" />
+              <ImageWithFallback src={heroImage} alt="Broker strategy illustration" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -116,12 +143,12 @@ export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
           <Eyebrow>Why partner with Blissmi</Eyebrow>
           <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '56px', maxWidth: '560px' }}>
-            Four reasons brokers choose Blissmi
+            Why Brokers Choose Blissmi
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
             {[
-              { num: '01', title: 'Differentiate Your Proposition', body: 'Bring something more distinctive to tenders and client conversations.' },
-              { num: '02', title: 'Strengthen Your Advisory Role', body: 'Use workforce intelligence to move from benefits placement toward health strategy.' },
+              { num: '01', title: 'Personalized Health Plans at Scale', body: 'Give every employee a personalised health plan and experience, without adding operational work for your team.' },
+              { num: '02', title: 'Reduce Administrative Overhead', body: "Blissmi's activation layer handles day-to-day delivery, so you spend less time on admin and more time on client strategy." },
               { num: '03', title: 'Create Client Engagement', body: 'Give clients an employee experience they can see and feel.' },
               { num: '04', title: 'Demonstrate Value', body: 'Use aggregated insights and outcome measurement to support ongoing client conversations.' },
             ].map((card) => (
@@ -140,11 +167,26 @@ export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void
         </div>
       </section>
 
+      <section className="py-16 lg:py-[120px]" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+          <Eyebrow>For your business</Eyebrow>
+          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '640px' }}>
+            Grow Your Book of Business with Blissmi
+          </h2>
+          <p style={{ fontSize: '17px', lineHeight: 1.6, color: TX_BODY, maxWidth: '560px', marginBottom: '12px' }}>
+            A stronger workforce health story helps you differentiate in tenders, deepen existing client relationships, and open the door to new conversations across your book of business.
+          </p>
+          <p style={{ fontSize: '12px', fontStyle: 'italic', color: TX_MUTED }}>
+            These represent potential strategic benefits. Individual outcomes will vary by client and context.
+          </p>
+        </div>
+      </section>
+
       <section className="py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
           <Eyebrow light>How we work together</Eyebrow>
           <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '560px' }}>
-            How we work together
+            How It Works for Consultants
           </h2>
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.65)', maxWidth: '540px', marginBottom: '56px' }}>
             You bring the client relationship. Blissmi brings the workforce health intelligence and activation layer.
@@ -169,6 +211,8 @@ export function BrokersPage({ onNavigate }: { onNavigate: (page: string) => void
           </div>
         </div>
       </section>
+
+      <FaqSection items={FAQ_ITEMS} />
 
       <section className="py-16 lg:py-[120px] bg-white">
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">

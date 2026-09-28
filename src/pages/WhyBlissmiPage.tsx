@@ -1,6 +1,6 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-import type { ReactNode } from 'react';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import victoriaImage from '../figma/assets/new/victoriaReal.jpg';
 import clareImage from '../figma/assets/new/clareReal.jpg';
 import karenImage from '../figma/assets/new/karenReal.jpg';
@@ -10,6 +10,34 @@ import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
 import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'Why does an organisation need a workforce health intelligence layer?',
+    answer:
+      'Without a connecting layer, organisations cannot see where health risks are emerging, which populations need attention, what interventions are working, whether current investment is improving outcomes, or where to invest next. The health programmes exist, but the evidence to steer them does not.',
+  },
+  {
+    question: 'Does Blissmi replace our existing health vendors?',
+    answer:
+      'No. Blissmi aggregates data from existing health vendors, wearables, assessments and HR systems and sits across them as an intelligence layer, so the programmes already in place can be measured and improved rather than replaced.',
+  },
+  {
+    question: 'What becomes possible with Blissmi in place?',
+    answer:
+      'Four things: understanding where risk sits across the workforce, personalising action for each individual, measuring outcomes against a baseline, and optimising where health investment goes next.',
+  },
+  {
+    question: 'How does the intelligence layer work end to end?',
+    answer:
+      'Blissmi aggregates data from existing sources, surfaces meaningful patterns and risk signals using clinical AI, determines the highest-impact intervention based on evidence and individual context, delivers personalised actions, coaching and care recommendations, tracks engagement, behaviour change and health outcomes against baseline, then continuously refines interventions.',
+  },
+];
 
 const TX = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -137,9 +165,15 @@ const ADVISORS = [
   { name: 'Dr Lawrence Lau', role: "Men's Health", image: lawrenceImage },
 ];
 
-export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+export function WhyBlissmiPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/why-blissmi"
+        title="Why Blissmi | The Workforce Health Intelligence Layer"
+        description="Most organisations do not need more health programmes; they need the intelligence to make the ones they have perform. See how Blissmi connects them."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section style={{ position: 'relative', overflow: 'hidden', minHeight: '60vh', backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] flex flex-col justify-center" style={{ position: 'relative', zIndex: 10, minHeight: '60vh' }}>
@@ -341,7 +375,7 @@ export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => v
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <Reveal delay={0.1}>
               <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '1' }}>
-                <img src={employeeJourneyImage} alt="Employee at desk illustration" className="w-full h-full object-cover" />
+                <ImageWithFallback src={employeeJourneyImage} alt="Employee at desk illustration" className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <div>
@@ -386,7 +420,7 @@ export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => v
             {ADVISORS.map((a) => (
               <StaggerItem key={a.name}>
                 <div className="rounded-2xl overflow-hidden bg-white" style={{ border: '1px solid rgba(27,48,37,0.07)' }}>
-                  <img src={a.image} alt={a.name} className="w-full object-cover" style={{ aspectRatio: '1', objectPosition: 'top' }} />
+                  <ImageWithFallback src={a.image} alt={a.name} className="w-full object-cover" style={{ aspectRatio: '1', objectPosition: 'top' }} />
                   <div className="p-5">
                     <p className="font-bold" style={{ fontSize: '15px', color: GREEN }}>{a.name}</p>
                     <p className="text-xs" style={{ color: TX_MUTED }}>{a.role}</p>
@@ -450,6 +484,8 @@ export function WhyBlissmiPage({ onNavigate }: { onNavigate: (page: string) => v
           </div>
         </div>
       </section>
+
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

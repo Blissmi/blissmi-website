@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
 import { GREEN, GOLD, CREAM, EASE } from '../ui/theme';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { Eyebrow } from '../ui/Eyebrow';
 
 import natashaImage from '../figma/assets/natashaHiRes.jpeg';
@@ -13,6 +14,7 @@ import shahaniImage from '../figma/assets/new/shahaniReal.jpg';
 import karenImage from '../figma/assets/new/karenReal.jpg';
 import lawrenceImage from '../figma/assets/new/lawrenceReal.jpg';
 import arupImage from '../figma/assets/new/arupReal.jpg';
+import { PageSeo } from '../seo/PageSeo';
 
 const TX = 'rgba(27,48,37,0.70)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -71,9 +73,15 @@ const journey = [
   { period: 'Now', label: 'Building for what comes next', body: 'Expanding across APAC and into new markets, building the infrastructure to bring personalised, preventive health to millions of people.' },
 ];
 
-export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+export function AboutPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div>
+      <PageSeo
+        path="/about"
+        title="About Blissmi | Workforce Health Intelligence Company"
+        description="Blissmi was founded in 2022 to close the gap between healthcare systems and real health understanding. Meet the team and clinical advisory board."
+        ogTitle="About Blissmi"
+      />
 
       <section style={{ backgroundColor: GREEN, minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] w-full py-20 lg:py-[120px]">
@@ -114,7 +122,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (page: string) => void }
               className="rounded-2xl overflow-hidden"
               style={{ aspectRatio: '1 / 1', width: '100%', maxWidth: '560px', justifySelf: 'end' }}
             >
-              <img
+              <ImageWithFallback
                 src={heroIllustration}
                 alt="Blissmi"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
