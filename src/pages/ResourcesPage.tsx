@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { HoverLift } from '../ui/animations';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
 
 const CATEGORIES = ['All', 'Workforce Health', "Women's Health", 'Prevention', 'Mental Health', 'Healthcare Costs', 'Employee Engagement', 'Benefits Strategy', 'ROI and Measurement'];
 
@@ -35,6 +36,12 @@ export function ResourcesPage({ onNavigate: _onNavigate }: { onNavigate: (page: 
 
   return (
     <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
+      <PageSeo
+        path="/resources"
+        title="Workforce Health Resources & Insights | Blissmi"
+        description="Blissmi's resource library on workforce health ROI, preventive health investment, women's health at work and healthcare cost trends across Asia."
+        ogTitle="Blissmi Resources"
+      />
 
       <section className="w-full py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">

@@ -8,6 +8,44 @@ import valueAssessmentImage from './figma/assets/d858f3333fcb6d80de0f35e86ca7709
 import preventiveHealthImage from './figma/assets/fa4c1585b888fd37bcd22b0ce1c12527.jpeg';
 import heroVideo from './figma/assets/TashK_A_5-second_seamless_looping_video_of_a_small_group_of_A_4ef0fda2-c7cd-4688-9158-6eb1d9c33d37_3.mp4';
 import { GREEN, GOLD, CREAM, EASE } from './ui/theme';
+import { FaqSection } from './ui/FaqSection';
+import { PageSeo } from './seo/PageSeo';
+import { faqJsonLd, type FaqItem } from './seo/structuredData';
+
+// Answers here must stay true to what the platform does today and match the
+// detail pages they summarise (/why-blissmi, /how-it-works, /clinical-trust).
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What is Blissmi?',
+    answer:
+      'Blissmi is a workforce health intelligence platform for employers, health insurers and brokers. It brings together data from existing health vendors, wearables, assessments and HR systems, uses clinical AI to surface risk signals, and turns those signals into personalised support for employees and anonymised workforce-level insight for the organisation.',
+  },
+  {
+    question: 'How is Blissmi different from a standard employee benefits programme?',
+    answer:
+      'Blissmi is an intelligence layer across the health investments an organisation already has, not another point solution. Most organisations do not need more health programmes; they need better intelligence to make the programmes they already have perform. Blissmi shows where risk is emerging, which interventions are working, and where to invest next.',
+  },
+  {
+    question: 'What health data does Blissmi analyse?',
+    answer:
+      'Blissmi aggregates data from wearables such as Apple Watch, Fitbit, Garmin and Oura Ring, self-reported inputs, uploaded lab and medical reports, interactive health and cognitive assessments, and existing health records — then identifies patterns and emerging risks across individual and workforce data.',
+  },
+  {
+    question: 'Can employers or insurers see individual employee health data?',
+    answer:
+      'No. Individual health data is never visible to employers or insurers. All workforce insights are anonymised and aggregated. Participation is voluntary, consent is explicit, employees choose what they share, and withdrawing at any time is straightforward.',
+  },
+  {
+    question: 'Who does Blissmi work with?',
+    answer:
+      'Employers looking to understand and improve workforce health, health insurers who want to create more value for members and corporate clients, brokers and consultants building a smarter health strategy for their clients, and health providers and practitioners who deliver care within the Blissmi ecosystem.',
+  },
+  {
+    question: 'How does an organisation get started with Blissmi?',
+    answer:
+      "Most organisations start with the Workforce Health Value Assessment, which models healthcare cost exposure, productivity loss, turnover costs and preventable risk burden using the organisation's own data. From there, a 12-week pilot runs Experience Labs for employees, delivers personalised support, and tracks engagement and outcomes.",
+  },
+];
 
 export function HomePage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [hoveredPartner, setHoveredPartner] = useState<string | null>(null);
@@ -23,6 +61,14 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
 
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/"
+        title="Workforce Health Intelligence & Benefits Analytics | Blissmi"
+        description="Workforce health intelligence for employers, insurers and brokers. Blissmi turns employee benefits and health data into analytics that show where to act."
+        ogTitle="Workforce Health Intelligence | Blissmi — Better Outcomes"
+        ogDescription="Blissmi is the workforce health intelligence platform built for employers, health insurers, and brokers. Better health outcomes, smarter benefits decisions."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section ref={heroRef} style={{ position: 'relative', overflow: 'hidden', minHeight: '90vh' }}>
         <motion.div
@@ -275,15 +321,6 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
             <Stagger staggerDelay={0.14} delayChildren={0.05} className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
               {[
                 {
-                  img: valueAssessmentImage,
-                  imgAlt: 'Two colleagues reviewing workforce health documents',
-                  tag: 'For Leaders',
-                  title: 'Workforce Health Value Assessment',
-                  body: 'Understand the potential financial impact of workforce health risks.',
-                  cta: 'Try the assessment →',
-                  action: 'contact',
-                },
-                {
                   img: preventiveHealthImage,
                   imgAlt: 'Preventive health screening',
                   tag: 'For Pilot Companies',
@@ -291,6 +328,15 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
                   body: 'Give your people a practical, engaging way to understand their health.',
                   cta: 'See how it works →',
                   action: 'how-it-works',
+                },
+                {
+                  img: valueAssessmentImage,
+                  imgAlt: 'Two colleagues reviewing workforce health documents',
+                  tag: 'For Leaders',
+                  title: 'Workforce Health Value Assessment',
+                  body: 'Understand the potential financial impact of workforce health risks.',
+                  cta: 'Try the assessment →',
+                  action: 'contact',
                 },
               ].map((card) => (
                 <StaggerItem key={card.title}>
@@ -415,6 +461,8 @@ export function HomePage({ onNavigate }: { onNavigate: (page: string) => void })
           </Stagger>
         </div>
       </section>
+
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

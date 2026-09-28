@@ -10,6 +10,34 @@ import { Reveal, Stagger, StaggerItem, HoverLift } from '../ui/animations';
 import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'Why does an organisation need a workforce health intelligence layer?',
+    answer:
+      'Without a connecting layer, organisations cannot see where health risks are emerging, which populations need attention, what interventions are working, whether current investment is improving outcomes, or where to invest next. The health programmes exist, but the evidence to steer them does not.',
+  },
+  {
+    question: 'Does Blissmi replace our existing health vendors?',
+    answer:
+      'No. Blissmi aggregates data from existing health vendors, wearables, assessments and HR systems and sits across them as an intelligence layer, so the programmes already in place can be measured and improved rather than replaced.',
+  },
+  {
+    question: 'What becomes possible with Blissmi in place?',
+    answer:
+      'Four things: understanding where risk sits across the workforce, personalising action for each individual, measuring outcomes against a baseline, and optimising where health investment goes next.',
+  },
+  {
+    question: 'How does the intelligence layer work end to end?',
+    answer:
+      'Blissmi aggregates data from existing sources, surfaces meaningful patterns and risk signals using clinical AI, determines the highest-impact intervention based on evidence and individual context, delivers personalised actions, coaching and care recommendations, tracks engagement, behaviour change and health outcomes against baseline, then continuously refines interventions.',
+  },
+];
 
 const TX = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -140,6 +168,12 @@ const ADVISORS = [
 export function WhyBlissmiPage({ onNavigate: _onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/why-blissmi"
+        title="Why Blissmi | The Workforce Health Intelligence Layer"
+        description="Most organisations do not need more health programmes; they need the intelligence to make the ones they have perform. See how Blissmi connects them."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section style={{ position: 'relative', overflow: 'hidden', minHeight: '60vh', backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px] flex flex-col justify-center" style={{ position: 'relative', zIndex: 10, minHeight: '60vh' }}>
@@ -450,6 +484,8 @@ export function WhyBlissmiPage({ onNavigate: _onNavigate }: { onNavigate: (page:
           </div>
         </div>
       </section>
+
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

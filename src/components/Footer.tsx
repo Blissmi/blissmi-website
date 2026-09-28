@@ -16,6 +16,7 @@ const COL_FOR = [
   { label: 'Employers',             page: 'customers' },
   { label: 'Health Insurers',       page: 'insurers' },
   { label: 'Brokers & Consultants', page: 'brokers' },
+  { label: 'Hospitality',           page: 'hospitality' },
 ];
 
 const COL_COMPANY = [

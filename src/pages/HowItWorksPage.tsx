@@ -15,6 +15,34 @@ import brainLabImg from '../figma/assets/brainlab.png';
 import { GOLD, GREEN, CREAM, EASE } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'How does Blissmi turn health data into action?',
+    answer:
+      'In four steps. Blissmi aggregates health data, identifies patterns, emerging risks and opportunities across individual and workforce data, determines the highest-impact intervention for each individual and for the workforce, then delivers personalised coaching and trusted care recommendations at the right moment.',
+  },
+  {
+    question: 'Where does Blissmi get health data from?',
+    answer:
+      'From wearables, self-reported inputs and existing health records, alongside interactive assessments completed by employees. The intelligence layer updates as new data arrives, refining its recommendations over time.',
+  },
+  {
+    question: "Is Blissmi's intelligence layer evidence-based?",
+    answer:
+      'Yes. Clinical frameworks and peer-reviewed research underpin every intervention pathway, and outcomes feed back into the model so both individual guidance and workforce-level strategy improve over time.',
+  },
+  {
+    question: 'What can employees do with their insights?',
+    answer:
+      'Insights are activated through the Blissmi AI Coaching App for personalised daily guidance, the Hybrid Experiential Lab for hands-on health experiences, and Blissmi Team Challenges for social, measurable behaviour-change experiences.',
+  },
+];
 
 const STEPS = [
   { num: '01', title: 'Connect', body: 'Aggregate health data from wearables, self-reported inputs and existing health records.', tint: '#0e1e15', image: healthMapImg },
@@ -122,6 +150,12 @@ function JourneyFlow() {
 export function HowItWorksPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/how-it-works"
+        title="How Blissmi Works | Health Data to Personalised Action"
+        description="How Blissmi works: aggregate health data, identify patterns and emerging risk with clinical AI, choose the highest-impact intervention, then deliver it."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
@@ -368,6 +402,7 @@ export function HowItWorksPage({ onNavigate }: { onNavigate: (page: string) => v
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

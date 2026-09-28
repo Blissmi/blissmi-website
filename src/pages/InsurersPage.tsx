@@ -12,6 +12,34 @@ import illFactory from '../figma/assets/800aa053b983167dcdd21c216113ba39.png';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'How does Blissmi work with health insurers?',
+    answer:
+      "Blissmi adds a personalised, intelligent health experience to an insurer's existing offering. It creates a new entry point into prevention by helping members understand their health and identify relevant actions before problems become more costly, increases engagement with experiences members actually want to use, and provides aggregated, anonymised insights that help demonstrate engagement, intervention opportunities and outcomes.",
+  },
+  {
+    question: 'How can insurers make Blissmi available to their clients?',
+    answer:
+      "Blissmi can be included as part of a health insurance proposition, offered as a prevention benefit, sponsored by an employer, or run as targeted population programmes, women's health programmes or workforce health pilots.",
+  },
+  {
+    question: 'What do members actually experience?',
+    answer:
+      'Members take part in Experience Labs, hands-on health stations covering functional strength, metabolic health, stress recovery, cognitive performance and integrative health. The Personalisation Lab helps them understand their results and choose a next step, which then continues as a personalised journey in the Blissmi platform.',
+  },
+  {
+    question: 'How is member health data protected?',
+    answer:
+      'Individual health data is never visible to employers or insurers. All workforce insights are anonymised and aggregated, participation is voluntary, and every insight is grounded in evidence-based clinical standards.',
+  },
+];
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -67,6 +95,13 @@ interface InsurersPageProps {
 export function InsurersPage({ onNavigate }: InsurersPageProps) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/insurers"
+        title="Workforce Health Intelligence for Health Insurers | Blissmi"
+        description="Blissmi helps health insurers strengthen their proposition with personalised member health experiences, prevention entry points and anonymised insight."
+        ogTitle="Blissmi for Health Insurers"
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: GREEN, minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
@@ -347,6 +382,7 @@ export function InsurersPage({ onNavigate }: InsurersPageProps) {
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

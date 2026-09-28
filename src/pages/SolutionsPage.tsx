@@ -1,5 +1,28 @@
 import { motion } from 'motion/react';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What can organisations activate with Blissmi?',
+    answer:
+      "Three things. The Blissmi AI Coaching App delivers personalised daily guidance matched to each employee's health profile. The Hybrid Experiential Lab provides hands-on health experiences that turn assessment into understanding and action. Blissmi Team Challenges are social, measurable behaviour-change experiences that build engagement and momentum.",
+  },
+  {
+    question: 'Which health areas does Blissmi cover?',
+    answer:
+      "Women's health, prevention and risk reduction, mental and cognitive health, healthy ageing, chronic disease support, and environmental health.",
+  },
+  {
+    question: 'How are these solutions personalised?',
+    answer:
+      "Each one is shaped by actual workforce intelligence rather than generic templates. Guidance in the coaching app is matched to an individual's health profile, and team challenges are designed around what the workforce data actually shows.",
+  },
+];
 
 const GHOST = 'rgba(27,48,37,0.07)';
 const GHOST_LIGHT = 'rgba(255,255,255,0.07)';
@@ -15,6 +38,12 @@ const solutions = [
 export function SolutionsPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen font-sans antialiased" style={{ backgroundColor: CREAM }}>
+      <PageSeo
+        path="/solutions"
+        title="Blissmi Solutions | AI Coaching, Labs & Team Challenges"
+        description="One intelligence layer, activated three ways: the Blissmi AI Coaching App, the Hybrid Experiential Lab and Team Challenges, across six health areas."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="relative overflow-hidden flex flex-col justify-end" style={{ backgroundColor: GREEN, minHeight: '80vh', paddingBottom: '7vw' }}>
         <span aria-hidden="true" className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none leading-none" style={{ fontSize: 'clamp(180px, 28vw, 380px)', color: GHOST_LIGHT, lineHeight: 1, fontWeight: 700 }}>S</span>
@@ -103,6 +132,7 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (page: string) => vo
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

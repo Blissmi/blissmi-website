@@ -3,6 +3,39 @@ import { motion } from 'motion/react';
 import { useResponsive } from '../hooks/useResponsive';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import testimonialImage from 'figma:asset/TashK_a_group_of_health_service_providers_asian_caucasian_and_841cbb24-1ee4-434a-aee9-c1db843adf8a_0.png.png';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'Who can join the Blissmi partner network?',
+    answer:
+      'Practitioners across the whole-health network, including psychologists, nutritionists, physiotherapists and coaches, who want to collaborate on coordinated, wraparound care within the Blissmi ecosystem.',
+  },
+  {
+    question: 'How are clients matched to partners?',
+    answer:
+      'Matching considers specialty, availability, client goals, communication style and location, so partners are introduced to pre-qualified clients suited to their expertise rather than chasing leads.',
+  },
+  {
+    question: 'How long does onboarding take?',
+    answer:
+      'Setup takes under 48 hours. There are no complex integrations and no IT department required; your profile, availability and intake process go live in minutes.',
+  },
+  {
+    question: 'What does the partner dashboard include?',
+    answer:
+      'Clients, bookings, progress, revenue and insights in one place, with outcome and engagement data you can use to build trust and retention.',
+  },
+  {
+    question: "How does Blissmi's commercial model work for partners?",
+    answer:
+      'Blissmi does not monetise on volume. Clients engage with Blissmi before, during and after seeing a partner, and stay accountable between sessions, so the model is built around long-term outcomes rather than throughput.',
+  },
+];
 
 interface PartnersPageProps {
   onNavigate: (page: string) => void;
@@ -69,6 +102,12 @@ export function PartnersPage({ onNavigate, currentPage: _currentPage }: Partners
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <PageSeo
+        path="/partners"
+        title="Become a Blissmi Health Partner | Practitioner Network"
+        description="Join the Blissmi partner network: matched with pre-qualified clients, onboarding and scheduling handled, outcomes tracked, and live in under 48 hours."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       {/* Hero Section */}
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: '#FDFBF8' }}>
@@ -368,6 +407,7 @@ export function PartnersPage({ onNavigate, currentPage: _currentPage }: Partners
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

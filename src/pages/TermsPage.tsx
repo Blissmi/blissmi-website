@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileText, AlertTriangle, Database, Scale } from 'lucide-react';
 import { GREEN, GOLD } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
 
 const BG = '#f5ede9';
 
@@ -76,6 +77,12 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
 export function TermsPage({ onNavigate: _onNavigate, currentPage: _currentPage }: TermsPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
+      <PageSeo
+        path="/terms"
+        title="Terms of Service | Blissmi"
+        description="The terms that apply when you use the Blissmi website, platform and services, including acceptable use, accounts, intellectual property and liability."
+        ogTitle="Blissmi Terms of Service"
+      />
 
       {/* Hero */}
       <section style={{ backgroundColor: GREEN, padding: '7rem 1rem 5rem' }}>

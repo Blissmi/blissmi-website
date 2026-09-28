@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Lock, Globe, Mail } from 'lucide-react';
 import { GREEN, GOLD, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
 
 const BG = CREAM;
 
@@ -71,6 +72,12 @@ function CardPara({ children, style }: { children: React.ReactNode; style?: Reac
 export function PrivacyPage({ onNavigate: _onNavigate, currentPage: _currentPage }: PrivacyPageProps) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: BG }}>
+      <PageSeo
+        path="/privacy"
+        title="Privacy Policy | Blissmi"
+        description="How Blissmi collects, uses, stores and protects personal and health data, the choices available to you, and how to get in touch about your information."
+        ogTitle="Blissmi Privacy Policy"
+      />
 
       {/* Hero */}
       <section style={{ backgroundColor: GREEN, padding: '7rem 1rem 5rem' }}>

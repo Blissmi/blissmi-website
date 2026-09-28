@@ -8,6 +8,34 @@ import harmlessHarvestPhoto from '../figma/assets/71f1382b49f14df9da49a78b46af02
 import zurichEventPhoto from '../figma/assets/eefd2a2c75c62973f91b5950a602632b.png';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'How does Blissmi help employers manage healthcare costs?',
+    answer:
+      "Blissmi starts with the Workforce Health Value Assessment, which models healthcare cost exposure, productivity loss, turnover costs and preventable risk burden using the organisation's own data. From there, aggregated insight shows where risk is emerging so intervention can happen earlier, before it becomes a claim.",
+  },
+  {
+    question: 'What does an employer engagement with Blissmi look like?',
+    answer:
+      'There are four stages. Understand the opportunity through the Workforce Health Value Assessment. Engage your people with Experience Labs, which give employees a tangible entry point into their own health. Build personalised journeys by connecting individual health data to guidance, coaching and care recommendations. Then measure what is working through aggregated and anonymised workforce insights.',
+  },
+  {
+    question: 'Which organisations has Blissmi worked with?',
+    answer:
+      "Blissmi has delivered engagements with AIA Hong Kong, LVMH, Harmless Harvest and Zurich Insurance, ranging from health education events and women's health leadership panels to platform trials and preventive screenings. Each engagement is scoped to the organisation's needs, and deliverables are defined before it begins.",
+  },
+  {
+    question: 'Can employers see individual employee health data?',
+    answer:
+      'No. Individual health data is never visible to employers. Workforce insights are aggregated and anonymised, and employee participation is voluntary.',
+  },
+];
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
 
@@ -91,6 +119,13 @@ interface CustomersPageProps {
 export function CustomersPage({ onNavigate }: CustomersPageProps) {
   return (
     <div>
+      <PageSeo
+        path="/employers"
+        title="Workforce Health Analytics for Employers | Blissmi"
+        description="Blissmi helps employers understand health spend and risk exposure, engage employees through Experience Labs, and measure which health investments work."
+        ogTitle="Blissmi for Employers | Workforce Health Intelligence"
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: GREEN, minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
@@ -246,6 +281,7 @@ export function CustomersPage({ onNavigate }: CustomersPageProps) {
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

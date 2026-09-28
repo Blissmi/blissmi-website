@@ -13,6 +13,34 @@ import zaraChanImage from '../figma/assets/new/zaraChanReal.jpg';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
 import { Btn } from '../ui/Btn';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'Is employee health data shared with employers?',
+    answer:
+      'No. Individual health records, symptoms and diagnoses, assessment responses, daily health activity and personal recommendations stay with the employee. Employers and insurers see only workforce-level trends, population health insights, programme engagement, aggregate risk indicators and anonymous outcome reporting.',
+  },
+  {
+    question: 'Is Blissmi GDPR compliant?',
+    answer:
+      'Blissmi operates in compliance with GDPR and applicable regional data regulations across every market it serves. Only the data necessary to deliver meaningful health intelligence is collected: no surplus collection and no speculative retention.',
+  },
+  {
+    question: 'Do employees have to take part?',
+    answer:
+      'No. Participation is voluntary and consent is explicit. Employees are told how their data is used, who can see what and what protections are in place before they engage with the platform, and withdrawing at any time is straightforward.',
+  },
+  {
+    question: "Does Blissmi's AI replace clinical judgment?",
+    answer:
+      'No. The platform analyses individual and workforce data to surface patterns that would otherwise go undetected, but clinical oversight validates what reaches employees and employers so it is accurate, proportionate and appropriate. Where action is needed, employees are connected to trusted specialists and providers. The platform supports human clinical judgment rather than replacing it.',
+  },
+];
 
 const clinicalLayers = [
   { number: '01', title: 'AI identifies patterns at scale', body: "Blissmi's platform analyses individual and workforce data to surface patterns that would otherwise go undetected. This creates a real-time view of health across the organisation." },
@@ -54,6 +82,13 @@ const advisors: { image: string | null; name: string; specialty: string; locatio
 export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/clinical-trust"
+        title="Clinical Governance & Health Data Privacy | Blissmi"
+        description="Clinical oversight on every insight, GDPR-aligned data practices, explicit employee consent, and workforce reporting that stays anonymised and aggregated."
+        ogTitle="Clinical Trust & Data Privacy at Blissmi"
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="w-full py-36 flex items-center" style={{ backgroundColor: GREEN }}>
         <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
@@ -227,6 +262,7 @@ export function ClinicalTrustPage({ onNavigate }: { onNavigate: (page: string) =
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} background={CREAM} />
     </div>
   );
 }

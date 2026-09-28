@@ -1,5 +1,28 @@
 import { motion } from 'motion/react';
 import { GOLD, GREEN, CREAM } from '../ui/theme';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What business outcomes does Blissmi target?',
+    answer:
+      'Four: reducing healthcare cost escalation by identifying emerging risks before they become claims, reducing burnout and productivity loss by detecting workforce fatigue early, improving retention and employee experience by supporting people through health and life transitions, and maximising existing health investments by showing which programmes drive outcomes and where the gaps are.',
+  },
+  {
+    question: 'How does Blissmi quantify the opportunity?',
+    answer:
+      "Through the Workforce Health Value Assessment, which models healthcare cost exposure, productivity loss and preventable risk burden from the organisation's own data. The figures it produces are illustrative scenarios showing potential value creation at 1%, 3% and 5% improvement, not guaranteed results.",
+  },
+  {
+    question: "Does Blissmi replace an organisation's existing health programmes?",
+    answer:
+      'No. Blissmi is an intelligence layer over existing health investments. It shows which programmes are driving outcomes and where the gaps are, so budget can be redirected toward the interventions with evidence of impact.',
+  },
+];
 
 const GHOST = 'rgba(27,48,37,0.07)';
 const GHOST_LIGHT = 'rgba(255,255,255,0.07)';
@@ -21,6 +44,12 @@ const assessmentModels = ['Healthcare cost exposure', 'Productivity loss', 'Turn
 export function OutcomesPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen font-sans antialiased" style={{ backgroundColor: CREAM }}>
+      <PageSeo
+        path="/outcomes"
+        title="Workforce Health Outcomes & Business Impact | Blissmi"
+        description="Where workforce health intelligence creates value: slower healthcare cost escalation, less burnout and productivity loss, and stronger staff retention."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       <section className="relative overflow-hidden flex flex-col justify-end" style={{ backgroundColor: GREEN, minHeight: '80vh', paddingBottom: '7vw' }}>
         <span aria-hidden="true" className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none leading-none" style={{ fontSize: 'clamp(180px, 28vw, 380px)', color: GHOST_LIGHT, lineHeight: 1, fontWeight: 700 }}>O</span>
@@ -107,6 +136,7 @@ export function OutcomesPage({ onNavigate }: { onNavigate: (page: string) => voi
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

@@ -9,6 +9,34 @@ import connectDataImg from 'figma:asset/connectDataImg.png';
 import understandHealthImg from 'figma:asset/understandHealthImg.png';
 import personalizedInsightsImg from 'figma:asset/gersonalizedInsightsImg.png';
 import takeActionImg from 'figma:asset/takeActionImg.png';
+import { PageSeo } from '../seo/PageSeo';
+import { FaqSection } from '../ui/FaqSection';
+import { faqJsonLd, type FaqItem } from '../seo/structuredData';
+
+// Every answer below is also rendered on the page by <FaqSection>: FAQPage
+// markup is only valid when the same Q&A is visible to the reader.
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: 'What can I do with Blissmi?',
+    answer:
+      'Connect wearables so your data syncs automatically, upload blood tests, genetic reports and medical documents for analysis, complete interactive health and cognitive assessments, receive personalised predictions about potential health risks, follow programmes covering nutrition, sleep, mental wellness, cognitive function and physical therapies, and connect with certified health coaches.',
+  },
+  {
+    question: 'Which wearables does Blissmi connect to?',
+    answer:
+      'Apple Watch, Fitbit, Garmin, Oura Ring and more. Once connected, data syncs automatically rather than needing manual entry.',
+  },
+  {
+    question: 'What areas of health does Blissmi track?',
+    answer:
+      'Physical health including body composition, physical activity and stress and recovery; hormonal health including reproductive and stress hormones; emotional well-being including burnout indicators, stress biomarkers and psychological well-being; and cognitive health.',
+  },
+  {
+    question: 'Can my employer see my health results?',
+    answer:
+      'No. Individual health data is never visible to employers or insurers. Anything shared at the organisation level is aggregated and anonymised, participation is voluntary, and you choose what you share.',
+  },
+];
 
 interface UsersPageProps {
   onNavigate: (page: string) => void;
@@ -164,6 +192,12 @@ export function UsersPage({ onNavigate, currentPage: _currentPage }: UsersPagePr
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <PageSeo
+        path="/members"
+        title="Blissmi for Members | Personalised Health Insights"
+        description="Connect your wearables, upload lab reports, take interactive assessments, and get AI health predictions plus programmes built around your health profile."
+        jsonLd={faqJsonLd(FAQ_ITEMS)}
+      />
 
       {/* Hero Section */}
       <section style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #eff6ff 100%)', padding: isMobile ? '6rem 0 3rem' : '8rem 0 5rem' }}>
@@ -435,6 +469,7 @@ export function UsersPage({ onNavigate, currentPage: _currentPage }: UsersPagePr
         </div>
       </section>
 
+      <FaqSection items={FAQ_ITEMS} />
     </div>
   );
 }

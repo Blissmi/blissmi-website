@@ -12,6 +12,7 @@ const forDropdown = [
   { id: 'customers',    label: 'Employers',             sub: 'Understand and improve workforce health' },
   { id: 'insurers',     label: 'Health Insurers',       sub: 'Strengthen your health proposition' },
   { id: 'brokers',      label: 'Brokers & Consultants', sub: 'Bring a smarter health strategy to clients' },
+  { id: 'hospitality',  label: 'Hospitality',           sub: 'Turn guest stays into lasting health insight' },
 ];
 
 const desktopLinks = [
@@ -25,6 +26,7 @@ const mobileItems = [
   { id: 'customers',    label: 'Employers',             indent: true },
   { id: 'insurers',     label: 'Health Insurers',       indent: true },
   { id: 'brokers',      label: 'Brokers & Consultants', indent: true },
+  { id: 'hospitality',  label: 'Hospitality',           indent: true },
   { id: 'about',        label: 'About' },
   { id: 'contact',      label: 'Contact Us' },
 ];

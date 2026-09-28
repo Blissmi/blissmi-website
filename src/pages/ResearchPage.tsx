@@ -6,6 +6,7 @@ import womenChattingNewImage from '../figma/assets/6fa05115d2b235c3777982ae94d96
 import threeWomenImage from '../figma/assets/eb2530bd9c55d670b97113cd4a7734a9.png';
 import { GREEN, GOLD, CREAM } from '../ui/theme';
 import { Eyebrow } from '../ui/Eyebrow';
+import { PageSeo } from '../seo/PageSeo';
 
 const TX_BODY = 'rgba(27,48,37,0.65)';
 const TX_MUTED = 'rgba(27,48,37,0.40)';
@@ -88,6 +89,12 @@ interface ResearchPageProps {
 export function ResearchPage({ onNavigate }: ResearchPageProps) {
   return (
     <div className="min-h-screen">
+      <PageSeo
+        path="/research"
+        title="Workforce & Women's Health Research | Blissmi"
+        description="Blissmi's research focus: the healthspan gap for women, menstrual symptoms and presenteeism, return-to-work pressure, and lasting behaviour change."
+        ogTitle="Research at Blissmi"
+      />
 
       {/* HERO */}
       <section className="py-16 lg:py-[120px]" style={{ backgroundColor: GREEN }}>
@@ -194,10 +201,10 @@ export function ResearchPage({ onNavigate }: ResearchPageProps) {
       <section className="py-16 lg:py-[120px] bg-white">
         <div className="max-w-[1360px] mx-auto px-6 md:px-12 lg:px-[120px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="rounded-2xl overflow-hidden" style={{ maxHeight: '480px' }}>
+            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden" style={{ maxHeight: '480px' }}>
               <ImageWithFallback src={threeWomenImage} alt="Three women" className="w-full h-full object-cover" style={{ objectPosition: 'top' }} />
             </div>
-            <div>
+            <div className="order-1 lg:order-2">
               <Eyebrow>Our approach</Eyebrow>
               <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 600, lineHeight: 1.15, color: GREEN, letterSpacing: '-0.02em', marginBottom: '24px' }}>
                 Building a new evidence base for women's health
