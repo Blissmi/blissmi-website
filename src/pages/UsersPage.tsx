@@ -287,7 +287,7 @@ export function UsersPage({ onNavigate, currentPage: _currentPage }: UsersPagePr
             {/* Left: Heading and Video */}
             <div>
               <h2 style={{ fontSize: isMobile ? '1.5rem' : '2.25rem', fontWeight: 700, color: '#111827', marginBottom: '2rem' }}>
-                We measure your health across 4 pillars and built your health score with our panel of doctors.
+                We measure your health across 4 pillars and built your health score with our Health Advisors.
               </h2>
               <video
                 autoPlay loop muted playsInline
