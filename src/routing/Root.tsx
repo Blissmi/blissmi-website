@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { StickyNav as Navigation } from '../components/StickyNav'
 import { Footer } from '../components/Footer'
+import { CookieBanner } from '../components/CookieBanner'
 import { SITE_GRAPH_JSON_LD } from '../seo/structuredData'
 import { PAGE_TO_PATH, PATH_TO_PAGE, type NavCtx } from './pageMap'
 
@@ -32,6 +33,7 @@ export function Root() {
         </Suspense>
       </main>
       <Footer onNavigate={handleNavigate} />
+      <CookieBanner onNavigate={handleNavigate} />
     </div>
   )
 }

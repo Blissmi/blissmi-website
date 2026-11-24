@@ -8,21 +8,68 @@
     <meta property="og:description" content="Workforce health intelligence for employers, insurers and brokers. Blissmi turns employee benefits and health data into analytics that show where to act." />
     <title>Workforce Health Intelligence &amp; Benefits Analytics | Blissmi</title>
     <meta property="og:title" content="Workforce Health Intelligence | Blissmi — Better Outcomes" />
-    <!-- Apollo website tracker -->
+
+    <!--
+      Consent gate. This block must stay ABOVE every tracker on the page.
+
+      Google Consent Mode v2 requires the `default` command to run before
+      gtag.js loads, otherwise the tag will have already written cookies by the
+      time we deny it. Everything starts denied; src/analytics/consent.ts calls
+      `consent update` once a visitor accepts in the cookie banner.
+
+      Blissmi's Privacy Policy (src/pages/PrivacyPage.tsx, "Cookies, SDKs and
+      app analytics") states analytics run only where permitted by applicable
+      law, and we sell into AU/EU. Do not remove this gate or move a tracker
+      above it without a decision from whoever owns that policy.
+    -->
     <script>
-      function initApollo() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+
+      // Apollo is consent-gated too. Defining it here (rather than calling it)
+      // means the banner — or the stored decision below — decides when it runs.
+      window.__blissmiInitApollo = function () {
+        if (window.__blissmiApolloStarted) return;
+        window.__blissmiApolloStarted = true;
         var n = Math.random().toString(36).substring(7),
-            o = document.createElement("script");
-        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+            o = document.createElement('script');
+        o.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + n;
         o.async = !0;
         o.defer = !0;
         o.onload = function () {
-          window.trackingFunctions.onLoad({ appId: "6a2f61488dfdc50020922fe4" });
+          window.trackingFunctions.onLoad({ appId: '6a2f61488dfdc50020922fe4' });
         };
         document.head.appendChild(o);
+      };
+
+      // Re-apply a decision this visitor already made, before gtag.js loads, so
+      // returning visitors are measured from the very first pageview.
+      try {
+        if (localStorage.getItem('blissmi.consent.analytics') === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'denied',
+            analytics_storage: 'granted'
+          });
+          window.__blissmiInitApollo();
+        }
+      } catch (e) {
+        // Private mode or blocked storage: stay denied. Nothing to do.
       }
-      initApollo();
+
+      gtag('js', new Date());
+      gtag('config', 'G-8DPYRMEM0X');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DPYRMEM0X"></script>
   </head>
   <body>
     <div id="root"></div>
